@@ -1,0 +1,154 @@
+// RoomMate PRD v5.5 통합본 기준 스키마
+// PostgreSQL / Strict ACID 트랜잭션 레이어
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Store {
+  id        String   @id @default(cuid())
+  name      String
+  region    String
+  themes    Theme[]
+  createdAt DateTime @default(now())
+}
+
+model Theme {
+  id              String           @id @default(cuid())
+  storeId         String
+  store           Store            @relation(fields: [storeId], references: [id])
+  name            String
+  genre           String
+  capacityMin     Int
+  capacityMax     Int
+  rating          Float            @default(0)
+  tags            String[] // 매장 기본 특성 태그 (VARCHAR[] 원자적 컬럼)
+  reviews         ThemeReview[]
+  historyLogs     UserHistoryLog[]
+  parties         Party[]
+  themeStatWeight ThemeStatWeight?
+  createdAt       DateTime         @default(now())
+}
+
+// 실시간 게이미피케이션 스탯 스케일 연산 로직 (사양 #4)의 theme_stat_weights 테이블
+model ThemeStatWeight {
+  themeId String @id
+  theme   Theme  @relation(fields: [themeId], references: [id])
+  logic   Float  @default(0)
+  observe Float  @default(0)
+  speed   Float  @default(0)
+  story   Float  @default(0)
+  solving Float  @default(0)
+  tank    Float  @default(0)
+}
+
+model User {
+  id           String             @id @default(cuid())
+  nickname     String
+  mannerTemp   Float              @default(36.5)
+  level        Int                @default(1)
+  totalClears  Int                @default(0)
+  currentExp   Float              @default(0)
+  stat         UserStat?
+  historyLogs  UserHistoryLog[]
+  reviews      ThemeReview[]
+  partyEntries PartyParticipant[]
+  createdAt    DateTime           @default(now())
+}
+
+// [도메인 2] Live_Hexagon_Radar_Chart 스탯 (theme_stat_weights 매핑 결과 누적치)
+model UserStat {
+  userId  String @id
+  user    User   @relation(fields: [userId], references: [id])
+  logic   Float  @default(50)
+  observe Float  @default(50)
+  speed   Float  @default(50)
+  story   Float  @default(50)
+  solving Float  @default(50)
+  tank    Float  @default(50)
+}
+
+enum HistoryStatus {
+  PENDING_REVIEW
+  REVIEWED
+  MANUAL_ENTRY
+}
+
+// [도메인 2] Webhook 기반 자동 일지 적재 (user_history_logs 테이블)
+model UserHistoryLog {
+  id        String        @id @default(cuid())
+  userId    String
+  user      User          @relation(fields: [userId], references: [id])
+  themeId   String
+  theme     Theme         @relation(fields: [themeId], references: [id])
+  playedAt  DateTime
+  status    HistoryStatus @default(PENDING_REVIEW)
+  partyId   String?
+  createdAt DateTime      @default(now())
+}
+
+// [도메인 3] themes_reviews — 하이브리드형 간편 리뷰
+model ThemeReview {
+  id             String   @id @default(cuid())
+  themeId        String
+  theme          Theme    @relation(fields: [themeId], references: [id])
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
+  grade          String // 풀길 | 흙길 | 인생테마 | 꽃길
+  selectedTags   String[] // VARCHAR[] + GIN 인덱스 대상 컬럼
+  votedHeadcount Int // 실체감 플레이 인원수 매칭 투표
+  cleared        Boolean
+  remainingSec   Int
+  hintsUsed      Int
+  comment        String?
+  createdAt      DateTime @default(now())
+
+  @@index([selectedTags], type: Gin)
+}
+
+enum PartyStatus {
+  OPEN
+  FILLED
+  SETTLED
+  DISPUTED
+}
+
+// [도메인 4] 안전 에스크로 기반 동행 매칭
+model Party {
+  id                String             @id @default(cuid())
+  themeId           String
+  theme             Theme              @relation(fields: [themeId], references: [id])
+  hostUserId        String
+  reservedAt        DateTime
+  capacity          Int
+  totalPriceWon     Int
+  status            PartyStatus        @default(OPEN)
+  verifiedBookingOk Boolean            @default(false)
+  participants      PartyParticipant[]
+  createdAt         DateTime           @default(now())
+}
+
+enum EscrowStatus {
+  HOLDING
+  RELEASED
+  FORFEITED
+}
+
+model PartyParticipant {
+  id           String       @id @default(cuid())
+  partyId      String
+  party        Party        @relation(fields: [partyId], references: [id])
+  userId       String
+  user         User         @relation(fields: [userId], references: [id])
+  depositWon   Int
+  escrowStatus EscrowStatus @default(HOLDING)
+  escrowTxRef  String? // 포트원 결제 트랜잭션 참조값 (mock)
+  joinedAt     DateTime     @default(now())
+
+  @@unique([partyId, userId])
+}

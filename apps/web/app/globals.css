@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #18181b;
+  --chart-grid: #e4e4e7;
+  --chart-fill: rgba(79, 70, 229, 0.18);
+  --chart-stroke: #4f46e5;
+  --chart-label: #52525b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
