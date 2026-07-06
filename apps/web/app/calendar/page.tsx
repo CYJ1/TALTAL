@@ -33,6 +33,9 @@ export default async function CalendarPage() {
               매너온도 {profile.mannerTemp.toFixed(1)}°C · 성향 <span className="font-medium text-indigo-600">🛡 탱커</span>
             </p>
           </div>
+          <Link href="/profile" className="shrink-0 text-xs font-medium text-indigo-600 underline">
+            프로필 전체보기
+          </Link>
         </div>
         <div className="mt-3">
           <div className="flex justify-between text-xs text-zinc-500">

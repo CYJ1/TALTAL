@@ -1,69 +1,34 @@
 import Link from 'next/link';
-import ThemeCard from '@/components/ThemeCard';
-import TagChip from '@/components/TagChip';
-import { searchThemes } from '@/lib/data';
+import Logo from '@/components/Logo';
 
-export default async function HomePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ tag?: string; availableOnly?: string }>;
-}) {
-  const params = await searchParams;
-  const themes = await searchThemes({
-    tag: params.tag,
-    availableOnly: params.availableOnly === 'true',
-  });
-
-  const popularTags = ['장치중심', '문제방', '탱커필수', '스토리연계성'];
-
+export default function SplashPage() {
   return (
-    <div className="pb-6">
-      <header className="sticky top-0 z-10 border-b border-zinc-200 bg-white/90 px-4 py-3 backdrop-blur">
-        <div className="flex items-center justify-between">
-          <button className="flex items-center gap-1 text-sm font-semibold text-zinc-900">
-            서울 강남구 <span className="text-zinc-400">▾</span>
-          </button>
-          <span className="text-lg">🔔</span>
-        </div>
+    <div className="flex min-h-[100dvh] flex-col items-center justify-between bg-gradient-to-b from-indigo-50 via-white to-white px-6 py-16 text-center">
+      <div />
 
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
-          <span className="shrink-0 rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-medium text-white">오늘</span>
-          <span className="shrink-0 rounded-full bg-zinc-100 px-3 py-1.5 text-xs font-medium text-zinc-600">18:00-20:00</span>
-          <Link
-            href={params.availableOnly === 'true' ? '/' : '/?availableOnly=true'}
-            className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium ${
-              params.availableOnly === 'true' ? 'bg-emerald-600 text-white' : 'bg-zinc-100 text-zinc-600'
-            }`}
-          >
-            예약가능 토글 {params.availableOnly === 'true' ? 'ON' : 'OFF'}
-          </Link>
-          <span className="shrink-0 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700">
-            👥 체감 추천인원 필터
-          </span>
-        </div>
+      <div className="flex flex-col items-center gap-4">
+        <Logo size="lg" />
+        <p className="max-w-xs text-sm leading-relaxed text-zinc-500">
+          자물쇠도, 고민도 <span className="font-semibold text-indigo-600">탈탈</span> 털어드립니다.
+          <br />
+          실시간 방탈출 예약 검색부터 안전한 동행 매칭까지.
+        </p>
+      </div>
 
-        <div className="mt-2 flex gap-1.5 overflow-x-auto [scrollbar-width:none]">
-          {popularTags.map((tag) => (
-            <Link key={tag} href={`/?tag=${encodeURIComponent(tag)}`}>
-              <TagChip tone={params.tag === tag ? 'accent' : 'default'}>{tag}</TagChip>
-            </Link>
-          ))}
-          {params.tag && (
-            <Link href="/" className="text-xs font-medium text-zinc-400 underline">
-              필터 초기화
-            </Link>
-          )}
-        </div>
-      </header>
-
-      <main className="space-y-3 px-4 py-4">
-        {themes.length === 0 && (
-          <p className="py-10 text-center text-sm text-zinc-400">조건에 맞는 테마가 없습니다.</p>
-        )}
-        {themes.map((theme) => (
-          <ThemeCard key={theme.themeId} theme={theme} />
-        ))}
-      </main>
+      <div className="w-full max-w-xs space-y-3">
+        <Link
+          href="/login"
+          className="block w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+        >
+          시작하기
+        </Link>
+        <Link
+          href="/home"
+          className="block w-full rounded-xl border border-zinc-200 py-3 text-sm font-medium text-zinc-500 transition hover:bg-zinc-50"
+        >
+          둘러보기
+        </Link>
+      </div>
     </div>
   );
 }

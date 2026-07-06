@@ -91,6 +91,15 @@ export interface PartyDetail {
   participants: PartyParticipantView[];
 }
 
+export interface NewPartyInput {
+  themeId: string;
+  hostUserId: string;
+  reservedAt: string;
+  capacity: number;
+  totalPriceWon: number;
+  bookingScreenshotBase64: string;
+}
+
 export interface CreateReviewInput {
   themeId: string;
   userId: string;
