@@ -40,15 +40,15 @@ docker-compose.yml   postgres / redis / rabbitmq / neo4j / api / scraper / ai-en
 
 ## 화면 Wireframe - 초안
 <div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
-  <img src="readme_src/splashfixed.png" width="300px" />
-  <img src="readme_src/new2login.png" width="300px" />
-  <img src="readme_src/new3signup.png" width="300px" />
-  <img src="readme_src/new5themedetail.png" width="300px" />
-  <img src="readme_src/new6booking.png" width="300px" />
-  <img src="readme_src/new7bookingcomplete.png" width="300px" />
-  <img src="readme_src/new8partynew.png" width="300px" />
-  <img src="readme_src/new9profile.png" width="300px" />
-  <img src="readme_src/new10notifications.png" width="300px" />
+  <img src="readme_src/splashfixed.png" width="200px" />
+  <img src="readme_src/new2login.png" width="200px" />
+  <img src="readme_src/new3signup.png" width="200px" />
+  <img src="readme_src/new5themedetail.png" width="200px" />
+  <img src="readme_src/new6booking.png" width="200px" />
+  <img src="readme_src/new7bookingcomplete.png" width="200px" />
+  <img src="readme_src/new8partynew.png" width="200px" />
+  <img src="readme_src/new9profile.png" width="200px" />
+  <img src="readme_src/new10notifications.png" width="200px" />
 </div>
 <br><br>
 
