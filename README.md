@@ -24,6 +24,7 @@
 - **로그인/회원가입도 목업** — 실제 인증 서버 연동 없이 입력값만 있으면
   통과되는 데모 화면(`apps/web/components/LoginForm.tsx`, `SignupForm.tsx`).
 - 디자인 톤앤매너는 **라이트 모드** 기준 (PRD v1 명시)으로 통일
+<br>
 
 ## 아키텍처
 
@@ -35,6 +36,22 @@ apps/
   ai-engine/  Python (FastAPI) — Neo4j 그래프 기반 추천 서빙
 docker-compose.yml   postgres / redis / rabbitmq / neo4j / api / scraper / ai-engine / web
 ```
+<br>
+
+## 화면 Wireframe - 초안
+<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
+  <img src="readme_src/splashfixed.png" width="300px" />
+  <img src="readme_src/new2login.png" width="300px" />
+  <img src="readme_src/new3signup.png" width="300px" />
+  <img src="readme_src/new5themedetail.png" width="300px" />
+  <img src="readme_src/new6booking.png" width="300px" />
+  <img src="readme_src/new7bookingcomplete.png" width="300px" />
+  <img src="readme_src/new8partynew.png" width="300px" />
+  <img src="readme_src/new9profile.png" width="300px" />
+  <img src="readme_src/new10notifications.png" width="300px" />
+</div>
+<br><br>
+
 
 ## 화면 구조 (`apps/web/app`)
 
@@ -65,6 +82,8 @@ docker-compose.yml   postgres / redis / rabbitmq / neo4j / api / scraper / ai-en
 | 예약 폼 | `/themes/[themeId]/book` |
 | 예약 완료 | `/themes/[themeId]/book/complete` |
 | 동행 파티 개설 (OCR 업로드) | `/party/new` |
+
+<br>
 
 ## 실행 방법
 
