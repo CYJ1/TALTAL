@@ -1,15 +1,13 @@
 # 탈탈 (TalTal) — 방탈출 통합 플랫폼
 
-"자물쇠도, 고민도 탈탈 털어드립니다." `ROOMATE_v2 PRD (v5.5)` + `escape_platform_prd_v1`을
-통합한 스펙을 기준으로 구현한 풀스택 모노레포입니다. 실시간 예약 검색, 게이미피케이션
+"자물쇠도, 고민도 탈탈 털어드립니다." 
+실시간 예약 검색, 게이미피케이션
 육각 스탯 프로필, 하이브리드 리뷰, 안전 에스크로 동행 매칭, Neo4j 그래프 기반 AI
 추천까지 5개 핵심 도메인과, 그 주변을 감싸는 앱 셸(스플래시/로그인/예약/파티개설 등)
 화면까지 갖췄습니다.
 
-## 빌드 범위 (중요)
-
-이번 구현은 **풀스택 아키텍처 + 목업 외부 연동** 범위로 진행했습니다.
-
+## 빌드 범위
+**풀스택 아키텍처 + 목업 외부 연동** 범위
 - 프레임워크/DB/메시지 브로커/그래프DB는 모두 **실제로 동작**합니다 (Next.js,
   NestJS, PostgreSQL, Redis, RabbitMQ, Neo4j).
 - 아래 3가지는 실제 계정·크롤링 대상이 없어 **동일한 인터페이스의 목업 구현체**로
@@ -77,9 +75,8 @@ npm run dev
 ```
 
 `API_BASE_URL` 환경변수를 설정하지 않으면 `apps/web/lib/mock-data.ts`의 인메모리
-픽스처로 모든 화면이 즉시 동작합니다 (백엔드 서버 필요 없음). `/`(스플래시)부터
-시작해서 로그인 → 홈 → 테마 상세 → 예약 → 동행 파티 개설까지 전체 플로우를 눌러볼
-수 있습니다.
+픽스처로 모든 화면이 즉시 동작합니다 (백엔드 서버 필요 없음). 
+`/`(스플래시)부터 시작해서 로그인 → 홈 → 테마 상세 → 예약 → 동행 파티 개설까지 전체 플로우를 눌러볼 수 있습니다.
 
 ### 방법 B — 전체 스택 (Docker Compose)
 
@@ -101,7 +98,6 @@ curl -X POST http://localhost:8000/internal/seed
 ```
 
 ## 검증한 것
-
 - `apps/api`: `npm run build` (Nest/TS 컴파일) 통과
 - `apps/web`: `npm run build`, `npm run lint` 통과 (14개 라우트 전부 컴파일)
 - `apps/web`: Playwright로 전체 화면 스크린샷 확인 + 아래 상호작용 테스트를
@@ -112,6 +108,3 @@ curl -X POST http://localhost:8000/internal/seed
     콘솔 에러 없음
 - `apps/scraper`, `apps/ai-engine`: Python 구문 검사(`py_compile`) 통과
 
-Docker Compose 전체 스택(Postgres/Redis/RabbitMQ/Neo4j 실제 기동)은 이 개발
-환경에 Docker 데몬이 없어 직접 기동 테스트는 하지 못했습니다. 로컬에 Docker가
-있는 환경에서 `docker compose up --build`로 확인해주세요.
