@@ -4,6 +4,7 @@ import type {
   CalendarEntry,
   CreateReviewInput,
   HexagonStat,
+  NewPartyInput,
   PartyDetail,
   RecommendationResponse,
   ThemeSearchResult,
@@ -62,16 +63,17 @@ export async function searchThemes(query: {
   }));
 }
 
+export async function getThemeDetail(themeId: string): Promise<ThemeSearchResult | null> {
+  if (!IS_REMOTE_MODE) return mock.getThemeDetail(themeId);
+  const all = await searchThemes({});
+  return all.find((t) => t.themeId === themeId) ?? null;
+}
+
 export async function getThemeMeta(
   themeId: string,
 ): Promise<{ themeId: string; themeName: string; storeName: string } | null> {
-  if (!IS_REMOTE_MODE) {
-    const t = mock.getThemeById(themeId);
-    return t ? { themeId: t.themeId, themeName: t.themeName, storeName: t.storeName } : null;
-  }
-  const all = await searchThemes({});
-  const found = all.find((t) => t.themeId === themeId);
-  return found ? { themeId: found.themeId, themeName: found.themeName, storeName: found.storeName } : null;
+  const t = await getThemeDetail(themeId);
+  return t ? { themeId: t.themeId, themeName: t.themeName, storeName: t.storeName } : null;
 }
 
 export async function getProfile(userId: string): Promise<UserProfile> {
@@ -167,4 +169,14 @@ export async function joinPartyRequest(partyId: string, userId: string) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ userId }),
   });
+}
+
+export async function createPartyRequest(input: NewPartyInput): Promise<{ id: string }> {
+  if (!IS_REMOTE_MODE) return { id: mock.createParty(input) };
+  const raw = await remoteJson<Json>(`/parties`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
+  return { id: raw.id };
 }

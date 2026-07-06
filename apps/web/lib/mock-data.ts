@@ -143,25 +143,7 @@ export function getThemesForSearch(query: {
   if (query.region) themes = themes.filter((t) => t.region === query.region);
   if (query.tag) themes = themes.filter((t) => t.tags.includes(query.tag!));
 
-  const results = themes
-    .map((theme) => {
-      const slots = generateSlots(theme.themeId);
-      const rh = recommendedHeadcountFor(theme);
-      return {
-        themeId: theme.themeId,
-        storeId: theme.storeId,
-        storeName: theme.storeName,
-        themeName: theme.themeName,
-        rating: theme.rating,
-        tags: theme.tags,
-        capacityMin: theme.capacityMin,
-        capacityMax: theme.capacityMax,
-        slots,
-        recommendedHeadcount: { recommended: rh.recommended, reason: rh.reason, sampleSize: rh.sampleSize },
-        cacheStatus: 'HIT' as const,
-      };
-    })
-    .sort((a, b) => b.rating - a.rating);
+  const results = themes.map(mapThemeToSearchResult).sort((a, b) => b.rating - a.rating);
 
   if (query.availableOnly) {
     return results.filter((r) => r.slots.some((s) => s.status !== 'CLOSED'));
@@ -169,8 +151,31 @@ export function getThemesForSearch(query: {
   return results;
 }
 
+function mapThemeToSearchResult(theme: ThemeSeed): ThemeSearchResult {
+  const slots = generateSlots(theme.themeId);
+  const rh = recommendedHeadcountFor(theme);
+  return {
+    themeId: theme.themeId,
+    storeId: theme.storeId,
+    storeName: theme.storeName,
+    themeName: theme.themeName,
+    rating: theme.rating,
+    tags: theme.tags,
+    capacityMin: theme.capacityMin,
+    capacityMax: theme.capacityMax,
+    slots,
+    recommendedHeadcount: { recommended: rh.recommended, reason: rh.reason, sampleSize: rh.sampleSize },
+    cacheStatus: 'HIT' as const,
+  };
+}
+
 export function getThemeById(themeId: string) {
   return THEMES.find((t) => t.themeId === themeId) ?? null;
+}
+
+export function getThemeDetail(themeId: string): ThemeSearchResult | null {
+  const theme = THEMES.find((t) => t.themeId === themeId);
+  return theme ? mapThemeToSearchResult(theme) : null;
 }
 
 // ---- 유저 / 스탯 / 캘린더 ----
@@ -386,4 +391,35 @@ export function joinParty(partyId: string, userId: string) {
   if (party.participants.length >= party.capacity) party.status = 'FILLED';
 
   return getPartyDetail(partyId)!;
+}
+
+/** [도메인 4] 사양 #1: OCR 검증(목업) 후 파티 개설 + 방장 본인의 보증금 즉시 홀딩 */
+export function createParty(input: {
+  themeId: string;
+  hostUserId: string;
+  reservedAt: string;
+  capacity: number;
+  totalPriceWon: number;
+  bookingScreenshotBase64: string;
+}): string {
+  if (!input.bookingScreenshotBase64) {
+    throw new Error('예약 캡처본 OCR 검증에 실패했습니다 (허위/리셀 룸 의심)');
+  }
+
+  const id = `party-${Date.now()}`;
+  const depositWon = Math.round(input.totalPriceWon / input.capacity);
+
+  PARTIES[id] = {
+    id,
+    themeId: input.themeId,
+    hostUserId: input.hostUserId,
+    reservedAt: input.reservedAt,
+    capacity: input.capacity,
+    totalPriceWon: input.totalPriceWon,
+    status: 'OPEN',
+    verifiedBookingOk: true,
+    participants: [{ id: `pp-${Date.now()}`, userId: input.hostUserId, depositWon, escrowStatus: 'HOLDING' }],
+  };
+
+  return id;
 }

@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RoomMate — 방탈출 통합 플랫폼",
-  description: "실시간 예약 검색 · 게이미피케이션 스탯 · 안전 에스크로 동행 매칭 · AI 추천",
+  title: "탈탈 — 방탈출 통합 플랫폼",
+  description: "자물쇠도 고민도 탈탈. 실시간 예약 검색 · 게이미피케이션 스탯 · 안전 에스크로 동행 매칭 · AI 추천",
 };
 
 export default function RootLayout({

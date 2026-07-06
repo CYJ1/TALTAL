@@ -11,7 +11,7 @@ const STATUS_STYLE: Record<string, string> = {
 export default function ThemeCard({ theme }: { theme: ThemeSearchResult }) {
   return (
     <div className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
-      <div className="flex gap-3">
+      <Link href={`/themes/${theme.themeId}`} className="flex gap-3">
         <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-100 to-violet-100 text-2xl">
           🔑
         </div>
@@ -28,7 +28,7 @@ export default function ThemeCard({ theme }: { theme: ThemeSearchResult }) {
             ))}
           </div>
         </div>
-      </div>
+      </Link>
 
       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
         <span>매장정원 {theme.capacityMin}~{theme.capacityMax}인</span>
@@ -51,14 +51,14 @@ export default function ThemeCard({ theme }: { theme: ThemeSearchResult }) {
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2">
-        <button
-          type="button"
-          className="rounded-xl border border-zinc-200 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
+        <Link
+          href={`/themes/${theme.themeId}/book`}
+          className="rounded-xl border border-zinc-200 py-2 text-center text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
         >
           매장 공홈 예약
-        </button>
+        </Link>
         <Link
-          href="/party/party-demo-1"
+          href={`/party/new?themeId=${theme.themeId}`}
           className="rounded-xl bg-indigo-600 py-2 text-center text-sm font-medium text-white transition hover:bg-indigo-700"
         >
           동행 구하기
