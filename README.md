@@ -1,27 +1,29 @@
 # 탈탈 (TalTal) — 방탈출 통합 플랫폼
 
 "자물쇠도, 고민도 탈탈 털어드립니다." 
+
 실시간 예약 검색, 게이미피케이션
 육각 스탯 프로필, 하이브리드 리뷰, 안전 에스크로 동행 매칭, Neo4j 그래프 기반 AI
-추천까지 5개 핵심 도메인과, 그 주변을 감싸는 앱 셸(스플래시/로그인/예약/파티개설 등)
-화면까지 갖췄습니다.
+추천
+
+5개 핵심 도메인 및 그 주변을 감싸는 앱 셸(스플래시/로그인/예약/파티개설 등) 화면까지 구현
 
 ## 빌드 범위
 **풀스택 아키텍처 + 목업 외부 연동** 범위
-- 프레임워크/DB/메시지 브로커/그래프DB는 모두 **실제로 동작**합니다 (Next.js,
+- 프레임워크/DB/메시지 브로커/그래프DB 모두 **실제동작** (Next.js,
   NestJS, PostgreSQL, Redis, RabbitMQ, Neo4j).
 - 아래 3가지는 실제 계정·크롤링 대상이 없어 **동일한 인터페이스의 목업 구현체**로
-  대체했습니다. 나중에 키/대상이 생기면 어댑터 구현체만 교체하면 됩니다.
+  대체함. 나중에 키/대상이 생기면 교체예정
   - **방탈출 매장 크롤링** → `apps/scraper/app/mock_source.py` (시드 기반 재현 가능한 가짜 예약 데이터)
   - **Naver CLOVA OCR** → `apps/api/src/common/adapters/ocr/clova-ocr-mock.adapter.ts`
   - **포트원(PortOne) 에스크로 결제** → `apps/api/src/common/adapters/payment/portone-mock.adapter.ts`
 - **GraphSAGE/Node2Vec 학습 파이프라인**도 실제 학습 데이터·GPU 배치잡이 없는 단계라,
   동일한 Neo4j 그래프 스키마 위에서 태그 코사인 유사도 + 취약 스탯 보정 점수를
-  계산하는 경량 대체 알고리즘(`apps/ai-engine/app/recommend.py`)으로 구현했습니다.
-  Neo4j 자체와 그래프 스키마는 실제입니다.
-- **로그인/회원가입도 목업**입니다 — 실제 인증 서버 연동 없이 입력값만 있으면
-  통과되는 데모 화면입니다 (`apps/web/components/LoginForm.tsx`, `SignupForm.tsx`).
-- 디자인 톤앤매너는 **라이트 모드** 기준 (PRD v1 명시)으로 통일했습니다.
+  계산하는 경량 대체 알고리즘(`apps/ai-engine/app/recommend.py`)으로 구현
+  Neo4j 자체와 그래프 스키마는 실제
+- **로그인/회원가입도 목업** — 실제 인증 서버 연동 없이 입력값만 있으면
+  통과되는 데모 화면(`apps/web/components/LoginForm.tsx`, `SignupForm.tsx`).
+- 디자인 톤앤매너는 **라이트 모드** 기준 (PRD v1 명시)으로 통일
 
 ## 아키텍처
 
