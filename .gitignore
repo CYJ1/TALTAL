@@ -1,0 +1,8 @@
+# Python (apps/scraper, apps/ai-engine)
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# OS
+.DS_Store
