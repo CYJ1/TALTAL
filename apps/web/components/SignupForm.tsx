@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { signupAction } from '@/lib/actions';
 
 const PERSONALITY = [
@@ -16,6 +17,7 @@ export default function SignupForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [personality, setPersonality] = useState('tank');
+  const [agreed, setAgreed] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -85,9 +87,29 @@ export default function SignupForm() {
           </div>
         </div>
 
+        <label className="flex items-start gap-2 text-xs text-zinc-500">
+          <input
+            type="checkbox"
+            required
+            checked={agreed}
+            onChange={(e) => setAgreed(e.target.checked)}
+            className="mt-0.5 h-4 w-4 shrink-0 rounded border-zinc-300 text-indigo-600 focus:ring-indigo-400"
+          />
+          <span>
+            <Link href="/legal/terms" target="_blank" className="font-medium text-indigo-600 underline">
+              이용약관
+            </Link>{' '}
+            및{' '}
+            <Link href="/legal/privacy" target="_blank" className="font-medium text-indigo-600 underline">
+              개인정보처리방침
+            </Link>
+            에 동의합니다 (필수)
+          </span>
+        </label>
+
         <button
           type="submit"
-          disabled={pending}
+          disabled={pending || !agreed}
           className="w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60"
         >
           {pending ? '가입 처리 중...' : '가입하고 시작하기'}

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
 import LogoutButton from '@/components/LogoutButton';
@@ -73,6 +74,14 @@ export default async function ProfilePage() {
             <span>정산 계좌 등록</span>
             <span className="text-zinc-300">›</span>
           </div>
+          <Link href="/legal/terms" className="flex items-center justify-between py-2.5 text-zinc-600">
+            <span>이용약관</span>
+            <span className="text-zinc-300">›</span>
+          </Link>
+          <Link href="/legal/privacy" className="flex items-center justify-between py-2.5 text-zinc-600">
+            <span>개인정보처리방침</span>
+            <span className="text-zinc-300">›</span>
+          </Link>
         </div>
       </section>
 
