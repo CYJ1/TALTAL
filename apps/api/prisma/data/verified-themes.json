@@ -2447,5 +2447,46 @@
         "복고"
       ]
     }
+  ],
+  "kakao-259983085": [
+    {
+      "name": "쓰여진 문장 속에 구원이 없다면",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 32000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": [
+        "추리"
+      ]
+    },
+    {
+      "name": "존재할 자격",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 32000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": [
+        "추리"
+      ]
+    },
+    {
+      "name": "뱃사람의 별",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 32000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": [
+        "추리"
+      ]
+    }
   ]
 }
