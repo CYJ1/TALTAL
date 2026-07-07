@@ -122,4 +122,25 @@ export class SearchService {
 
     return filtered;
   }
+
+  /** 구/동 선택기 UI를 위해 실제 등록된 매장 기준 구 -> 동 목록을 반환한다. */
+  async getDistrictFacets(): Promise<{ district: string; neighborhoods: string[] }[]> {
+    const stores = await this.prisma.store.findMany({
+      select: { district: true, neighborhood: true },
+      distinct: ['district', 'neighborhood'],
+    });
+
+    const byDistrict = new Map<string, Set<string>>();
+    for (const store of stores) {
+      if (!byDistrict.has(store.district)) byDistrict.set(store.district, new Set());
+      if (store.neighborhood) byDistrict.get(store.district)!.add(store.neighborhood);
+    }
+
+    return Array.from(byDistrict.entries())
+      .map(([district, neighborhoods]) => ({
+        district,
+        neighborhoods: Array.from(neighborhoods).sort(),
+      }))
+      .sort((a, b) => a.district.localeCompare(b.district));
+  }
 }

@@ -1,20 +1,38 @@
+import { Suspense } from 'react';
 import Link from 'next/link';
 import ThemeCard from '@/components/ThemeCard';
 import TagChip from '@/components/TagChip';
 import Logo from '@/components/Logo';
-import { searchThemes } from '@/lib/data';
+import DistrictPicker from '@/components/DistrictPicker';
+import GeoLocationSync from '@/components/GeoLocationSync';
+import { getDistrictFacets, searchThemes } from '@/lib/data';
 
 export default async function HomePage({
   searchParams,
 }: {
-  searchParams: Promise<{ tag?: string; availableOnly?: string; district?: string }>;
+  searchParams: Promise<{
+    tag?: string;
+    availableOnly?: string;
+    district?: string;
+    neighborhood?: string;
+    lat?: string;
+    lng?: string;
+  }>;
 }) {
   const params = await searchParams;
-  const themes = await searchThemes({
-    district: params.district,
-    tag: params.tag,
-    availableOnly: params.availableOnly === 'true',
-  });
+  const lat = params.lat ? Number(params.lat) : undefined;
+  const lng = params.lng ? Number(params.lng) : undefined;
+  const [themes, facets] = await Promise.all([
+    searchThemes({
+      district: params.district,
+      neighborhood: params.neighborhood,
+      tag: params.tag,
+      availableOnly: params.availableOnly === 'true',
+      lat,
+      lng,
+    }),
+    getDistrictFacets(),
+  ]);
 
   const popularTags = ['장치중심', '문제방', '탱커필수', '스토리연계성'];
 
@@ -33,9 +51,14 @@ export default async function HomePage({
           </div>
         </div>
 
-        <button className="mt-2 flex items-center gap-1 text-sm font-semibold text-zinc-900">
-          서울 강남구 <span className="text-zinc-400">▾</span>
-        </button>
+        <Suspense fallback={<div className="mt-2 h-5" />}>
+          <DistrictPicker
+            facets={facets}
+            currentDistrict={params.district}
+            currentNeighborhood={params.neighborhood}
+          />
+          <GeoLocationSync />
+        </Suspense>
 
         <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
           <span className="shrink-0 rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-medium text-white">오늘</span>
@@ -48,6 +71,11 @@ export default async function HomePage({
           >
             예약가능 토글 {params.availableOnly === 'true' ? 'ON' : 'OFF'}
           </Link>
+          {lat != null && lng != null && (
+            <span className="shrink-0 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700">
+              📍 내 위치 기준 가까운 순
+            </span>
+          )}
           <span className="shrink-0 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700">
             👥 체감 추천인원 필터
           </span>

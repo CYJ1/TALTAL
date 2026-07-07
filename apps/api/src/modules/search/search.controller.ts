@@ -23,6 +23,11 @@ export class SearchController {
     return this.searchService.search(query);
   }
 
+  @Get('facets')
+  getFacets() {
+    return this.searchService.getDistrictFacets();
+  }
+
   /** 사양 #4: 가공 완료된 타임슬롯 데이터를 SSE로 클라이언트에 완벽히 동기화 */
   @Sse('stream')
   stream(): Observable<MessageEvent> {

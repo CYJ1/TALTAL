@@ -32,6 +32,11 @@ export default function ThemeCard({ theme }: { theme: ThemeSearchResult }) {
 
       <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
         <span>매장정원 {theme.capacityMin}~{theme.capacityMax}인</span>
+        {theme.distanceKm != null && (
+          <span className="rounded-full bg-zinc-100 px-2 py-0.5 font-medium text-zinc-600">
+            📍 {theme.distanceKm < 1 ? `${Math.round(theme.distanceKm * 1000)}m` : `${theme.distanceKm.toFixed(1)}km`}
+          </span>
+        )}
         {theme.recommendedHeadcount && (
           <span className="rounded-full bg-indigo-50 px-2 py-0.5 font-medium text-indigo-700">
             👥 {theme.recommendedHeadcount.reason}
