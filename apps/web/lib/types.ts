@@ -8,6 +8,12 @@ export interface DistrictFacet {
   neighborhoods: string[];
 }
 
+export interface DateSlots {
+  date: string;
+  slots: TimeSlot[];
+  cacheStatus: 'HIT' | 'REFRESHING' | 'MOCK_ESTIMATE';
+}
+
 export interface RecommendedHeadcount {
   recommended: number;
   reason: string;

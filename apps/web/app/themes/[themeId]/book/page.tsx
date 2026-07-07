@@ -1,6 +1,16 @@
 import { notFound } from 'next/navigation';
 import BookingForm from '@/components/BookingForm';
-import { getThemeDetail } from '@/lib/data';
+import { getThemeDetail, getThemeSlotsForDates } from '@/lib/data';
+
+const BOOKING_WINDOW_DAYS = 7;
+
+function upcomingDates(count: number): string[] {
+  const today = new Date().toISOString().slice(0, 10);
+  const start = new Date(`${today}T00:00:00Z`);
+  return Array.from({ length: count }, (_, i) =>
+    new Date(start.getTime() + i * 86_400_000).toISOString().slice(0, 10),
+  );
+}
 
 export default async function BookPage({
   params,
@@ -10,6 +20,9 @@ export default async function BookPage({
   const { themeId } = await params;
   const theme = await getThemeDetail(themeId);
   if (!theme) notFound();
+
+  const dates = upcomingDates(BOOKING_WINDOW_DAYS);
+  const dateSlots = await getThemeSlotsForDates(theme.themeId, dates);
 
   return (
     <div className="pb-8">
@@ -21,7 +34,7 @@ export default async function BookPage({
       </div>
       <BookingForm
         themeId={theme.themeId}
-        slots={theme.slots}
+        dateSlots={dateSlots}
         capacityMin={theme.capacityMin}
         capacityMax={theme.capacityMax}
         recommendedHeadcount={theme.recommendedHeadcount?.recommended ?? theme.capacityMin}

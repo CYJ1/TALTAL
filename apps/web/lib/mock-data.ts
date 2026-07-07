@@ -1,6 +1,7 @@
 import type {
   CalendarEntry,
   CreateReviewInput,
+  DateSlots,
   DistrictFacet,
   GenerationPreference,
   GenreTag,
@@ -154,6 +155,27 @@ function generateSlots(themeId: string): TimeSlot[] {
     const roll = rng();
     const status: TimeSlot['status'] = roll > 0.55 ? 'AVAILABLE' : roll > 0.4 ? 'FEW_LEFT' : 'CLOSED';
     return { time, status };
+  });
+}
+
+/** "오늘" 이후 날짜는 스크래퍼가 아직 실제 매장 어댑터를 갖추지 못해, 테마+날짜
+ * 시드로 재현 가능한 목업 시간대를 생성한다 (apps/api의 future-slot-mock.ts와 동일 발상). */
+function generateSlotsForDate(themeId: string, date: string): TimeSlot[] {
+  const rng = mulberry32(hashSeed(`${themeId}:${date}`));
+  return SLOT_TIMES.map((time) => {
+    const roll = rng();
+    const status: TimeSlot['status'] = roll > 0.55 ? 'AVAILABLE' : roll > 0.4 ? 'FEW_LEFT' : 'CLOSED';
+    return { time, status };
+  });
+}
+
+export function getSlotsForDates(themeId: string, dates: string[]): DateSlots[] {
+  const theme = getThemeById(themeId);
+  const today = new Date().toISOString().slice(0, 10);
+  return dates.map((date) => {
+    if (!theme) return { date, slots: [], cacheStatus: 'REFRESHING' as const };
+    if (date === today) return { date, slots: generateSlots(themeId), cacheStatus: 'HIT' as const };
+    return { date, slots: generateSlotsForDate(themeId, date), cacheStatus: 'MOCK_ESTIMATE' as const };
   });
 }
 

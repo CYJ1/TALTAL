@@ -2,31 +2,57 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import type { TimeSlot } from '@/lib/types';
+import type { DateSlots } from '@/lib/types';
+
+function formatDateLabel(date: string, index: number): { top: string; bottom: string } {
+  if (index === 0) return { top: '오늘', bottom: formatMonthDay(date) };
+  if (index === 1) return { top: '내일', bottom: formatMonthDay(date) };
+  const weekday = new Intl.DateTimeFormat('ko-KR', { weekday: 'short', timeZone: 'UTC' }).format(
+    new Date(`${date}T00:00:00Z`),
+  );
+  return { top: weekday, bottom: formatMonthDay(date) };
+}
+
+function formatMonthDay(date: string): string {
+  return new Intl.DateTimeFormat('ko-KR', { month: 'numeric', day: 'numeric', timeZone: 'UTC' }).format(
+    new Date(`${date}T00:00:00Z`),
+  );
+}
 
 export default function BookingForm({
   themeId,
-  slots,
+  dateSlots,
   capacityMin,
   capacityMax,
   recommendedHeadcount,
 }: {
   themeId: string;
-  slots: TimeSlot[];
+  dateSlots: DateSlots[];
   capacityMin: number;
   capacityMax: number;
   recommendedHeadcount: number;
 }) {
   const router = useRouter();
+  const [selectedDate, setSelectedDate] = useState(dateSlots[0]?.date ?? '');
+  const current = dateSlots.find((d) => d.date === selectedDate) ?? dateSlots[0];
+  const slots = current?.slots ?? [];
   const availableSlots = slots.filter((s) => s.status !== 'CLOSED');
+
   const [time, setTime] = useState(availableSlots[0]?.time ?? slots[0]?.time ?? '');
   const [headcount, setHeadcount] = useState(recommendedHeadcount);
   const [pending, setPending] = useState(false);
 
+  function handleSelectDate(date: string) {
+    setSelectedDate(date);
+    const next = dateSlots.find((d) => d.date === date);
+    const nextAvailable = next?.slots.filter((s) => s.status !== 'CLOSED') ?? [];
+    setTime(nextAvailable[0]?.time ?? next?.slots[0]?.time ?? '');
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setPending(true);
-    const params = new URLSearchParams({ time, headcount: String(headcount) });
+    const params = new URLSearchParams({ date: selectedDate, time, headcount: String(headcount) });
     setTimeout(() => router.push(`/themes/${themeId}/book/complete?${params.toString()}`), 400);
   }
 
@@ -34,9 +60,32 @@ export default function BookingForm({
     <form onSubmit={handleSubmit} className="space-y-5 px-4 py-4">
       <section>
         <h2 className="mb-2 text-sm font-semibold text-zinc-700">날짜</h2>
-        <div className="rounded-xl border border-indigo-600 bg-indigo-50 px-4 py-2.5 text-sm font-medium text-indigo-700">
-          오늘 · {new Intl.DateTimeFormat('ko-KR', { month: 'long', day: 'numeric', weekday: 'short' }).format(new Date())}
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {dateSlots.map((d, i) => {
+            const label = formatDateLabel(d.date, i);
+            const isSelected = d.date === selectedDate;
+            return (
+              <button
+                key={d.date}
+                type="button"
+                onClick={() => handleSelectDate(d.date)}
+                className={`flex shrink-0 flex-col items-center rounded-xl border px-3.5 py-2 text-xs font-medium ${
+                  isSelected
+                    ? 'border-indigo-600 bg-indigo-600 text-white'
+                    : 'border-zinc-200 text-zinc-600'
+                }`}
+              >
+                <span>{label.top}</span>
+                <span className={isSelected ? 'text-indigo-100' : 'text-zinc-400'}>{label.bottom}</span>
+              </button>
+            );
+          })}
         </div>
+        {current?.cacheStatus === 'MOCK_ESTIMATE' && (
+          <p className="mt-2 text-xs text-zinc-400">
+            매장별 실시간 크롤러가 아직 없는 날짜라 과거 패턴 기반 예상 데이터입니다. 실제 잔여석은 매장에 확인해 주세요.
+          </p>
+        )}
       </section>
 
       <section>
@@ -93,7 +142,7 @@ export default function BookingForm({
         disabled={pending || !time}
         className="w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-60"
       >
-        {pending ? '예약 처리 중...' : `${time} · ${headcount}인 예약하기`}
+        {pending ? '예약 처리 중...' : `${formatMonthDay(selectedDate)} ${time} · ${headcount}인 예약하기`}
       </button>
     </form>
   );

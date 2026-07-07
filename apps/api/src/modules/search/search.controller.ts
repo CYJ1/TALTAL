@@ -1,4 +1,4 @@
-import { Controller, Get, MessageEvent, Query, Sse } from '@nestjs/common';
+import { Controller, Get, MessageEvent, Param, Query, Sse } from '@nestjs/common';
 import { Observable, Subject } from 'rxjs';
 import { SearchService } from './search.service';
 import { SearchQueryDto } from './dto/search-query.dto';
@@ -26,6 +26,12 @@ export class SearchController {
   @Get('facets')
   getFacets() {
     return this.searchService.getDistrictFacets();
+  }
+
+  @Get('themes/:themeId/slots')
+  getSlots(@Param('themeId') themeId: string, @Query('dates') dates: string) {
+    const dateList = dates.split(',').filter(Boolean);
+    return this.searchService.getSlotsForDates(themeId, dateList);
   }
 
   /** 사양 #4: 가공 완료된 타임슬롯 데이터를 SSE로 클라이언트에 완벽히 동기화 */
