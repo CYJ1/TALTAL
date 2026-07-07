@@ -56,9 +56,9 @@ export class AuthService {
           ? []
           : ((dto.genrePreferences ?? []) as GenreTag[]),
         pacingPreference: dto.isBeginner ? null : dto.pacingPreference,
-        roomTypePreference: dto.isBeginner ? null : dto.roomTypePreference,
+        generationPreference: dto.isBeginner ? null : dto.generationPreference,
         horrorRole:
-          !dto.isBeginner && dto.genrePreferences?.includes('HORROR')
+          !dto.isBeginner && dto.genrePreferences?.includes('HORROR_THRILLER')
             ? dto.horrorRole
             : null,
         stat: { create: {} },

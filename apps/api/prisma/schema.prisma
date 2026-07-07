@@ -2,8 +2,8 @@
 // PostgreSQL / Strict ACID 트랜잭션 레이어
 
 generator client {
-  provider      = "prisma-client-js"
-  output        = "../generated/prisma"
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -53,12 +53,15 @@ enum SocialProvider {
   GOOGLE
 }
 
-// 가입 시 선호도 설문 (사양: 방린이면 종료, 아니면 장르/진행스타일/공간유형 + 공포 선택 시 역할까지)
+// 가입 시 선호도 설문 (사양: 방린이면 종료, 아니면 장르/진행스타일/선호세대 + 공포 선택 시 역할까지)
+// 장르는 한국 방탈출 어워즈 시상 부문 기준 6개 분류를 그대로 채택한다.
 enum GenreTag {
-  EMOTIONAL // 감성테마
-  HORROR // 공포테마
-  SCIFI // SF관련
-  IMMERSIVE // 이머시브
+  HORROR_THRILLER // 공포/스릴러
+  EMOTIONAL_ROMANCE // 감성/드라마/로맨스
+  MYSTERY_DETECTIVE // 추리/미스터리
+  ACTION_ADVENTURE // 액션/어드벤처
+  SCIFI_FANTASY // SF/판타지
+  COMEDY_ETC // 코믹/문제/기타
 }
 
 enum PacingPreference {
@@ -66,9 +69,13 @@ enum PacingPreference {
   SPEED // 문제빨리풀기위주
 }
 
-enum RoomTypePreference {
-  PUZZLE // 문제방선호
-  DEVICE // 장치방선호
+// 방탈출 세대 구분 (1세대: 자물쇠·퀴즈 위주 / 2세대: 스토리+장치·센서 위주 /
+// 3세대: 이머시브 연기연출·앱 연동·대형 자본). 기존의 "문제방/장치방 선호"와
+// "이머시브 장르"를 하나의 축으로 통합한 것이다.
+enum GenerationPreference {
+  GEN1
+  GEN2
+  GEN3
 }
 
 enum HorrorRole {
@@ -78,26 +85,26 @@ enum HorrorRole {
 }
 
 model User {
-  id                 String               @id @default(cuid())
-  email              String               @unique
-  passwordHash       String? // 소셜 로그인 전용 계정은 비밀번호가 없다
-  provider           SocialProvider?
-  providerId         String?
-  nickname           String
-  mannerTemp         Float                @default(36.5)
-  level              Int                  @default(1)
-  totalClears        Int                  @default(0)
-  currentExp         Float                @default(0)
-  isBeginner         Boolean              @default(false)
-  genrePreferences   GenreTag[]           @default([])
-  pacingPreference   PacingPreference?
-  roomTypePreference RoomTypePreference?
-  horrorRole         HorrorRole?
-  stat               UserStat?
-  historyLogs        UserHistoryLog[]
-  reviews            ThemeReview[]
-  partyEntries       PartyParticipant[]
-  createdAt          DateTime             @default(now())
+  id                   String                @id @default(cuid())
+  email                String                @unique
+  passwordHash         String? // 소셜 로그인 전용 계정은 비밀번호가 없다
+  provider             SocialProvider?
+  providerId           String?
+  nickname             String
+  mannerTemp           Float                 @default(36.5)
+  level                Int                   @default(1)
+  totalClears          Int                   @default(0)
+  currentExp           Float                 @default(0)
+  isBeginner           Boolean               @default(false)
+  genrePreferences     GenreTag[]            @default([])
+  pacingPreference     PacingPreference?
+  generationPreference GenerationPreference?
+  horrorRole           HorrorRole?
+  stat                 UserStat?
+  historyLogs          UserHistoryLog[]
+  reviews              ThemeReview[]
+  partyEntries         PartyParticipant[]
+  createdAt            DateTime              @default(now())
 
   @@unique([provider, providerId])
 }

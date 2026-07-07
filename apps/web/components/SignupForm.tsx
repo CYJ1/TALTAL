@@ -4,13 +4,16 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signupAction } from '@/lib/actions';
-import type { GenreTag, HorrorRole, PacingPreference, RoomTypePreference } from '@/lib/types';
+import type { GenerationPreference, GenreTag, HorrorRole, PacingPreference } from '@/lib/types';
 
+// 한국 방탈출 어워즈 시상 부문 기준 6개 장르 분류
 const GENRE_OPTIONS: { key: GenreTag; label: string }[] = [
-  { key: 'EMOTIONAL', label: '감성테마' },
-  { key: 'HORROR', label: '공포테마' },
-  { key: 'SCIFI', label: 'SF테마' },
-  { key: 'IMMERSIVE', label: '이머시브' },
+  { key: 'HORROR_THRILLER', label: '공포/스릴러' },
+  { key: 'EMOTIONAL_ROMANCE', label: '감성/드라마/로맨스' },
+  { key: 'MYSTERY_DETECTIVE', label: '추리/미스터리' },
+  { key: 'ACTION_ADVENTURE', label: '액션/어드벤처' },
+  { key: 'SCIFI_FANTASY', label: 'SF/판타지' },
+  { key: 'COMEDY_ETC', label: '코믹/문제/기타' },
 ];
 
 const PACING_OPTIONS: { key: PacingPreference; label: string }[] = [
@@ -18,9 +21,10 @@ const PACING_OPTIONS: { key: PacingPreference; label: string }[] = [
   { key: 'SPEED', label: '문제 빨리 풀기 위주' },
 ];
 
-const ROOM_TYPE_OPTIONS: { key: RoomTypePreference; label: string }[] = [
-  { key: 'PUZZLE', label: '문제방 선호' },
-  { key: 'DEVICE', label: '장치방 선호' },
+const GENERATION_OPTIONS: { key: GenerationPreference; label: string; desc: string }[] = [
+  { key: 'GEN1', label: '1세대', desc: '자물쇠·퀴즈 위주' },
+  { key: 'GEN2', label: '2세대', desc: '장치·센서 위주' },
+  { key: 'GEN3', label: '3세대', desc: '이머시브·앱연동' },
 ];
 
 const HORROR_ROLE_OPTIONS: { key: HorrorRole; label: string; desc: string }[] = [
@@ -38,26 +42,26 @@ export default function SignupForm() {
   const [isBeginner, setIsBeginner] = useState<boolean | null>(null);
   const [genrePreferences, setGenrePreferences] = useState<GenreTag[]>([]);
   const [pacingPreference, setPacingPreference] = useState<PacingPreference | null>(null);
-  const [roomTypePreference, setRoomTypePreference] = useState<RoomTypePreference | null>(null);
+  const [generationPreference, setGenerationPreference] = useState<GenerationPreference | null>(null);
   const [horrorRole, setHorrorRole] = useState<HorrorRole | null>(null);
 
   const [agreed, setAgreed] = useState(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const wantsHorror = genrePreferences.includes('HORROR');
+  const wantsHorror = genrePreferences.includes('HORROR_THRILLER');
   const preferencesComplete =
     isBeginner === true ||
     (isBeginner === false &&
       genrePreferences.length > 0 &&
       pacingPreference !== null &&
-      roomTypePreference !== null &&
+      generationPreference !== null &&
       (!wantsHorror || horrorRole !== null));
 
   function toggleGenre(genre: GenreTag) {
     setGenrePreferences((prev) => {
       const next = prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre];
-      if (genre === 'HORROR' && prev.includes('HORROR')) setHorrorRole(null);
+      if (genre === 'HORROR_THRILLER' && prev.includes('HORROR_THRILLER')) setHorrorRole(null);
       return next;
     });
   }
@@ -74,7 +78,7 @@ export default function SignupForm() {
         isBeginner: isBeginner ?? false,
         genrePreferences: isBeginner ? undefined : genrePreferences,
         pacingPreference: isBeginner ? undefined : (pacingPreference ?? undefined),
-        roomTypePreference: isBeginner ? undefined : (roomTypePreference ?? undefined),
+        generationPreference: isBeginner ? undefined : (generationPreference ?? undefined),
         horrorRole: isBeginner || !wantsHorror ? undefined : (horrorRole ?? undefined),
       });
       router.push('/home');
@@ -192,20 +196,21 @@ export default function SignupForm() {
               </div>
 
               <div>
-                <p className="mb-2 text-xs font-semibold text-zinc-500">선호 공간 유형</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {ROOM_TYPE_OPTIONS.map((r) => (
+                <p className="mb-2 text-xs font-semibold text-zinc-500">선호 세대</p>
+                <div className="grid grid-cols-3 gap-2">
+                  {GENERATION_OPTIONS.map((g) => (
                     <button
-                      key={r.key}
+                      key={g.key}
                       type="button"
-                      onClick={() => setRoomTypePreference(r.key)}
-                      className={`rounded-xl border py-2 text-xs font-medium ${
-                        roomTypePreference === r.key
+                      onClick={() => setGenerationPreference(g.key)}
+                      className={`rounded-xl border p-2 text-center text-xs ${
+                        generationPreference === g.key
                           ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
                           : 'border-zinc-200 text-zinc-500'
                       }`}
                     >
-                      {r.label}
+                      <div className="font-semibold">{g.label}</div>
+                      <div className="mt-0.5 text-[10px] leading-tight">{g.desc}</div>
                     </button>
                   ))}
                 </div>
