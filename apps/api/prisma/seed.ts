@@ -1,4 +1,6 @@
 import 'dotenv/config';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import { PrismaPg } from '@prisma/adapter-pg';
 import * as bcrypt from 'bcrypt';
 import { PrismaClient } from '../generated/prisma';
@@ -14,31 +16,68 @@ const DEMO_PASSWORD_HASH = bcrypt.hashSync('password123!', 10);
 // store_id / theme_id는 apps/scraper와 apps/ai-engine의 시드 데이터와 동일하게
 // 고정해 서비스 간 참조가 일관되도록 한다.
 //
-// 아래 매장 목록은 실제 서울 방탈출 시장 조사(웹 검색) 기반으로 구성한 실존
-// 브랜드명이다. 다만 개별 사이트 접근이 막혀있어(bot 차단) 정확한 도로명 주소·
-// 위경도까지는 확인하지 못했다 — district/neighborhood는 조사 결과 기준
-// 근사치이고, address/latitude/longitude는 null로 비워뒀다. 실서비스 전환 시
-// 카카오/네이버 지도 지오코딩 API로 채워야 한다.
-// 신규 매장의 테마 1개씩은 브랜드 실제 성격(예: 제로월드=공포 특화)은 반영했지만
-// 구체적 테마명·장르·난이도는 개별 사이트 크롤링 전까지는 플레이스홀더다.
+// 아래 4개 매장은 실제 테마명·장르·난이도까지 조사해 둔 대표 매장이라 개별
+// literal로 유지한다. district/neighborhood/address/latitude/longitude는
+// 카카오 로컬 API(scripts/fetch-kakao-stores.ts) 조회 결과로 갱신했다.
 const STORES = [
-  { id: 'keyescape-gangnam', name: '키이스케이프 강남점', district: '서울 강남구', neighborhood: '역삼동' },
-  { id: 'zerooworld-gangnam', name: '제로월드 강남점', district: '서울 강남구', neighborhood: '역삼동' },
-  { id: 'murderparker-gangnam', name: '머더파커 강남점', district: '서울 강남구', neighborhood: '역삼동' },
-  { id: 'point9-gangnam', name: '포인트나인 강남점', district: '서울 강남구', neighborhood: '역삼동' },
-  { id: 'sherlockholmes-gangnam2', name: '셜록홈즈 강남2호점', district: '서울 강남구', neighborhood: '역삼동' },
-  { id: 'doorescape-gangnam', name: '도어이스케이프 강남점', district: '서울 강남구', neighborhood: '삼성동' },
-  { id: 'themaze-gangnam', name: '더메이즈 강남점', district: '서울 강남구', neighborhood: '논현동' },
-  { id: 'xscape-gangnam', name: '엑스케이프 강남점', district: '서울 강남구', neighborhood: '역삼동' },
-  { id: 'bitphobia-hongdae', name: '비트포비아 홍대점', district: '서울 마포구', neighborhood: '서교동' },
-  { id: 'doorescape-hongdae', name: '도어이스케이프 홍대점', district: '서울 마포구', neighborhood: '서교동' },
-  { id: 'decoder-hongdae', name: '디코더 홍대점', district: '서울 마포구', neighborhood: '서교동' },
-  { id: 'themaze-konkuk', name: '더메이즈 건대점', district: '서울 광진구', neighborhood: '화양동' },
-  { id: 'xscape-konkuk', name: '엑스케이프 건대점', district: '서울 광진구', neighborhood: '화양동' },
-  { id: 'bitphobia-sinchon', name: '비트포비아 신촌점', district: '서울 서대문구', neighborhood: '신촌동' },
-  { id: 'masterkey-sinchon', name: '마스터키 신촌점', district: '서울 서대문구', neighborhood: '신촌동' },
-  { id: 'decoder-seongsu', name: '디코더 성수점', district: '서울 성동구', neighborhood: '성수동' },
+  {
+    id: 'keyescape-gangnam',
+    name: '키이스케이프 강남점',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    address: '서울 강남구 강남대로96길 17',
+    latitude: 37.5001035869388,
+    longitude: 127.028430769789,
+  },
+  {
+    id: 'zerooworld-gangnam',
+    name: '제로월드 강남점',
+    district: '서울 서초구',
+    neighborhood: '서초동',
+    address: '서울 서초구 서초대로73길 40',
+    latitude: 37.5009333761724,
+    longitude: 127.024581465886,
+  },
+  {
+    // 카카오 로컬 API 검색 결과에서 매칭되는 매장을 찾지 못했다 — 폐업했거나
+    // 카카오맵 미등록 매장일 수 있다. 위치 정보는 비워두고 이후 확인이 필요하다.
+    id: 'murderparker-gangnam',
+    name: '머더파커 강남점',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    address: null,
+    latitude: null,
+    longitude: null,
+  },
+  {
+    id: 'point9-gangnam',
+    name: '포인트나인 강남점',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    address: '서울 강남구 강남대로102길 40',
+    latitude: 37.5034283090159,
+    longitude: 127.028386792542,
+  },
 ];
+
+// 카카오 로컬 API로 실제 조회한 서울 시내 방탈출/테마카페 매장 187곳 (scripts/
+// fetch-kakao-stores.ts 실행 결과, 확인 필요 없는 존재·주소·좌표까지 실데이터다).
+// 다만 매장 단위 정보이므로 테마 단위 상세(테마명/장르/난이도/가격)는 아직
+// 알 수 없고, 아래 main()에서 매장별로 "(확인 필요)" 플레이스홀더 테마 1개씩을
+// 생성한다 — 개별 사이트 크롤링 어댑터가 붙으면 실제 테마 데이터로 교체한다.
+interface KakaoStoreSeed {
+  id: string;
+  name: string;
+  district: string;
+  neighborhood: string | null;
+  address: string;
+  latitude: number;
+  longitude: number;
+}
+
+const KAKAO_STORES: KakaoStoreSeed[] = JSON.parse(
+  readFileSync(join(__dirname, 'data/seoul-escape-rooms.json'), 'utf-8'),
+);
 
 const THEMES = [
   {
@@ -105,199 +144,22 @@ const THEMES = [
     tags: ['잠입', '장치중심', '스토리연계성'],
     weight: { logic: 4, observe: 7, speed: 2, story: 5, solving: 5, tank: 2 },
   },
-  {
-    id: 'sherlock-signature',
-    storeId: 'sherlockholmes-gangnam2',
-    name: '셜록홈즈 대표 테마 (확인 필요)',
-    genre: 'MYSTERY_DETECTIVE',
-    generation: 'GEN2',
-    difficulty: 3,
-    pricePerPersonWon: 28000,
-    capacityMin: 2,
-    capacityMax: 4,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.3,
-    tags: ['추리', '문제방'],
-    weight: { logic: 6, observe: 5, speed: 2, story: 4, solving: 6, tank: 1 },
-  },
-  {
-    id: 'doorescape-gangnam-signature',
-    storeId: 'doorescape-gangnam',
-    name: '도어이스케이프 강남 대표 테마 (확인 필요)',
-    genre: 'ACTION_ADVENTURE',
-    generation: 'GEN2',
-    difficulty: 3,
-    pricePerPersonWon: 28000,
-    capacityMin: 2,
-    capacityMax: 5,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.2,
-    tags: ['액션'],
-    weight: { logic: 4, observe: 5, speed: 5, story: 3, solving: 4, tank: 3 },
-  },
-  {
-    id: 'themaze-gangnam-signature',
-    storeId: 'themaze-gangnam',
-    name: '더메이즈 강남 대표 테마 (확인 필요)',
-    genre: 'SCIFI_FANTASY',
-    generation: 'GEN2',
-    difficulty: 3,
-    pricePerPersonWon: 28000,
-    capacityMin: 2,
-    capacityMax: 4,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.2,
-    tags: ['SF'],
-    weight: { logic: 5, observe: 5, speed: 3, story: 5, solving: 5, tank: 2 },
-  },
-  {
-    id: 'xscape-gangnam-signature',
-    storeId: 'xscape-gangnam',
-    name: '엑스케이프 강남 대표 테마 (확인 필요)',
-    genre: 'ACTION_ADVENTURE',
-    generation: 'GEN2',
-    difficulty: 3,
-    pricePerPersonWon: 27000,
-    capacityMin: 2,
-    capacityMax: 5,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.1,
-    tags: ['액션'],
-    weight: { logic: 4, observe: 4, speed: 6, story: 3, solving: 4, tank: 3 },
-  },
-  {
-    id: 'bitphobia-hongdae-signature',
-    storeId: 'bitphobia-hongdae',
-    name: '비트포비아 홍대 대표 테마 (확인 필요)',
-    genre: 'HORROR_THRILLER',
-    generation: 'GEN2',
-    difficulty: 4,
-    pricePerPersonWon: 29000,
-    capacityMin: 2,
-    capacityMax: 6,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.4,
-    tags: ['공포'],
-    weight: { logic: 3, observe: 4, speed: 3, story: 3, solving: 3, tank: 8 },
-  },
-  {
-    id: 'doorescape-hongdae-signature',
-    storeId: 'doorescape-hongdae',
-    name: '도어이스케이프 홍대 대표 테마 (확인 필요)',
-    genre: 'ACTION_ADVENTURE',
-    generation: 'GEN2',
-    difficulty: 3,
-    pricePerPersonWon: 28000,
-    capacityMin: 2,
-    capacityMax: 5,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.2,
-    tags: ['액션'],
-    weight: { logic: 4, observe: 5, speed: 5, story: 3, solving: 4, tank: 3 },
-  },
-  {
-    id: 'decoder-hongdae-signature',
-    storeId: 'decoder-hongdae',
-    name: '디코더 홍대 대표 테마 (확인 필요)',
-    genre: 'SCIFI_FANTASY',
-    generation: 'GEN3',
-    difficulty: 4,
-    pricePerPersonWon: 30000,
-    capacityMin: 2,
-    capacityMax: 4,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.5,
-    tags: ['SF', '이머시브'],
-    weight: { logic: 5, observe: 5, speed: 3, story: 6, solving: 5, tank: 2 },
-  },
-  {
-    id: 'themaze-konkuk-signature',
-    storeId: 'themaze-konkuk',
-    name: '더메이즈 건대 대표 테마 (확인 필요)',
-    genre: 'SCIFI_FANTASY',
-    generation: 'GEN2',
-    difficulty: 3,
-    pricePerPersonWon: 28000,
-    capacityMin: 2,
-    capacityMax: 4,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.2,
-    tags: ['SF'],
-    weight: { logic: 5, observe: 5, speed: 3, story: 5, solving: 5, tank: 2 },
-  },
-  {
-    id: 'xscape-konkuk-signature',
-    storeId: 'xscape-konkuk',
-    name: '엑스케이프 건대 대표 테마 (확인 필요)',
-    genre: 'COMEDY_ETC',
-    generation: 'GEN1',
-    difficulty: 2,
-    pricePerPersonWon: 25000,
-    capacityMin: 2,
-    capacityMax: 5,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.0,
-    tags: ['코믹'],
-    weight: { logic: 3, observe: 3, speed: 4, story: 3, solving: 3, tank: 3 },
-  },
-  {
-    id: 'bitphobia-sinchon-signature',
-    storeId: 'bitphobia-sinchon',
-    name: '비트포비아 신촌 대표 테마 (확인 필요)',
-    genre: 'HORROR_THRILLER',
-    generation: 'GEN2',
-    difficulty: 4,
-    pricePerPersonWon: 29000,
-    capacityMin: 2,
-    capacityMax: 6,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.3,
-    tags: ['공포'],
-    weight: { logic: 3, observe: 4, speed: 3, story: 3, solving: 3, tank: 8 },
-  },
-  {
-    id: 'masterkey-sinchon-signature',
-    storeId: 'masterkey-sinchon',
-    name: '마스터키 신촌 대표 테마 (확인 필요)',
-    genre: 'MYSTERY_DETECTIVE',
-    generation: 'GEN1',
-    difficulty: 3,
-    pricePerPersonWon: 26000,
-    capacityMin: 2,
-    capacityMax: 4,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.1,
-    tags: ['추리', '문제방'],
-    weight: { logic: 7, observe: 5, speed: 2, story: 3, solving: 6, tank: 1 },
-  },
-  {
-    id: 'decoder-seongsu-signature',
-    storeId: 'decoder-seongsu',
-    name: '디코더 성수 대표 테마 (확인 필요)',
-    genre: 'SCIFI_FANTASY',
-    generation: 'GEN3',
-    difficulty: 4,
-    pricePerPersonWon: 30000,
-    capacityMin: 2,
-    capacityMax: 4,
-    recommendedHeadcount: null,
-    recommendedReason: null,
-    rating: 4.4,
-    tags: ['SF', '이머시브'],
-    weight: { logic: 5, observe: 5, speed: 3, story: 6, solving: 5, tank: 2 },
-  },
 ];
+
+// 카카오 매장 하나당 생성하는 플레이스홀더 테마의 공통 기본값. genre는 아직
+// 개별 확인 전이라 taxonomy의 catch-all 분류인 COMEDY_ETC로 두고, 사이트별
+// 크롤링 어댑터가 붙으면 실제 값으로 교체한다.
+const KAKAO_PLACEHOLDER_THEME_DEFAULTS = {
+  genre: 'COMEDY_ETC' as const,
+  generation: 'GEN2' as const,
+  difficulty: 3,
+  pricePerPersonWon: 28000,
+  capacityMin: 2,
+  capacityMax: 4,
+  rating: 4.0,
+  tags: [] as string[],
+  weight: { logic: 3, observe: 3, speed: 3, story: 3, solving: 3, tank: 3 },
+};
 
 const USERS = [
   {
@@ -368,6 +230,51 @@ async function main() {
     });
   }
 
+  const d = KAKAO_PLACEHOLDER_THEME_DEFAULTS;
+  for (const store of KAKAO_STORES) {
+    await prisma.store.upsert({
+      where: { id: store.id },
+      update: store,
+      create: store,
+    });
+
+    const themeId = `${store.id}-theme`;
+    await prisma.theme.upsert({
+      where: { id: themeId },
+      update: {
+        storeId: store.id,
+        name: `${store.name} 대표 테마 (확인 필요)`,
+        genre: d.genre,
+        generation: d.generation,
+        difficulty: d.difficulty,
+        pricePerPersonWon: d.pricePerPersonWon,
+        capacityMin: d.capacityMin,
+        capacityMax: d.capacityMax,
+        rating: d.rating,
+        tags: d.tags,
+      },
+      create: {
+        id: themeId,
+        storeId: store.id,
+        name: `${store.name} 대표 테마 (확인 필요)`,
+        genre: d.genre,
+        generation: d.generation,
+        difficulty: d.difficulty,
+        pricePerPersonWon: d.pricePerPersonWon,
+        capacityMin: d.capacityMin,
+        capacityMax: d.capacityMax,
+        rating: d.rating,
+        tags: d.tags,
+      },
+    });
+
+    await prisma.themeStatWeight.upsert({
+      where: { themeId },
+      update: d.weight,
+      create: { themeId, ...d.weight },
+    });
+  }
+
   for (const user of USERS) {
     await prisma.user.upsert({
       where: { id: user.id },
@@ -399,7 +306,7 @@ async function main() {
   }
 
   console.log(
-    `Seeded ${STORES.length} stores, ${THEMES.length} themes, ${USERS.length} users`,
+    `Seeded ${STORES.length + KAKAO_STORES.length} stores, ${THEMES.length + KAKAO_STORES.length} themes, ${USERS.length} users`,
   );
 }
 

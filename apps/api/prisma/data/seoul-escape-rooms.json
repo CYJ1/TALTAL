@@ -1,0 +1,1685 @@
+[
+  {
+    "id": "kakao-522639283",
+    "name": "코드이스케이프 가로수길점",
+    "district": "서울 강남구",
+    "neighborhood": "신사동",
+    "address": "서울 강남구 가로수길 14",
+    "latitude": 37.518822164570295,
+    "longitude": 127.02338375716188
+  },
+  {
+    "id": "kakao-212176813",
+    "name": "개꿀이스케이프",
+    "district": "서울 강남구",
+    "neighborhood": "논현동",
+    "address": "서울 강남구 강남대로118길 40",
+    "latitude": 37.5070778214757,
+    "longitude": 127.026488089458
+  },
+  {
+    "id": "kakao-401872428",
+    "name": "시그널헌터 가로수길점",
+    "district": "서울 강남구",
+    "neighborhood": "신사동",
+    "address": "서울 강남구 강남대로152길 40",
+    "latitude": 37.5179807907309,
+    "longitude": 127.022544168338
+  },
+  {
+    "id": "kakao-1245109855",
+    "name": "싸인이스케이프 강남시티점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로94길 67",
+    "latitude": 37.5008233323577,
+    "longitude": 127.032536240863
+  },
+  {
+    "id": "kakao-1044925351",
+    "name": "이룸에이트",
+    "district": "서울 강남구",
+    "neighborhood": "논현동",
+    "address": "서울 강남구 봉은사로 115",
+    "latitude": 37.5053164396386,
+    "longitude": 127.026114244932
+  },
+  {
+    "id": "kakao-1000900386",
+    "name": "이스케이프샾",
+    "district": "서울 강남구",
+    "neighborhood": "신사동",
+    "address": "서울 강남구 논현로175길 93",
+    "latitude": 37.5229274660933,
+    "longitude": 127.021640662948
+  },
+  {
+    "id": "kakao-2012633570",
+    "name": "오늘의한페이지 방탈출카페",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 봉은사로6길 26",
+    "latitude": 37.5033114706894,
+    "longitude": 127.027142707568
+  },
+  {
+    "id": "kakao-578778978",
+    "name": "쿠쿠룸 1089",
+    "district": "서울 강남구",
+    "neighborhood": "논현동",
+    "address": "서울 강남구 봉은사로1길 27",
+    "latitude": 37.5064926421788,
+    "longitude": 127.024282444167
+  },
+  {
+    "id": "kakao-459642234",
+    "name": "키이스케이프 메모리컴퍼니",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 봉은사로2길 7",
+    "latitude": 37.5042308224732,
+    "longitude": 127.025684101999
+  },
+  {
+    "id": "kakao-1908100709",
+    "name": "스튜디오이에스씨",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 봉은사로18길 70",
+    "latitude": 37.5022337181255,
+    "longitude": 127.027786947444
+  },
+  {
+    "id": "kakao-2069651128",
+    "name": "황금열쇠 강남타임스퀘어점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로98길 25",
+    "latitude": 37.5010766186845,
+    "longitude": 127.028657321204
+  },
+  {
+    "id": "kakao-377197835",
+    "name": "단편선 방탈출",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 봉은사로4길 36",
+    "latitude": 37.502514154376954,
+    "longitude": 127.02682010271623
+  },
+  {
+    "id": "kakao-1551717206",
+    "name": "엑스케이프 강남점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 봉은사로2길 16",
+    "latitude": 37.50355057000109,
+    "longitude": 127.02565333332531
+  },
+  {
+    "id": "kakao-253767236",
+    "name": "황금열쇠 플라워로드점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 봉은사로18길 76",
+    "latitude": 37.5017905136596,
+    "longitude": 127.027400007468
+  },
+  {
+    "id": "kakao-1528582359",
+    "name": "코드케이 강남점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 봉은사로2길 31",
+    "latitude": 37.502652112596074,
+    "longitude": 127.02635646822918
+  },
+  {
+    "id": "kakao-1429324904",
+    "name": "퍼즐팩토리 강남점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로102길 13",
+    "latitude": 37.5020501300304,
+    "longitude": 127.026848209914
+  },
+  {
+    "id": "kakao-103606910",
+    "name": "엑소더스 방탈출카페 강남1호점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 봉은사로18길 80",
+    "latitude": 37.5015995130162,
+    "longitude": 127.027345653498
+  },
+  {
+    "id": "kakao-225341934",
+    "name": "라스트이스케이프",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로98길 20",
+    "latitude": 37.50080281636902,
+    "longitude": 127.0282274714139
+  },
+  {
+    "id": "kakao-320987184",
+    "name": "키이스케이프 로그인2",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로98길 16",
+    "latitude": 37.5007434070249,
+    "longitude": 127.02798769668273
+  },
+  {
+    "id": "kakao-99889048",
+    "name": "키이스케이프 로그인1",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로98길 16",
+    "latitude": 37.500734399109,
+    "longitude": 127.027978646062
+  },
+  {
+    "id": "kakao-1030963843",
+    "name": "마피아카페 강남1호점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로96길 19",
+    "latitude": 37.5001639237822,
+    "longitude": 127.028557453314
+  },
+  {
+    "id": "kakao-874592991",
+    "name": "프랭크의골동품가게",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로96길 19",
+    "latitude": 37.500157617287,
+    "longitude": 127.028555189115
+  },
+  {
+    "id": "kakao-1466171651",
+    "name": "플레이포인트랩 강남점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로98길 11",
+    "latitude": 37.5008786768572,
+    "longitude": 127.027481099747
+  },
+  {
+    "id": "kakao-436025860",
+    "name": "비트포비아 던전스텔라",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 테헤란로14길 34",
+    "latitude": 37.4971739503309,
+    "longitude": 127.033631585443
+  },
+  {
+    "id": "kakao-260184665",
+    "name": "초상화",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로96길 15",
+    "latitude": 37.5000874176391,
+    "longitude": 127.028227202109
+  },
+  {
+    "id": "kakao-1478483341",
+    "name": "비트포비아 던전루나",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로94길 20",
+    "latitude": 37.4994276866333,
+    "longitude": 127.029029883925
+  },
+  {
+    "id": "kakao-1277196871",
+    "name": "에피소드방탈출 강남점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로98길 8",
+    "latitude": 37.5005363156219,
+    "longitude": 127.027390501933
+  },
+  {
+    "id": "kakao-1213158520",
+    "name": "코드헌터 강남점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로96길 13",
+    "latitude": 37.4999640092052,
+    "longitude": 127.028103888029
+  },
+  {
+    "id": "kakao-982831030",
+    "name": "넥스트에디션 강남5호점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로94길 11",
+    "latitude": 37.499545006601,
+    "longitude": 127.028249615716
+  },
+  {
+    "id": "kakao-27413263",
+    "name": "비트포비아 강남던전점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 강남대로84길 33",
+    "latitude": 37.497583697643,
+    "longitude": 127.031112213726
+  },
+  {
+    "id": "kakao-123477337",
+    "name": "파라박스",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 테헤란로8길 28-4",
+    "latitude": 37.4970033258976,
+    "longitude": 127.031577883554
+  },
+  {
+    "id": "kakao-400448256",
+    "name": "키이스케이프 강남 더오름",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 테헤란로6길 30",
+    "latitude": 37.4966142182906,
+    "longitude": 127.03109824138642
+  },
+  {
+    "id": "kakao-1871864524",
+    "name": "겟어웨이방탈출카페",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 역삼로5길 22",
+    "latitude": 37.4953453624502,
+    "longitude": 127.03199106777
+  },
+  {
+    "id": "kakao-916422770",
+    "name": "키이스케이프 우주라이크점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 테헤란로6길 46",
+    "latitude": 37.4956788806596,
+    "longitude": 127.031448411152
+  },
+  {
+    "id": "kakao-2140363473",
+    "name": "룸즈에이 강남점",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 테헤란로4길 35",
+    "latitude": 37.4961385962339,
+    "longitude": 127.030679634125
+  },
+  {
+    "id": "kakao-1769092819",
+    "name": "비트포비아 강남던전2",
+    "district": "서울 강남구",
+    "neighborhood": "역삼동",
+    "address": "서울 강남구 테헤란로4길 32",
+    "latitude": 37.49628289411766,
+    "longitude": 127.03014819829872
+  },
+  {
+    "id": "kakao-1331705130",
+    "name": "레드런 천호점",
+    "district": "서울 강동구",
+    "neighborhood": "천호동",
+    "address": "서울 강동구 천호대로157길 17",
+    "latitude": 37.5385998135392,
+    "longitude": 127.127034504748
+  },
+  {
+    "id": "kakao-1857201893",
+    "name": "큐브이스케이프 천호점",
+    "district": "서울 강동구",
+    "neighborhood": "천호동",
+    "address": "서울 강동구 천호대로157길 22",
+    "latitude": 37.5386479906941,
+    "longitude": 127.127476994736
+  },
+  {
+    "id": "kakao-911063716",
+    "name": "더트랩 수유점",
+    "district": "서울 강북구",
+    "neighborhood": "수유동",
+    "address": "서울 강북구 도봉로 363",
+    "latitude": 37.639938349142,
+    "longitude": 127.027251253028
+  },
+  {
+    "id": "kakao-4331171",
+    "name": "큐브이스케이프 수유점",
+    "district": "서울 강북구",
+    "neighborhood": "수유동",
+    "address": "서울 강북구 도봉로87길 11",
+    "latitude": 37.6383315131476,
+    "longitude": 127.024894047779
+  },
+  {
+    "id": "kakao-880372928",
+    "name": "더파인더 방탈출",
+    "district": "서울 관악구",
+    "neighborhood": "봉천동",
+    "address": "서울 관악구 관악로16길 13",
+    "latitude": 37.4804180312595,
+    "longitude": 126.953453156798
+  },
+  {
+    "id": "kakao-2145277612",
+    "name": "월투월방탈출 서울대점",
+    "district": "서울 관악구",
+    "neighborhood": "봉천동",
+    "address": "서울 관악구 남부순환로226길 9",
+    "latitude": 37.4801939216252,
+    "longitude": 126.95407060208
+  },
+  {
+    "id": "kakao-628138029",
+    "name": "룸엘이스케이프",
+    "district": "서울 관악구",
+    "neighborhood": "신림동",
+    "address": "서울 관악구 신림로 322-4",
+    "latitude": 37.4830826871443,
+    "longitude": 126.930384165518
+  },
+  {
+    "id": "kakao-956647188",
+    "name": "셜록홈즈 신림2호점",
+    "district": "서울 관악구",
+    "neighborhood": "신림동",
+    "address": "서울 관악구 신림로 327",
+    "latitude": 37.4834750441753,
+    "longitude": 126.92956973573
+  },
+  {
+    "id": "kakao-1224056973",
+    "name": "넥스트에디션 신림점",
+    "district": "서울 관악구",
+    "neighborhood": "신림동",
+    "address": "서울 관악구 남부순환로 1598",
+    "latitude": 37.4837662283012,
+    "longitude": 126.928334791226
+  },
+  {
+    "id": "kakao-1735229345",
+    "name": "룸엘이스케이프 당곡점",
+    "district": "서울 관악구",
+    "neighborhood": "봉천동",
+    "address": "서울 관악구 보라매로 4",
+    "latitude": 37.489957734035,
+    "longitude": 126.927971561206
+  },
+  {
+    "id": "kakao-2016521022",
+    "name": "이스케이프샾 건대점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 능동로 129-1",
+    "latitude": 37.54258561763021,
+    "longitude": 127.07158116141953
+  },
+  {
+    "id": "kakao-427596987",
+    "name": "포인트나인 건대점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로33길 49",
+    "latitude": 37.5425050458878,
+    "longitude": 127.070721115736
+  },
+  {
+    "id": "kakao-645050666",
+    "name": "비밀의화원 포레스트",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 동일로24길 102",
+    "latitude": 37.54221687504413,
+    "longitude": 127.07047190620146
+  },
+  {
+    "id": "kakao-40766168",
+    "name": "드림이스케이프",
+    "district": "서울 광진구",
+    "neighborhood": "자양동",
+    "address": "서울 광진구 아차산로 238",
+    "latitude": 37.5399829258444,
+    "longitude": 127.069578181958
+  },
+  {
+    "id": "kakao-996505136",
+    "name": "비밀의화원 건대점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로 235",
+    "latitude": 37.54062085734,
+    "longitude": 127.069538040418
+  },
+  {
+    "id": "kakao-1108129560",
+    "name": "넥스트에디션 보네르관",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로31길 9-1",
+    "latitude": 37.5415580002985,
+    "longitude": 127.069362393126
+  },
+  {
+    "id": "kakao-746135486",
+    "name": "플레이더월드 건대점",
+    "district": "서울 광진구",
+    "neighborhood": "자양동",
+    "address": "서울 광진구 동일로20길 98",
+    "latitude": 37.5398032110675,
+    "longitude": 127.068749759245
+  },
+  {
+    "id": "kakao-361428621",
+    "name": "엑스크라임 건대2호점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로29길 38",
+    "latitude": 37.54247363803389,
+    "longitude": 127.0689830448787
+  },
+  {
+    "id": "kakao-1271584354",
+    "name": "황금열쇠 건대점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로29길 12",
+    "latitude": 37.541432391282,
+    "longitude": 127.068452533474
+  },
+  {
+    "id": "kakao-1862264503",
+    "name": "머더파커 건대2호점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 동일로22길 68",
+    "latitude": 37.5413967039289,
+    "longitude": 127.067841479524
+  },
+  {
+    "id": "kakao-1016102948",
+    "name": "머더파커 건대1호점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로 213",
+    "latitude": 37.54137814914319,
+    "longitude": 127.06720102200049
+  },
+  {
+    "id": "kakao-1925742552",
+    "name": "솔버 2호점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로 209",
+    "latitude": 37.5414287362316,
+    "longitude": 127.066970237026
+  },
+  {
+    "id": "kakao-138006966",
+    "name": "더메이즈 건대점",
+    "district": "서울 광진구",
+    "neighborhood": "자양동",
+    "address": "서울 광진구 아차산로26길 13",
+    "latitude": 37.5406624362196,
+    "longitude": 127.06617070565
+  },
+  {
+    "id": "kakao-1385414031",
+    "name": "플레이33",
+    "district": "서울 광진구",
+    "neighborhood": "자양동",
+    "address": "서울 광진구 아차산로26길 20",
+    "latitude": 37.5405347092562,
+    "longitude": 127.065785880067
+  },
+  {
+    "id": "kakao-1103038059",
+    "name": "솔버 건대1호점",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로 201",
+    "latitude": 37.5417653808057,
+    "longitude": 127.065954427297
+  },
+  {
+    "id": "kakao-1516889516",
+    "name": "방탈출 뉴케이스",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 아차산로 191",
+    "latitude": 37.542047842624,
+    "longitude": 127.065145631576
+  },
+  {
+    "id": "kakao-287949141",
+    "name": "넥스트에디션 건대2호점",
+    "district": "서울 광진구",
+    "neighborhood": "자양동",
+    "address": "서울 광진구 아차산로 192",
+    "latitude": 37.5415568959643,
+    "longitude": 127.064967555237
+  },
+  {
+    "id": "kakao-1973765277",
+    "name": "넥스트에디션 건대1호점",
+    "district": "서울 광진구",
+    "neighborhood": "자양동",
+    "address": "서울 광진구 아차산로 192",
+    "latitude": 37.54155329570247,
+    "longitude": 127.06496076297253
+  },
+  {
+    "id": "kakao-27354377",
+    "name": "엑스케이프",
+    "district": "서울 광진구",
+    "neighborhood": "화양동",
+    "address": "서울 광진구 동일로 112",
+    "latitude": 37.5425338098414,
+    "longitude": 127.064547470726
+  },
+  {
+    "id": "kakao-671151862",
+    "name": "마스터키 건대점",
+    "district": "서울 광진구",
+    "neighborhood": "자양동",
+    "address": "서울 광진구 동일로 96",
+    "latitude": 37.54112151252028,
+    "longitude": 127.0636817743366
+  },
+  {
+    "id": "kakao-1757443413",
+    "name": "코난방탈출 구로디지털단지역점",
+    "district": "서울 구로구",
+    "neighborhood": "구로동",
+    "address": "서울 구로구 디지털로32나길 17-12",
+    "latitude": 37.4844879940488,
+    "longitude": 126.899904735861
+  },
+  {
+    "id": "kakao-1479036971",
+    "name": "마스터키 노원점",
+    "district": "서울 노원구",
+    "neighborhood": "상계동",
+    "address": "서울 노원구 상계로3길 21",
+    "latitude": 37.6572059205102,
+    "longitude": 127.062273533339
+  },
+  {
+    "id": "kakao-1367009941",
+    "name": "셜록홈즈 노원점",
+    "district": "서울 노원구",
+    "neighborhood": "상계동",
+    "address": "서울 노원구 노해로81길 12-20",
+    "latitude": 37.6555652058527,
+    "longitude": 127.064006037472
+  },
+  {
+    "id": "kakao-1161456883",
+    "name": "더메이즈 노원점",
+    "district": "서울 노원구",
+    "neighborhood": "상계동",
+    "address": "서울 노원구 상계로5길 26",
+    "latitude": 37.6570576300672,
+    "longitude": 127.063268424005
+  },
+  {
+    "id": "kakao-319189034",
+    "name": "더코드 회기점",
+    "district": "서울 동대문구",
+    "neighborhood": "회기동",
+    "address": "서울 동대문구 경희대로1길 10",
+    "latitude": 37.5918318092125,
+    "longitude": 127.051700100534
+  },
+  {
+    "id": "kakao-190103388",
+    "name": "도어이스케이프 이수역점",
+    "district": "서울 동작구",
+    "neighborhood": "사당동",
+    "address": "서울 동작구 동작대로27가길 14",
+    "latitude": 37.48690753604882,
+    "longitude": 126.98104948778209
+  },
+  {
+    "id": "kakao-1074899585",
+    "name": "셜록홈즈 노량진점",
+    "district": "서울 동작구",
+    "neighborhood": "노량진동",
+    "address": "서울 동작구 만양로 102-2",
+    "latitude": 37.5125170561107,
+    "longitude": 126.944558737568
+  },
+  {
+    "id": "kakao-554838835",
+    "name": "HIDE AND SEEK The origin - 홍대",
+    "district": "서울 마포구",
+    "neighborhood": "동교동",
+    "address": "서울 마포구 월드컵북로6길 24-7",
+    "latitude": 37.5581586456178,
+    "longitude": 126.920255168717
+  },
+  {
+    "id": "kakao-617331855",
+    "name": "괴담저장소 한강대담력훈련",
+    "district": "서울 마포구",
+    "neighborhood": "동교동",
+    "address": "서울 마포구 월드컵북로4길 72",
+    "latitude": 37.5589622026099,
+    "longitude": 126.922766878316
+  },
+  {
+    "id": "kakao-1719351380",
+    "name": "필더블랭크",
+    "district": "서울 마포구",
+    "neighborhood": "동교동",
+    "address": "서울 마포구 동교로 187",
+    "latitude": 37.55720474844449,
+    "longitude": 126.9219911731789
+  },
+  {
+    "id": "kakao-315548029",
+    "name": "크라임씬카페 퍼즐 팩토리 홍대3호점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 양화로 120",
+    "latitude": 37.5539249561403,
+    "longitude": 126.920398880481
+  },
+  {
+    "id": "kakao-27413260",
+    "name": "큐브이스케이프 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 양화로16길 15",
+    "latitude": 37.5534232173959,
+    "longitude": 126.920572564647
+  },
+  {
+    "id": "kakao-596589943",
+    "name": "룸엘이스케이프 홍대1호점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 잔다리로 39",
+    "latitude": 37.551729166489444,
+    "longitude": 126.9189888828544
+  },
+  {
+    "id": "kakao-64956517",
+    "name": "머더파커 WOW 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 잔다리로6길 25",
+    "latitude": 37.5523744445118,
+    "longitude": 126.920555570673
+  },
+  {
+    "id": "kakao-969459474",
+    "name": "이스케이퍼스 홍대1호점",
+    "district": "서울 마포구",
+    "neighborhood": "동교동",
+    "address": "서울 마포구 연희로1길 7",
+    "latitude": 37.5595715925137,
+    "longitude": 126.926075619971
+  },
+  {
+    "id": "kakao-1743886829",
+    "name": "상상의문 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 홍익로 19",
+    "latitude": 37.554006624634,
+    "longitude": 126.922624870188
+  },
+  {
+    "id": "kakao-119191756",
+    "name": "파노라마 홍대입구점",
+    "district": "서울 마포구",
+    "neighborhood": "동교동",
+    "address": "서울 마포구 양화로18길 12",
+    "latitude": 37.5564865620404,
+    "longitude": 126.924624370127
+  },
+  {
+    "id": "kakao-2048640934",
+    "name": "비밀의숲 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 잔다리로6길 30",
+    "latitude": 37.5522160605285,
+    "longitude": 126.920840923273
+  },
+  {
+    "id": "kakao-829247174",
+    "name": "엑스케이프 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 홍익로3길 44",
+    "latitude": 37.5526020743835,
+    "longitude": 126.921419940427
+  },
+  {
+    "id": "kakao-1732671994",
+    "name": "제로월드 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 잔다리로6길 20-9",
+    "latitude": 37.5518807649622,
+    "longitude": 126.920655682478
+  },
+  {
+    "id": "kakao-1246652450",
+    "name": "비트포비아 홍대던전점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 독막로3길 30",
+    "latitude": 37.5495719511011,
+    "longitude": 126.917362781288
+  },
+  {
+    "id": "kakao-1782903637",
+    "name": "퍼즐팩토리 2호점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 잔다리로2길 17",
+    "latitude": 37.5516934760146,
+    "longitude": 126.920832422565
+  },
+  {
+    "id": "kakao-514900740",
+    "name": "플레이33 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로21길 36-8",
+    "latitude": 37.5527232362854,
+    "longitude": 126.922066009417
+  },
+  {
+    "id": "kakao-399012410",
+    "name": "지구별방탈출 홍대라스트시티점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 홍익로 10",
+    "latitude": 37.55398906461822,
+    "longitude": 126.92332994446495
+  },
+  {
+    "id": "kakao-340303350",
+    "name": "방탈출 이스케이프하우스",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로21길 28-9",
+    "latitude": 37.5528260849967,
+    "longitude": 126.922270738876
+  },
+  {
+    "id": "kakao-1961113764",
+    "name": "퍼즐팩토리 홍대본점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로21길 34",
+    "latitude": 37.55252868433934,
+    "longitude": 126.92216240558318
+  },
+  {
+    "id": "kakao-1442041275",
+    "name": "딥띵커",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 잔다리로 23",
+    "latitude": 37.5507299106941,
+    "longitude": 126.920240450873
+  },
+  {
+    "id": "kakao-2070697879",
+    "name": "지구별방탈출 홍대어드벤처점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로21길 31",
+    "latitude": 37.5522223228781,
+    "longitude": 126.922128773662
+  },
+  {
+    "id": "kakao-1548712469",
+    "name": "방탈출둡두",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로21길 20-5",
+    "latitude": 37.5526281212411,
+    "longitude": 126.922660246071
+  },
+  {
+    "id": "kakao-1772415237",
+    "name": "엑스이스케이프 홍대놀이터점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로21길 20-5",
+    "latitude": 37.552635335148885,
+    "longitude": 126.92266929214243
+  },
+  {
+    "id": "kakao-1541961243",
+    "name": "해피앤딩 방탈출카페",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로21길 31-11",
+    "latitude": 37.5519646286865,
+    "longitude": 126.922115461609
+  },
+  {
+    "id": "kakao-280887856",
+    "name": "시크릿코드 방탈출카페 홍대직영점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 어울마당로 144",
+    "latitude": 37.5561656666695,
+    "longitude": 126.925825473947
+  },
+  {
+    "id": "kakao-1654390566",
+    "name": "엑스이스케이프 상상마당점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 어울마당로 70",
+    "latitude": 37.5513479583469,
+    "longitude": 126.921529897567
+  },
+  {
+    "id": "kakao-727312827",
+    "name": "미스터리룸이스케이프 홍대2호점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 독막로7길 41",
+    "latitude": 37.54964549757982,
+    "longitude": 126.91948566716717
+  },
+  {
+    "id": "kakao-364073257",
+    "name": "히든스위치 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 어울마당로 55-8",
+    "latitude": 37.5503345833457,
+    "longitude": 126.920553209191
+  },
+  {
+    "id": "kakao-983012264",
+    "name": "덤앤더머 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 독막로7길 48",
+    "latitude": 37.5498187662117,
+    "longitude": 126.919892874138
+  },
+  {
+    "id": "kakao-1604521778",
+    "name": "머더파커 홍대1호점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 어울마당로 55-4",
+    "latitude": 37.5502959651766,
+    "longitude": 126.920738841669
+  },
+  {
+    "id": "kakao-1811986888",
+    "name": "비밀의화원 미드나잇점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 독막로7길 27",
+    "latitude": 37.54912083301454,
+    "longitude": 126.9190709205069
+  },
+  {
+    "id": "kakao-563554830",
+    "name": "포인트나인 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 독막로7길 40",
+    "latitude": 37.5494582395595,
+    "longitude": 126.919705407284
+  },
+  {
+    "id": "kakao-153136502",
+    "name": "도어이스케이프 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 어울마당로 55-1",
+    "latitude": 37.550122148552,
+    "longitude": 126.920852191008
+  },
+  {
+    "id": "kakao-28201117",
+    "name": "레다스퀘어 방탈출카페",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 독막로9길 23",
+    "latitude": 37.5494431085065,
+    "longitude": 126.919979281003
+  },
+  {
+    "id": "kakao-327610610",
+    "name": "티켓투이스케이프",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로29가길 83",
+    "latitude": 37.5536054339682,
+    "longitude": 126.925035817631
+  },
+  {
+    "id": "kakao-1987907479",
+    "name": "마스터키 노바홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로19길 9",
+    "latitude": 37.5511306576787,
+    "longitude": 126.922652740086
+  },
+  {
+    "id": "kakao-759455993",
+    "name": "테라스페이스 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로19길 9",
+    "latitude": 37.5511306576787,
+    "longitude": 126.922652740086
+  },
+  {
+    "id": "kakao-1611418578",
+    "name": "더챕터",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로 79",
+    "latitude": 37.5515409344392,
+    "longitude": 126.923146857749
+  },
+  {
+    "id": "kakao-366110448",
+    "name": "디코더",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로 88-1",
+    "latitude": 37.55219915288146,
+    "longitude": 126.9239032786043
+  },
+  {
+    "id": "kakao-848848018",
+    "name": "오아시스 방탈출",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 독막로9길 18",
+    "latitude": 37.5490872979376,
+    "longitude": 126.920103009829
+  },
+  {
+    "id": "kakao-367178846",
+    "name": "스키피지",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로 103",
+    "latitude": 37.5533585557131,
+    "longitude": 126.925028143004
+  },
+  {
+    "id": "kakao-1825220691",
+    "name": "스피키지",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로 103",
+    "latitude": 37.55335044458262,
+    "longitude": 126.92502475602444
+  },
+  {
+    "id": "kakao-2070160321",
+    "name": "비트포비아 홍대던전3",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로29길 21",
+    "latitude": 37.554920382572,
+    "longitude": 126.928576800907
+  },
+  {
+    "id": "kakao-1462418270",
+    "name": "플레이포인트랩 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로27길 39",
+    "latitude": 37.554576594465566,
+    "longitude": 126.92628426391478
+  },
+  {
+    "id": "kakao-27369058",
+    "name": "리얼이스케이프챌린지",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로27길 21",
+    "latitude": 37.55417346486832,
+    "longitude": 126.92711760256185
+  },
+  {
+    "id": "kakao-852450780",
+    "name": "위욜",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로27길 7",
+    "latitude": 37.5538674238312,
+    "longitude": 126.927602272249
+  },
+  {
+    "id": "kakao-187287513",
+    "name": "방탈출토끼굴",
+    "district": "서울 마포구",
+    "neighborhood": "창전동",
+    "address": "서울 마포구 와우산로 122",
+    "latitude": 37.5531642816031,
+    "longitude": 126.927011073949
+  },
+  {
+    "id": "kakao-451924760",
+    "name": "브레이크아웃이스케이프 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로 102",
+    "latitude": 37.5529394761745,
+    "longitude": 126.92484635985
+  },
+  {
+    "id": "kakao-751793807",
+    "name": "마스터키 홍대상수점",
+    "district": "서울 마포구",
+    "neighborhood": "상수동",
+    "address": "서울 마포구 독막로 65-1",
+    "latitude": 37.54802286167883,
+    "longitude": 126.92091099177382
+  },
+  {
+    "id": "kakao-200411443",
+    "name": "키이스케이프 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 어울마당로 44-1",
+    "latitude": 37.5489545131649,
+    "longitude": 126.920939429924
+  },
+  {
+    "id": "kakao-1117885199",
+    "name": "이스케이퍼스 2호점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로17길 19-24",
+    "latitude": 37.54922143079566,
+    "longitude": 126.92127184991712
+  },
+  {
+    "id": "kakao-827031353",
+    "name": "퀘스천마크",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로17길 15",
+    "latitude": 37.55005090404629,
+    "longitude": 126.92210839974601
+  },
+  {
+    "id": "kakao-1351400084",
+    "name": "서울이스케이프룸 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로17길 11",
+    "latitude": 37.5501195691292,
+    "longitude": 126.922395768091
+  },
+  {
+    "id": "kakao-887263854",
+    "name": "쇼룸404 방탈출카페",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 잔다리로 5-1",
+    "latitude": 37.550519566668,
+    "longitude": 126.922326322184
+  },
+  {
+    "id": "kakao-678802397",
+    "name": "싸인이스케이프 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로 65",
+    "latitude": 37.5504189940142,
+    "longitude": 126.922843593932
+  },
+  {
+    "id": "kakao-215985076",
+    "name": "코드케이 홍대점",
+    "district": "서울 마포구",
+    "neighborhood": "상수동",
+    "address": "서울 마포구 와우산로 64",
+    "latitude": 37.5502426875182,
+    "longitude": 126.923287384285
+  },
+  {
+    "id": "kakao-1772808576",
+    "name": "비트포비아 던전101",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로 74",
+    "latitude": 37.5509978541843,
+    "longitude": 126.923488046863
+  },
+  {
+    "id": "kakao-987374256",
+    "name": "파노라마 홍대",
+    "district": "서울 마포구",
+    "neighborhood": "서교동",
+    "address": "서울 마포구 와우산로 77",
+    "latitude": 37.5513751089074,
+    "longitude": 126.923082522731
+  },
+  {
+    "id": "kakao-1834149457",
+    "name": "이스케이프시티 그랜드시티 신촌점",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로11길 39",
+    "latitude": 37.5589063271965,
+    "longitude": 126.934684639158
+  },
+  {
+    "id": "kakao-1542251042",
+    "name": "룸익스케이프 화이트점",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 명물길 66",
+    "latitude": 37.5588766439208,
+    "longitude": 126.939865978075
+  },
+  {
+    "id": "kakao-1969052262",
+    "name": "더클루 신촌프리미엄점",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 명물길 62",
+    "latitude": 37.5588585316201,
+    "longitude": 126.939684907027
+  },
+  {
+    "id": "kakao-1336760672",
+    "name": "방탈출크라임씬",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로 35",
+    "latitude": 37.5586632956314,
+    "longitude": 126.936776384513
+  },
+  {
+    "id": "kakao-912842418",
+    "name": "룸익스케이프 올리브점",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로9길 25",
+    "latitude": 37.5584021490149,
+    "longitude": 126.935375463881
+  },
+  {
+    "id": "kakao-949587061",
+    "name": "클레버타운",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로 30",
+    "latitude": 37.5582688494697,
+    "longitude": 126.937133227257
+  },
+  {
+    "id": "kakao-97734177",
+    "name": "신촌퍼플릭",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로7안길 20",
+    "latitude": 37.5582257334808,
+    "longitude": 126.93570496289
+  },
+  {
+    "id": "kakao-72705514",
+    "name": "탐정크루 신촌2호점",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 명물길 19",
+    "latitude": 37.55803574526339,
+    "longitude": 126.93761216289217
+  },
+  {
+    "id": "kakao-273855007",
+    "name": "방탈출ESC",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 명물길 32",
+    "latitude": 37.5580361824726,
+    "longitude": 126.93844514714
+  },
+  {
+    "id": "kakao-42417624",
+    "name": "파노라마 신촌점",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로7안길 21",
+    "latitude": 37.557978779564,
+    "longitude": 126.93555691299
+  },
+  {
+    "id": "kakao-2000674643",
+    "name": "위드방탈출카페",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로 20",
+    "latitude": 37.55762198800955,
+    "longitude": 126.93723562967803
+  },
+  {
+    "id": "kakao-1521613397",
+    "name": "나의신방",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로5가길 8-3",
+    "latitude": 37.557391667796665,
+    "longitude": 126.93617988815402
+  },
+  {
+    "id": "kakao-690123759",
+    "name": "룸익스케이프 인디고블루점",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로5가길 21",
+    "latitude": 37.557206548048185,
+    "longitude": 126.93541610802885
+  },
+  {
+    "id": "kakao-27329834",
+    "name": "룸익스케이프 블랙점",
+    "district": "서울 서대문구",
+    "neighborhood": "창천동",
+    "address": "서울 서대문구 연세로4길 6",
+    "latitude": 37.5569183750075,
+    "longitude": 126.9373595812
+  },
+  {
+    "id": "kakao-2058736611",
+    "name": "도어이스케이프 블루 신논현점",
+    "district": "서울 서초구",
+    "neighborhood": "반포동",
+    "address": "서울 서초구 사평대로53길 8-1",
+    "latitude": 37.50484066280082,
+    "longitude": 127.02190800475273
+  },
+  {
+    "id": "kakao-1421844037",
+    "name": "판타스트릭 강남1호점",
+    "district": "서울 서초구",
+    "neighborhood": "반포동",
+    "address": "서울 서초구 강남대로79길 39",
+    "latitude": 37.5042964284153,
+    "longitude": 127.022053739691
+  },
+  {
+    "id": "kakao-691418241",
+    "name": "도어이스케이프 강남가든점",
+    "district": "서울 서초구",
+    "neighborhood": "서초동",
+    "address": "서울 서초구 사평대로56길 10",
+    "latitude": 37.5030564627987,
+    "longitude": 127.023007890259
+  },
+  {
+    "id": "kakao-27367643",
+    "name": "미스터리룸 이스케이프 강남점",
+    "district": "서울 서초구",
+    "neighborhood": "서초동",
+    "address": "서울 서초구 서초대로77길 37",
+    "latitude": 37.5009945342165,
+    "longitude": 127.025106228726
+  },
+  {
+    "id": "kakao-841734382",
+    "name": "플레이더월드 강남점",
+    "district": "서울 서초구",
+    "neighborhood": "서초동",
+    "address": "서울 서초구 사평대로56길 14",
+    "latitude": 37.5028086477666,
+    "longitude": 127.023204597522
+  },
+  {
+    "id": "kakao-765336936",
+    "name": "도어이스케이프 레드 신논현점",
+    "district": "서울 서초구",
+    "neighborhood": "서초동",
+    "address": "서울 서초구 사평대로 360",
+    "latitude": 37.5035737646368,
+    "longitude": 127.022358883649
+  },
+  {
+    "id": "kakao-298789057",
+    "name": "키이스케이프 스테이션",
+    "district": "서울 서초구",
+    "neighborhood": "서초동",
+    "address": "서울 서초구 강남대로69길 11",
+    "latitude": 37.5014740465421,
+    "longitude": 127.024258200466
+  },
+  {
+    "id": "kakao-1621127914",
+    "name": "퍼즐팩토리 강남2호점",
+    "district": "서울 서초구",
+    "neighborhood": "서초동",
+    "address": "서울 서초구 서초대로75길 34",
+    "latitude": 37.500572849006,
+    "longitude": 127.025173941826
+  },
+  {
+    "id": "kakao-192767471",
+    "name": "판타스트릭 2호점",
+    "district": "서울 서초구",
+    "neighborhood": "반포동",
+    "address": "서울 서초구 사평대로 353",
+    "latitude": 37.503955009797096,
+    "longitude": 127.02171661442179
+  },
+  {
+    "id": "kakao-1872221698",
+    "name": "후즈데어",
+    "district": "서울 서초구",
+    "neighborhood": "서초동",
+    "address": "서울 서초구 서초대로77길 27",
+    "latitude": 37.5001249784373,
+    "longitude": 127.025502882806
+  },
+  {
+    "id": "kakao-1872275420",
+    "name": "리얼월드 성수",
+    "district": "서울 성동구",
+    "neighborhood": "성수동2가",
+    "address": "서울 성동구 연무장13길 8",
+    "latitude": 37.5421775070427,
+    "longitude": 127.058408598076
+  },
+  {
+    "id": "kakao-259983085",
+    "name": "단편선 성수",
+    "district": "서울 성동구",
+    "neighborhood": "성수동2가",
+    "address": "서울 성동구 아차산로 122",
+    "latitude": 37.5438637365951,
+    "longitude": 127.057471851749
+  },
+  {
+    "id": "kakao-1168819420",
+    "name": "호텔레토",
+    "district": "서울 성동구",
+    "neighborhood": "성수동2가",
+    "address": "서울 성동구 연무장5길 18",
+    "latitude": 37.5445865451555,
+    "longitude": 127.053183759172
+  },
+  {
+    "id": "kakao-2022859547",
+    "name": "크라임씬카페 퍼즐팩토리 성수점",
+    "district": "서울 성동구",
+    "neighborhood": "성수동2가",
+    "address": "서울 성동구 연무장3길 10-1",
+    "latitude": 37.5445646229493,
+    "longitude": 127.051828124018
+  },
+  {
+    "id": "kakao-1531362613",
+    "name": "더코드 왕십리점",
+    "district": "서울 성동구",
+    "neighborhood": "행당동",
+    "address": "서울 성동구 마조로3가길 15",
+    "latitude": 37.5592924669397,
+    "longitude": 127.039897921741
+  },
+  {
+    "id": "kakao-926754766",
+    "name": "이스케이프시티 성신여대점",
+    "district": "서울 성북구",
+    "neighborhood": "동선동1가",
+    "address": "서울 성북구 보문로34길 43",
+    "latitude": 37.5908254890579,
+    "longitude": 127.017676984818
+  },
+  {
+    "id": "kakao-501568581",
+    "name": "셜록홈즈 성신여대점",
+    "district": "서울 성북구",
+    "neighborhood": "동선동1가",
+    "address": "서울 성북구 동소문로22길 15",
+    "latitude": 37.5923787762238,
+    "longitude": 127.017831344
+  },
+  {
+    "id": "kakao-1796437751",
+    "name": "머더파커 WOW잠실점",
+    "district": "서울 송파구",
+    "neighborhood": "방이동",
+    "address": "서울 송파구 올림픽로32길 22-23",
+    "latitude": 37.5135003212202,
+    "longitude": 127.108336730245
+  },
+  {
+    "id": "kakao-890251040",
+    "name": "제로월드 롯데월드점",
+    "district": "서울 송파구",
+    "neighborhood": "잠실동",
+    "address": "서울 송파구 올림픽로 240",
+    "latitude": 37.5113098816994,
+    "longitude": 127.098141525318
+  },
+  {
+    "id": "kakao-1460924995",
+    "name": "넥스트에디션 잠실점",
+    "district": "서울 송파구",
+    "neighborhood": "잠실동",
+    "address": "서울 송파구 올림픽로 118",
+    "latitude": 37.5114119116348,
+    "longitude": 127.083823469131
+  },
+  {
+    "id": "kakao-967129600",
+    "name": "플레이포인트랩 잠실점",
+    "district": "서울 송파구",
+    "neighborhood": "잠실동",
+    "address": "서울 송파구 백제고분로7길 27",
+    "latitude": 37.5108834939654,
+    "longitude": 127.081866144247
+  },
+  {
+    "id": "kakao-466116790",
+    "name": "큐브이스케이프 잠실점",
+    "district": "서울 송파구",
+    "neighborhood": "잠실동",
+    "address": "서울 송파구 올림픽로8길 10",
+    "latitude": 37.5108343486279,
+    "longitude": 127.079952338133
+  },
+  {
+    "id": "kakao-1468583272",
+    "name": "셜록홈즈 잠실1호점",
+    "district": "서울 송파구",
+    "neighborhood": "잠실동",
+    "address": "서울 송파구 백제고분로7길 19",
+    "latitude": 37.5106931172678,
+    "longitude": 127.080942993626
+  },
+  {
+    "id": "kakao-1682203426",
+    "name": "찰리이스케이프",
+    "district": "서울 송파구",
+    "neighborhood": "잠실동",
+    "address": "서울 송파구 백제고분로7길 52-5",
+    "latitude": 37.5104560886759,
+    "longitude": 127.084885590652
+  },
+  {
+    "id": "kakao-45777628",
+    "name": "셜록홈즈 잠실새내점",
+    "district": "서울 송파구",
+    "neighborhood": "잠실동",
+    "address": "서울 송파구 올림픽로10길 13-1",
+    "latitude": 37.5103081183422,
+    "longitude": 127.081336183778
+  },
+  {
+    "id": "kakao-27178625",
+    "name": "패닉이스케이프 목동지점",
+    "district": "서울 양천구",
+    "neighborhood": "신정동",
+    "address": "서울 양천구 신정중앙로 96",
+    "latitude": 37.5261813339901,
+    "longitude": 126.86251646259
+  },
+  {
+    "id": "kakao-1444854771",
+    "name": "이스케이프 시티",
+    "district": "서울 영등포구",
+    "neighborhood": "영등포동3가",
+    "address": "서울 영등포구 영중로8길 6",
+    "latitude": 37.5183637463384,
+    "longitude": 126.906180498142
+  },
+  {
+    "id": "kakao-1045036053",
+    "name": "탈출브라더스",
+    "district": "서울 영등포구",
+    "neighborhood": "영등포동3가",
+    "address": "서울 영등포구 영중로4길 25-1",
+    "latitude": 37.5178128652995,
+    "longitude": 126.909167462357
+  },
+  {
+    "id": "kakao-888192913",
+    "name": "미션브레이크 CGV용산아이파크몰점",
+    "district": "서울 용산구",
+    "neighborhood": "한강로3가",
+    "address": "서울 용산구 한강대로23길 55",
+    "latitude": 37.5298709510827,
+    "longitude": 126.964873937546
+  },
+  {
+    "id": "kakao-1560724472",
+    "name": "방탈출 미로",
+    "district": "서울 은평구",
+    "neighborhood": "갈현동",
+    "address": "서울 은평구 연서로29길 16",
+    "latitude": 37.6192591720085,
+    "longitude": 126.918543009124
+  },
+  {
+    "id": "kakao-1432484184",
+    "name": "비트포비아 대학로점",
+    "district": "서울 종로구",
+    "neighborhood": "동숭동",
+    "address": "서울 종로구 대학로10길 12",
+    "latitude": 37.5815897995095,
+    "longitude": 127.002816737441
+  },
+  {
+    "id": "kakao-1588388344",
+    "name": "룸즈에이 대학로점",
+    "district": "서울 종로구",
+    "neighborhood": "동숭동",
+    "address": "서울 종로구 대학로10길 15-15",
+    "latitude": 37.5824980005993,
+    "longitude": 127.002834885945
+  },
+  {
+    "id": "kakao-1244045579",
+    "name": "셜록홈즈 대학로점",
+    "district": "서울 종로구",
+    "neighborhood": "동숭동",
+    "address": "서울 종로구 대학로10길 5",
+    "latitude": 37.5818601029808,
+    "longitude": 127.002581263901
+  },
+  {
+    "id": "kakao-458997744",
+    "name": "에필로그",
+    "district": "서울 종로구",
+    "neighborhood": "동숭동",
+    "address": "서울 종로구 대학로8가길 48",
+    "latitude": 37.5829268826698,
+    "longitude": 127.002422799811
+  },
+  {
+    "id": "kakao-203642029",
+    "name": "덤앤더머 방탈출카페 대학로점",
+    "district": "서울 종로구",
+    "neighborhood": "동숭동",
+    "address": "서울 종로구 동숭길 143",
+    "latitude": 37.5832656559139,
+    "longitude": 127.002436396644
+  },
+  {
+    "id": "kakao-1538791500",
+    "name": "비밀의화원 대학로점",
+    "district": "서울 종로구",
+    "neighborhood": "동숭동",
+    "address": "서울 종로구 대학로 130",
+    "latitude": 37.5828908487494,
+    "longitude": 127.002120514887
+  },
+  {
+    "id": "kakao-587380780",
+    "name": "비밀의화원 시네마틱 혜화점",
+    "district": "서울 종로구",
+    "neighborhood": "명륜4가",
+    "address": "서울 종로구 대명길 9",
+    "latitude": 37.5833774003325,
+    "longitude": 127.000960068514
+  },
+  {
+    "id": "kakao-1516730952",
+    "name": "상상의문 대학로점",
+    "district": "서울 종로구",
+    "neighborhood": "명륜2가",
+    "address": "서울 종로구 창경궁로34길 18-5",
+    "latitude": 37.5841162160183,
+    "longitude": 127.000803838893
+  },
+  {
+    "id": "kakao-1944665207",
+    "name": "HIDE AND SEEK Cyberpunk 안국",
+    "district": "서울 종로구",
+    "neighborhood": "관훈동",
+    "address": "서울 종로구 인사동길 44",
+    "latitude": 37.574342155638014,
+    "longitude": 126.98477999829184
+  },
+  {
+    "id": "kakao-462553617",
+    "name": "셜록홈즈 종각점",
+    "district": "서울 종로구",
+    "neighborhood": "관철동",
+    "address": "서울 종로구 삼일대로17길 17",
+    "latitude": 37.5690580275726,
+    "longitude": 126.986493698008
+  },
+  {
+    "id": "kakao-1183396756",
+    "name": "비트포비아 명동점",
+    "district": "서울 중구",
+    "neighborhood": "명동2가",
+    "address": "서울 중구 명동10길 13",
+    "latitude": 37.5632518768111,
+    "longitude": 126.985381004262
+  },
+  {
+    "id": "kakao-660859780",
+    "name": "알카트래즈방탈출카페",
+    "district": "서울 중구",
+    "neighborhood": "명동2가",
+    "address": "서울 중구 명동길 38",
+    "latitude": 37.5636157548121,
+    "longitude": 126.984407536023
+  }
+]
