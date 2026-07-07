@@ -1,6 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import BottomNav from "@/components/BottomNav";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,6 +17,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "탈탈 — 방탈출 통합 플랫폼",
   description: "자물쇠도 고민도 탈탈. 실시간 예약 검색 · 게이미피케이션 스탯 · 안전 에스크로 동행 매칭 · AI 추천",
+  appleWebApp: {
+    title: "탈탈",
+    statusBarStyle: "default",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#4f46e5",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -29,6 +40,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-zinc-50">
+        <ServiceWorkerRegister />
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col bg-[var(--background)] shadow-sm">
           <div className="flex-1">{children}</div>
           <BottomNav />
