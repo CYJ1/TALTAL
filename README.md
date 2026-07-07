@@ -36,11 +36,6 @@
   등록해 `KAKAO_CLIENT_ID` 등 환경변수를 채우면 바로 동작합니다 — 비워두면 로그인
   화면에서 해당 버튼 클릭 시 "아직 연동 준비 중" 안내로 안전하게 되돌아갑니다.
 - 디자인 톤앤매너는 **라이트 모드** 기준 (PRD v1 명시)으로 통일했습니다.
-  계산하는 경량 대체 알고리즘(`apps/ai-engine/app/recommend.py`)으로 구현
-  Neo4j 자체와 그래프 스키마는 실제
-- **로그인/회원가입도 목업** — 실제 인증 서버 연동 없이 입력값만 있으면
-  통과되는 데모 화면(`apps/web/components/LoginForm.tsx`, `SignupForm.tsx`).
-- 디자인 톤앤매너는 **라이트 모드** 기준 (PRD v1 명시)으로 통일
 <br>
 
 ## 아키텍처
@@ -148,6 +143,11 @@ curl -X POST http://localhost:8000/internal/seed
 
 소셜 로그인 변수를 비워두면 로그인 화면의 해당 버튼은 클릭 시 `/login?oauthError=not_configured`로
 안전하게 돌아오며 안내 메시지를 보여줍니다 (에러 없이 동작).
+
+카카오는 정책상 이메일 동의항목을 비즈니스 인증(사업자등록) 완료 앱에만 열어주기 때문에,
+일반 개발자 앱은 닉네임만 받아올 수 있습니다. 이 경우 `apps/web/lib/oauth-providers.ts`가
+`kakao_{카카오ID}@kakao.taltal.local` 형태의 내부 전용 placeholder 이메일을 자동 생성해
+계정을 만듭니다 (사용자에게 노출되지 않는 식별용 값).
 
 ## 검증한 것
 - `apps/api`: `npm run build` (Nest/TS 컴파일) 통과
