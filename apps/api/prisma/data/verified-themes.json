@@ -384,5 +384,136 @@
         "실사형세트"
       ]
     }
+  ],
+  "kakao-459642234": [
+    {
+      "name": "필름 바이 밥",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 30000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.8,
+      "tags": [
+        "SF판타지어워즈수상",
+        "강남랭킹1위",
+        "실감형인테리어"
+      ]
+    },
+    {
+      "name": "필름 바이 스티브",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 30000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.7,
+      "tags": [
+        "SF판타지어워즈수상",
+        "강남랭킹2위"
+      ]
+    },
+    {
+      "name": "필름 바이 에디",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 30000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.5,
+      "tags": [
+        "무난한스토리",
+        "입문추천"
+      ]
+    }
+  ],
+  "kakao-99889048": [
+    {
+      "name": "FOR FREE",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 32000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.3,
+      "tags": [
+        "장치중심"
+      ]
+    }
+  ],
+  "kakao-320987184": [
+    {
+      "name": "A GENTLE MONDAY",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 29000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.2,
+      "tags": [
+        "드라마",
+        "장치중심"
+      ]
+    }
+  ],
+  "kakao-400448256": [
+    {
+      "name": "엔제리오",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 29000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.6,
+      "tags": []
+    },
+    {
+      "name": "NERD",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 29000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.6,
+      "tags": []
+    }
+  ],
+  "kakao-916422770": [
+    {
+      "name": "US",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.6,
+      "tags": [
+        "SF판타지어워즈수상",
+        "올해의테마"
+      ]
+    }
+  ],
+  "kakao-298789057": [
+    {
+      "name": "내 방",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": [
+        "코미디"
+      ]
+    }
   ]
 }
