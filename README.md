@@ -171,32 +171,3 @@ curl -X POST http://localhost:8000/internal/seed
 `kakao_{카카오ID}@kakao.taltal.local` 형태의 내부 전용 placeholder 이메일을 자동 생성해
 계정을 만듭니다 (사용자에게 노출되지 않는 식별용 값).
 
-## 검증한 것
-- `apps/api`: `npm run build` (Nest/TS 컴파일) 통과
-- `apps/web`: `npm run build`, `npm run lint` 통과 (14개 라우트 전부 컴파일)
-- `apps/web`: Playwright로 전체 화면 스크린샷 확인 + 아래 상호작용 테스트를
-  실제 브라우저에서 완료
-  - 리뷰 제출 → 육각 스탯 실시간 성장 → 캘린더 Pending 배지 소멸
-  - 스플래시 → 로그인 → 홈 → 테마 상세 → 예약 폼 → 예약 완료 → 동행 파티 개설
-    (OCR 캡처본 업로드 mock) → 새로 생성된 파티 상세 페이지까지 전체 플로우,
-    콘솔 에러 없음
-- `apps/scraper`, `apps/ai-engine`: Python 구문 검사(`py_compile`) 통과
-- 인증(`apps/api/src/modules/auth`): 로컬 PostgreSQL/Redis를 직접 기동해 real DB
-  기준으로 `prisma migrate dev` 적용 + API 서버 구동 후, 회원가입 → 로그인 →
-  `/auth/me` → 보호된 화면 접근 → 로그아웃 → 재로그인 → 잘못된 비밀번호/중복
-  이메일 에러까지 Playwright로 실제 브라우저에서 end-to-end 검증 완료.
-- 인가 가드: `curl`로 실제 DB 기준 검증 — 미인증 리뷰 작성 401, 본인이 아닌
-  `/users/:userId/profile` 조회 403, 소셜 로그인(`/auth/social`) 신규가입·기존
-  이메일 계정 연동·재로그인 idempotency 확인, 내부 비밀값 없이 `/auth/social`
-  호출 시 401.
-- 소셜 로그인 프론트 배선: 로그인 화면의 카카오 버튼이 실제 링크로 렌더링되는지,
-  클라이언트 ID 미설정 시 `/login?oauthError=not_configured`로 안전하게
-  되돌아오며 안내 메시지가 뜨는지 Playwright로 확인. 실제 OAuth 인가 화면
-  왕복 자체는 카카오/네이버/Google 개발자 콘솔에 앱을 등록해야 테스트 가능해
-  이번 범위에서는 확인하지 못했습니다.
-- 이 과정에서 `/login`, `/calendar`, `/profile`, `/recommendations` 화면이
-  Docker 이미지 build 시점(런타임 환경변수가 아직 없는 시점)에 목업 모드로
-  정적 프리렌더링되어 실제 배포 시 로그인 세션이 영구히 무시되는 잠재 버그를
-  발견해 `lib/session.ts`가 항상 `cookies()`를 호출하도록 고쳐 동적 렌더링을
-  강제했습니다.
-
