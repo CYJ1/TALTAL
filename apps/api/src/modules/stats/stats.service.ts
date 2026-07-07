@@ -45,6 +45,29 @@ export class StatsService {
     };
   }
 
+  async getUserReviews(userId: string) {
+    const reviews = await this.prisma.themeReview.findMany({
+      where: { userId },
+      include: { theme: { include: { store: true } } },
+      orderBy: { createdAt: 'desc' },
+    });
+
+    return reviews.map((r) => ({
+      id: r.id,
+      themeId: r.themeId,
+      themeName: r.theme.name,
+      storeName: r.theme.store.name,
+      grade: r.grade,
+      selectedTags: r.selectedTags,
+      votedHeadcount: r.votedHeadcount,
+      cleared: r.cleared,
+      remainingSec: r.remainingSec,
+      hintsUsed: r.hintsUsed,
+      comment: r.comment,
+      createdAt: r.createdAt.toISOString(),
+    }));
+  }
+
   async getCalendar(userId: string, month: string) {
     const [year, mon] = month.split('-').map(Number);
     const from = new Date(Date.UTC(year, mon - 1, 1));

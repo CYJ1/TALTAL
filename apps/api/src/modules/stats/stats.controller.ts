@@ -35,6 +35,15 @@ export class StatsController {
     return this.statsService.getCalendar(userId, month);
   }
 
+  @Get('reviews')
+  getReviews(
+    @Param('userId') userId: string,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    this.assertSelf(userId, req);
+    return this.statsService.getUserReviews(userId);
+  }
+
   private assertSelf(userId: string, req: AuthenticatedRequest) {
     if (req.user.userId !== userId) {
       throw new ForbiddenException('본인의 데이터만 조회할 수 있습니다.');

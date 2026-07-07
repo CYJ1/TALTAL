@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import LegalPageBackButton from '@/components/LegalPageBackButton';
 
 export const metadata = {
   title: '이용약관 | 탈탈',
@@ -7,6 +8,7 @@ export const metadata = {
 export default function TermsPage() {
   return (
     <div className="px-5 py-6 pb-12">
+      <LegalPageBackButton />
       <h1 className="text-lg font-bold text-zinc-900">이용약관</h1>
       <p className="mt-1 text-xs text-zinc-400">시행일자: [YYYY-MM-DD] · 최종 수정일: [YYYY-MM-DD]</p>
 

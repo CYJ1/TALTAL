@@ -131,6 +131,21 @@ export interface CreateReviewInput {
   comment?: string;
 }
 
+export interface UserReview {
+  id: string;
+  themeId: string;
+  themeName: string;
+  storeName: string;
+  grade: string;
+  selectedTags: string[];
+  votedHeadcount: number;
+  cleared: boolean;
+  remainingSec: number;
+  hintsUsed: number;
+  comment: string | null;
+  createdAt: string;
+}
+
 // 가입 시 선호도 설문 (방린이면 종료, 아니면 장르/진행스타일/선호세대 + 공포 선택 시 역할)
 // 장르는 한국 방탈출 어워즈 시상 부문 기준 6개 분류를 그대로 채택한다.
 export type GenreTag =

@@ -2,9 +2,16 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
 import LogoutButton from '@/components/LogoutButton';
-import { getProfile } from '@/lib/data';
+import { getProfile, getUserReviews } from '@/lib/data';
 import { getPreferenceBadge } from '@/lib/preferences';
 import { getSessionUser } from '@/lib/session';
+
+const GRADE_STYLE: Record<string, string> = {
+  꽃길: 'bg-emerald-50 text-emerald-700',
+  인생테마: 'bg-amber-50 text-amber-700',
+  풀길: 'bg-zinc-100 text-zinc-600',
+  흙길: 'bg-rose-50 text-rose-600',
+};
 
 const STAT_LABELS: { key: keyof Awaited<ReturnType<typeof getProfile>>['stat']; label: string }[] = [
   { key: 'logic', label: '추리력' },
@@ -18,7 +25,10 @@ const STAT_LABELS: { key: keyof Awaited<ReturnType<typeof getProfile>>['stat']; 
 export default async function ProfilePage() {
   const sessionUser = await getSessionUser();
   if (!sessionUser) redirect('/login');
-  const profile = await getProfile(sessionUser.id);
+  const [profile, reviews] = await Promise.all([
+    getProfile(sessionUser.id),
+    getUserReviews(sessionUser.id),
+  ]);
 
   return (
     <div className="space-y-5 px-4 py-6 pb-10">
@@ -58,6 +68,50 @@ export default async function ProfilePage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <h2 className="mb-2 text-sm font-semibold text-zinc-900">내가 쓴 리뷰 ({reviews.length})</h2>
+        {reviews.length === 0 ? (
+          <p className="py-6 text-center text-xs text-zinc-400">아직 작성한 리뷰가 없어요.</p>
+        ) : (
+          <div className="divide-y divide-zinc-100">
+            {reviews.map((review) => (
+              <Link
+                key={review.id}
+                href={`/themes/${review.themeId}`}
+                className="block py-3 first:pt-0 last:pb-0"
+              >
+                <div className="flex items-center justify-between">
+                  <p className="truncate text-sm font-semibold text-zinc-900">
+                    {review.storeName} · {review.themeName}
+                  </p>
+                  <span
+                    className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${
+                      GRADE_STYLE[review.grade] ?? 'bg-zinc-100 text-zinc-600'
+                    }`}
+                  >
+                    {review.grade}
+                  </span>
+                </div>
+                <div className="mt-1 flex flex-wrap gap-1">
+                  {review.selectedTags.map((tag) => (
+                    <span key={tag} className="rounded-full bg-zinc-50 px-2 py-0.5 text-[11px] text-zinc-500">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+                {review.comment && (
+                  <p className="mt-1.5 line-clamp-2 text-xs text-zinc-500">{review.comment}</p>
+                )}
+                <p className="mt-1 text-[11px] text-zinc-400">
+                  {new Date(review.createdAt).toLocaleDateString('ko-KR')} · 체감 {review.votedHeadcount}인
+                  {review.cleared ? ' · 클리어' : ' · 실패'}
+                </p>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">

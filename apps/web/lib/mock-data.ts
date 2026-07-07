@@ -12,6 +12,7 @@ import type {
   ThemeSearchResult,
   TimeSlot,
   UserProfile,
+  UserReview,
 } from './types';
 
 /**
@@ -298,6 +299,28 @@ const CALENDAR: CalendarEntry[] = [
   { id: 'log-2', date: '2026-07-12', themeId: 'confession', themeName: '고백', status: 'REVIEWED' },
 ];
 
+interface ReviewRecord extends UserReview {
+  userId: string;
+}
+
+const REVIEWS: ReviewRecord[] = [
+  {
+    id: 'review-1',
+    userId: 'escaper_pro',
+    themeId: 'confession',
+    themeName: '고백',
+    storeName: '키이스케이프 강남점',
+    grade: '꽃길',
+    selectedTags: ['장치중심', '감성레전드'],
+    votedHeadcount: 3,
+    cleared: true,
+    remainingSec: 420,
+    hintsUsed: 1,
+    comment: '스토리 몰입도가 정말 좋았어요. 3인이 딱 적당한 것 같아요.',
+    createdAt: '2026-07-12T20:30:00+09:00',
+  },
+];
+
 export function getUserProfile(userId: string): UserProfile {
   const u = USERS[userId] ?? USERS.escaper_pro;
   return {
@@ -318,6 +341,12 @@ export function getUserProfile(userId: string): UserProfile {
 
 export function getUserCalendar(userId: string, month: string): CalendarEntry[] {
   return CALENDAR.filter((c) => c.date.startsWith(month));
+}
+
+export function getUserReviews(userId: string): UserReview[] {
+  return REVIEWS.filter((r) => r.userId === userId)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+    .map(({ userId: _userId, ...review }) => review);
 }
 
 function clampStat(v: number) {
@@ -343,6 +372,22 @@ export function createReview(input: CreateReviewInput) {
     user.totalClears += input.cleared ? 1 : 0;
     user.currentExp = Math.min(100, user.currentExp + 12);
   }
+
+  REVIEWS.unshift({
+    id: `review-${Date.now()}`,
+    userId: input.userId,
+    themeId: input.themeId,
+    themeName: theme?.themeName ?? '',
+    storeName: theme?.storeName ?? '',
+    grade: input.grade,
+    selectedTags: input.selectedTags,
+    votedHeadcount: input.votedHeadcount,
+    cleared: input.cleared,
+    remainingSec: input.remainingSec,
+    hintsUsed: input.hintsUsed,
+    comment: input.comment ?? null,
+    createdAt: new Date().toISOString(),
+  });
 
   const pendingEntry = CALENDAR.find(
     (c) => c.themeName === theme?.themeName && c.status === 'PENDING_REVIEW',

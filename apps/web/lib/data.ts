@@ -13,6 +13,7 @@ import type {
   RecommendationResponse,
   ThemeSearchResult,
   UserProfile,
+  UserReview,
 } from './types';
 
 /**
@@ -118,6 +119,25 @@ export async function getThemeMeta(
 export async function getProfile(userId: string): Promise<UserProfile> {
   if (!IS_REMOTE_MODE) return mock.getUserProfile(userId);
   return remoteJson<UserProfile>(`/users/${userId}/profile`);
+}
+
+export async function getUserReviews(userId: string): Promise<UserReview[]> {
+  if (!IS_REMOTE_MODE) return mock.getUserReviews(userId);
+  const raw = await remoteJson<Json[]>(`/users/${userId}/reviews`);
+  return raw.map((r) => ({
+    id: r.id,
+    themeId: r.themeId,
+    themeName: r.themeName,
+    storeName: r.storeName,
+    grade: r.grade,
+    selectedTags: r.selectedTags,
+    votedHeadcount: r.votedHeadcount,
+    cleared: r.cleared,
+    remainingSec: r.remainingSec,
+    hintsUsed: r.hintsUsed,
+    comment: r.comment ?? null,
+    createdAt: r.createdAt,
+  }));
 }
 
 export async function getCalendar(userId: string, month: string): Promise<CalendarEntry[]> {
