@@ -7,10 +7,11 @@ import { searchThemes } from '@/lib/data';
 export default async function HomePage({
   searchParams,
 }: {
-  searchParams: Promise<{ tag?: string; availableOnly?: string }>;
+  searchParams: Promise<{ tag?: string; availableOnly?: string; district?: string }>;
 }) {
   const params = await searchParams;
   const themes = await searchThemes({
+    district: params.district,
     tag: params.tag,
     availableOnly: params.availableOnly === 'true',
   });

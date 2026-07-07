@@ -25,7 +25,12 @@ interface ThemeSeed {
   storeId: string;
   storeName: string;
   themeName: string;
-  region: string;
+  district: string;
+  neighborhood: string;
+  genre: GenreTag;
+  generation: GenerationPreference;
+  difficulty: number;
+  pricePerPersonWon: number;
   rating: number;
   tags: string[];
   capacityMin: number;
@@ -34,13 +39,20 @@ interface ThemeSeed {
   votes: Record<number, number>; // 실체감 인원수 투표 스냅샷
 }
 
+// apps/api/prisma/seed.ts와 동일한 매장/테마 데이터셋을 그대로 미러링해, 목업 모드와
+// 실연동 모드에서 화면에 보이는 검색 결과가 최대한 일치하도록 유지한다.
 const THEMES: ThemeSeed[] = [
   {
     themeId: 'confession',
     storeId: 'keyescape-gangnam',
     storeName: '키이스케이프 강남점',
     themeName: '고백',
-    region: '서울 강남구',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    genre: 'EMOTIONAL_ROMANCE',
+    generation: 'GEN3',
+    difficulty: 3,
+    pricePerPersonWon: 29000,
     rating: 4.8,
     tags: ['장치중심', '감성레전드', '나레이션필수'],
     capacityMin: 2,
@@ -53,7 +65,12 @@ const THEMES: ThemeSeed[] = [
     storeId: 'zerooworld-gangnam',
     storeName: '제로월드 강남점',
     themeName: '링',
-    region: '서울 강남구',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    genre: 'HORROR_THRILLER',
+    generation: 'GEN2',
+    difficulty: 4,
+    pricePerPersonWon: 30000,
     rating: 4.7,
     tags: ['공포도최상', '탱커필수', '연출대박'],
     capacityMin: 2,
@@ -66,7 +83,12 @@ const THEMES: ThemeSeed[] = [
     storeId: 'murderparker-gangnam',
     storeName: '머더파커 강남점',
     themeName: '어제, 오늘, 그리고',
-    region: '서울 강남구',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    genre: 'MYSTERY_DETECTIVE',
+    generation: 'GEN1',
+    difficulty: 4,
+    pricePerPersonWon: 27000,
     rating: 4.9,
     tags: ['문제방', '뚝배기유형', '활동성낮음'],
     capacityMin: 2,
@@ -79,13 +101,234 @@ const THEMES: ThemeSeed[] = [
     storeId: 'point9-gangnam',
     storeName: '포인트나인 강남점',
     themeName: '열쇠공의 이중생활',
-    region: '서울 강남구',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    genre: 'ACTION_ADVENTURE',
+    generation: 'GEN2',
+    difficulty: 3,
+    pricePerPersonWon: 28000,
     rating: 4.6,
     tags: ['잠입', '장치중심', '스토리연계성'],
     capacityMin: 2,
     capacityMax: 5,
     weight: { logic: 4, observe: 7, speed: 2, story: 5, solving: 5, tank: 2 },
     votes: { 2: 3, 3: 17, 4: 4 },
+  },
+  {
+    themeId: 'sherlock-signature',
+    storeId: 'sherlockholmes-gangnam2',
+    storeName: '셜록홈즈 강남2호점',
+    themeName: '셜록홈즈 대표 테마 (확인 필요)',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    genre: 'MYSTERY_DETECTIVE',
+    generation: 'GEN2',
+    difficulty: 3,
+    pricePerPersonWon: 28000,
+    rating: 4.3,
+    tags: ['추리', '문제방'],
+    capacityMin: 2,
+    capacityMax: 4,
+    weight: { logic: 6, observe: 5, speed: 2, story: 4, solving: 6, tank: 1 },
+    votes: {},
+  },
+  {
+    themeId: 'doorescape-gangnam-signature',
+    storeId: 'doorescape-gangnam',
+    storeName: '도어이스케이프 강남점',
+    themeName: '도어이스케이프 강남 대표 테마 (확인 필요)',
+    district: '서울 강남구',
+    neighborhood: '삼성동',
+    genre: 'ACTION_ADVENTURE',
+    generation: 'GEN2',
+    difficulty: 3,
+    pricePerPersonWon: 28000,
+    rating: 4.2,
+    tags: ['액션'],
+    capacityMin: 2,
+    capacityMax: 5,
+    weight: { logic: 4, observe: 5, speed: 5, story: 3, solving: 4, tank: 3 },
+    votes: {},
+  },
+  {
+    themeId: 'themaze-gangnam-signature',
+    storeId: 'themaze-gangnam',
+    storeName: '더메이즈 강남점',
+    themeName: '더메이즈 강남 대표 테마 (확인 필요)',
+    district: '서울 강남구',
+    neighborhood: '논현동',
+    genre: 'SCIFI_FANTASY',
+    generation: 'GEN2',
+    difficulty: 3,
+    pricePerPersonWon: 28000,
+    rating: 4.2,
+    tags: ['SF'],
+    capacityMin: 2,
+    capacityMax: 4,
+    weight: { logic: 5, observe: 5, speed: 3, story: 5, solving: 5, tank: 2 },
+    votes: {},
+  },
+  {
+    themeId: 'xscape-gangnam-signature',
+    storeId: 'xscape-gangnam',
+    storeName: '엑스케이프 강남점',
+    themeName: '엑스케이프 강남 대표 테마 (확인 필요)',
+    district: '서울 강남구',
+    neighborhood: '역삼동',
+    genre: 'ACTION_ADVENTURE',
+    generation: 'GEN2',
+    difficulty: 3,
+    pricePerPersonWon: 27000,
+    rating: 4.1,
+    tags: ['액션'],
+    capacityMin: 2,
+    capacityMax: 5,
+    weight: { logic: 4, observe: 4, speed: 6, story: 3, solving: 4, tank: 3 },
+    votes: {},
+  },
+  {
+    themeId: 'bitphobia-hongdae-signature',
+    storeId: 'bitphobia-hongdae',
+    storeName: '비트포비아 홍대점',
+    themeName: '비트포비아 홍대 대표 테마 (확인 필요)',
+    district: '서울 마포구',
+    neighborhood: '서교동',
+    genre: 'HORROR_THRILLER',
+    generation: 'GEN2',
+    difficulty: 4,
+    pricePerPersonWon: 29000,
+    rating: 4.4,
+    tags: ['공포'],
+    capacityMin: 2,
+    capacityMax: 6,
+    weight: { logic: 3, observe: 4, speed: 3, story: 3, solving: 3, tank: 8 },
+    votes: {},
+  },
+  {
+    themeId: 'doorescape-hongdae-signature',
+    storeId: 'doorescape-hongdae',
+    storeName: '도어이스케이프 홍대점',
+    themeName: '도어이스케이프 홍대 대표 테마 (확인 필요)',
+    district: '서울 마포구',
+    neighborhood: '서교동',
+    genre: 'ACTION_ADVENTURE',
+    generation: 'GEN2',
+    difficulty: 3,
+    pricePerPersonWon: 28000,
+    rating: 4.2,
+    tags: ['액션'],
+    capacityMin: 2,
+    capacityMax: 5,
+    weight: { logic: 4, observe: 5, speed: 5, story: 3, solving: 4, tank: 3 },
+    votes: {},
+  },
+  {
+    themeId: 'decoder-hongdae-signature',
+    storeId: 'decoder-hongdae',
+    storeName: '디코더 홍대점',
+    themeName: '디코더 홍대 대표 테마 (확인 필요)',
+    district: '서울 마포구',
+    neighborhood: '서교동',
+    genre: 'SCIFI_FANTASY',
+    generation: 'GEN3',
+    difficulty: 4,
+    pricePerPersonWon: 30000,
+    rating: 4.5,
+    tags: ['SF', '이머시브'],
+    capacityMin: 2,
+    capacityMax: 4,
+    weight: { logic: 5, observe: 5, speed: 3, story: 6, solving: 5, tank: 2 },
+    votes: {},
+  },
+  {
+    themeId: 'themaze-konkuk-signature',
+    storeId: 'themaze-konkuk',
+    storeName: '더메이즈 건대점',
+    themeName: '더메이즈 건대 대표 테마 (확인 필요)',
+    district: '서울 광진구',
+    neighborhood: '화양동',
+    genre: 'SCIFI_FANTASY',
+    generation: 'GEN2',
+    difficulty: 3,
+    pricePerPersonWon: 28000,
+    rating: 4.2,
+    tags: ['SF'],
+    capacityMin: 2,
+    capacityMax: 4,
+    weight: { logic: 5, observe: 5, speed: 3, story: 5, solving: 5, tank: 2 },
+    votes: {},
+  },
+  {
+    themeId: 'xscape-konkuk-signature',
+    storeId: 'xscape-konkuk',
+    storeName: '엑스케이프 건대점',
+    themeName: '엑스케이프 건대 대표 테마 (확인 필요)',
+    district: '서울 광진구',
+    neighborhood: '화양동',
+    genre: 'COMEDY_ETC',
+    generation: 'GEN1',
+    difficulty: 2,
+    pricePerPersonWon: 25000,
+    rating: 4.0,
+    tags: ['코믹'],
+    capacityMin: 2,
+    capacityMax: 5,
+    weight: { logic: 3, observe: 3, speed: 4, story: 3, solving: 3, tank: 3 },
+    votes: {},
+  },
+  {
+    themeId: 'bitphobia-sinchon-signature',
+    storeId: 'bitphobia-sinchon',
+    storeName: '비트포비아 신촌점',
+    themeName: '비트포비아 신촌 대표 테마 (확인 필요)',
+    district: '서울 서대문구',
+    neighborhood: '신촌동',
+    genre: 'HORROR_THRILLER',
+    generation: 'GEN2',
+    difficulty: 4,
+    pricePerPersonWon: 29000,
+    rating: 4.3,
+    tags: ['공포'],
+    capacityMin: 2,
+    capacityMax: 6,
+    weight: { logic: 3, observe: 4, speed: 3, story: 3, solving: 3, tank: 8 },
+    votes: {},
+  },
+  {
+    themeId: 'masterkey-sinchon-signature',
+    storeId: 'masterkey-sinchon',
+    storeName: '마스터키 신촌점',
+    themeName: '마스터키 신촌 대표 테마 (확인 필요)',
+    district: '서울 서대문구',
+    neighborhood: '신촌동',
+    genre: 'MYSTERY_DETECTIVE',
+    generation: 'GEN1',
+    difficulty: 3,
+    pricePerPersonWon: 26000,
+    rating: 4.1,
+    tags: ['추리', '문제방'],
+    capacityMin: 2,
+    capacityMax: 4,
+    weight: { logic: 7, observe: 5, speed: 2, story: 3, solving: 6, tank: 1 },
+    votes: {},
+  },
+  {
+    themeId: 'decoder-seongsu-signature',
+    storeId: 'decoder-seongsu',
+    storeName: '디코더 성수점',
+    themeName: '디코더 성수 대표 테마 (확인 필요)',
+    district: '서울 성동구',
+    neighborhood: '성수동',
+    genre: 'SCIFI_FANTASY',
+    generation: 'GEN3',
+    difficulty: 4,
+    pricePerPersonWon: 30000,
+    rating: 4.4,
+    tags: ['SF', '이머시브'],
+    capacityMin: 2,
+    capacityMax: 4,
+    weight: { logic: 5, observe: 5, speed: 3, story: 6, solving: 5, tank: 2 },
+    votes: {},
   },
 ];
 
@@ -139,19 +382,42 @@ function recommendedHeadcountFor(theme: ThemeSeed) {
 }
 
 export function getThemesForSearch(query: {
-  region?: string;
+  district?: string;
+  neighborhood?: string;
+  genre?: GenreTag;
+  generation?: GenerationPreference;
+  maxPriceWon?: number;
+  maxDifficulty?: number;
+  headcount?: number;
   tag?: string;
   availableOnly?: boolean;
+  lat?: number;
+  lng?: number;
 }): ThemeSearchResult[] {
   let themes = THEMES;
-  if (query.region) themes = themes.filter((t) => t.region === query.region);
+  if (query.district) themes = themes.filter((t) => t.district === query.district);
+  if (query.neighborhood) themes = themes.filter((t) => t.neighborhood === query.neighborhood);
+  if (query.genre) themes = themes.filter((t) => t.genre === query.genre);
+  if (query.generation) themes = themes.filter((t) => t.generation === query.generation);
+  if (query.maxPriceWon != null) themes = themes.filter((t) => t.pricePerPersonWon <= query.maxPriceWon!);
+  if (query.maxDifficulty != null) themes = themes.filter((t) => t.difficulty <= query.maxDifficulty!);
+  if (query.headcount != null) {
+    themes = themes.filter((t) => t.capacityMin <= query.headcount! && t.capacityMax >= query.headcount!);
+  }
   if (query.tag) themes = themes.filter((t) => t.tags.includes(query.tag!));
 
-  const results = themes.map(mapThemeToSearchResult).sort((a, b) => b.rating - a.rating);
+  let results = themes.map(mapThemeToSearchResult).sort((a, b) => b.rating - a.rating);
 
   if (query.availableOnly) {
-    return results.filter((r) => r.slots.some((s) => s.status !== 'CLOSED'));
+    results = results.filter((r) => r.slots.some((s) => s.status !== 'CLOSED'));
   }
+
+  // 위경도가 아직 지오코딩되지 않아 목업 모드에서는 실거리 정렬 대신 원래 순서를 유지한다
+  // (실연동 모드와 동일하게 lat/lng가 주어지면 distanceKm 필드는 null로 채워 UI 계약을 맞춘다).
+  if (query.lat != null && query.lng != null) {
+    return results.map((r) => ({ ...r, distanceKm: null }));
+  }
+
   return results;
 }
 
@@ -163,6 +429,14 @@ function mapThemeToSearchResult(theme: ThemeSeed): ThemeSearchResult {
     storeId: theme.storeId,
     storeName: theme.storeName,
     themeName: theme.themeName,
+    genre: theme.genre,
+    generation: theme.generation,
+    difficulty: theme.difficulty,
+    pricePerPersonWon: theme.pricePerPersonWon,
+    district: theme.district,
+    neighborhood: theme.neighborhood,
+    latitude: null,
+    longitude: null,
     rating: theme.rating,
     tags: theme.tags,
     capacityMin: theme.capacityMin,

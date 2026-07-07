@@ -4,6 +4,8 @@ import { getSessionToken } from './session';
 import type {
   CalendarEntry,
   CreateReviewInput,
+  GenerationPreference,
+  GenreTag,
   HexagonStat,
   NewPartyInput,
   PartyDetail,
@@ -36,16 +38,32 @@ async function remoteJson<T>(path: string, init?: RequestInit): Promise<T> {
 type Json = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 export async function searchThemes(query: {
-  region?: string;
+  district?: string;
+  neighborhood?: string;
+  genre?: GenreTag;
+  generation?: GenerationPreference;
+  maxPriceWon?: number;
+  maxDifficulty?: number;
+  headcount?: number;
   tag?: string;
   availableOnly?: boolean;
+  lat?: number;
+  lng?: number;
 }): Promise<ThemeSearchResult[]> {
   if (!IS_REMOTE_MODE) return mock.getThemesForSearch(query);
 
   const params = new URLSearchParams();
-  if (query.region) params.set('region', query.region);
+  if (query.district) params.set('district', query.district);
+  if (query.neighborhood) params.set('neighborhood', query.neighborhood);
+  if (query.genre) params.set('genre', query.genre);
+  if (query.generation) params.set('generation', query.generation);
+  if (query.maxPriceWon != null) params.set('maxPriceWon', String(query.maxPriceWon));
+  if (query.maxDifficulty != null) params.set('maxDifficulty', String(query.maxDifficulty));
+  if (query.headcount != null) params.set('headcount', String(query.headcount));
   if (query.tag) params.set('preferenceTag', query.tag);
   if (query.availableOnly) params.set('availableOnly', 'true');
+  if (query.lat != null) params.set('lat', String(query.lat));
+  if (query.lng != null) params.set('lng', String(query.lng));
 
   const raw = await remoteJson<Json[]>(`/search?${params.toString()}`);
   return raw.map((r) => ({
@@ -53,6 +71,14 @@ export async function searchThemes(query: {
     storeId: r.storeId,
     storeName: r.storeName,
     themeName: r.themeName,
+    genre: r.genre,
+    generation: r.generation,
+    difficulty: r.difficulty,
+    pricePerPersonWon: r.pricePerPersonWon,
+    district: r.district,
+    neighborhood: r.neighborhood ?? null,
+    latitude: r.latitude ?? null,
+    longitude: r.longitude ?? null,
     rating: r.rating,
     tags: r.tags,
     capacityMin: r.capacityMin,
@@ -66,6 +92,7 @@ export async function searchThemes(query: {
         }
       : null,
     cacheStatus: r.cacheStatus,
+    distanceKm: r.distanceKm ?? null,
   }));
 }
 

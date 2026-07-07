@@ -11,28 +11,38 @@ datasource db {
 }
 
 model Store {
-  id        String   @id @default(cuid())
-  name      String
-  region    String
-  themes    Theme[]
-  createdAt DateTime @default(now())
+  id           String   @id @default(cuid())
+  name         String
+  district     String // 구 (예: 강남구) — 검색 필터 및 기존 region 대체
+  neighborhood String? // 동 (예: 역삼동) — 구/동 단위 필터용, 지오코딩 전까지 널 허용
+  address      String? // 전체 도로명 주소, 지오코딩 전까지 널 허용
+  latitude     Float? // 위치 기반 추천(거리순 정렬)을 위한 좌표 — 실제 지도 API로 지오코딩 후 채움
+  longitude    Float?
+  themes       Theme[]
+  createdAt    DateTime @default(now())
 }
 
 model Theme {
-  id              String           @id @default(cuid())
-  storeId         String
-  store           Store            @relation(fields: [storeId], references: [id])
-  name            String
-  genre           String
-  capacityMin     Int
-  capacityMax     Int
-  rating          Float            @default(0)
-  tags            String[] // 매장 기본 특성 태그 (VARCHAR[] 원자적 컬럼)
-  reviews         ThemeReview[]
-  historyLogs     UserHistoryLog[]
-  parties         Party[]
-  themeStatWeight ThemeStatWeight?
-  createdAt       DateTime         @default(now())
+  id                   String               @id @default(cuid())
+  storeId              String
+  store                Store                @relation(fields: [storeId], references: [id])
+  name                 String
+  genre                GenreTag // 유저 가입 선호도와 동일한 6분류 체계 (한국 방탈출 어워즈 기준)
+  generation           GenerationPreference // 1/2/3세대 — 유저 선호 세대와 매칭
+  difficulty           Int                  @default(3) // 체감 난이도 1~5
+  pricePerPersonWon    Int // 1인 기준 정가
+  capacityMin          Int
+  capacityMax          Int
+  recommendedHeadcount Int? // 최적(추천) 인원 — 처음엔 크롤링/공식 정원 기준, 이후 리뷰 투표로 갱신
+  recommendedReason    String?
+  openedAt             DateTime? // 오픈일 — "신상 테마" 필터를 오픈일 기준으로 동적 계산하기 위함
+  rating               Float                @default(0)
+  tags                 String[] // 매장 기본 특성 태그 (VARCHAR[] 원자적 컬럼)
+  reviews              ThemeReview[]
+  historyLogs          UserHistoryLog[]
+  parties              Party[]
+  themeStatWeight      ThemeStatWeight?
+  createdAt            DateTime             @default(now())
 }
 
 // 실시간 게이미피케이션 스탯 스케일 연산 로직 (사양 #4)의 theme_stat_weights 테이블

@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import type { GenreTag, GenerationPreference, Prisma } from '../../../generated/prisma';
 import { PrismaService } from '../../prisma/prisma.service';
 import { RedisService } from '../../common/redis/redis.service';
 import { RabbitmqService } from '../../common/rabbitmq/rabbitmq.service';
+import { haversineDistanceKm } from '../../common/geo/haversine';
 import { SearchQueryDto } from './dto/search-query.dto';
 
 interface CachedSnapshot {
@@ -32,11 +34,27 @@ export class SearchService {
    * 크롤링 이벤트 퍼블리싱 위임. 캐시 적중 시 20ms 내외 응답을 목표로 한다.
    */
   async search(query: SearchQueryDto) {
+    const where: Prisma.ThemeWhereInput = {
+      ...(query.district || query.neighborhood
+        ? {
+            store: {
+              ...(query.district ? { district: query.district } : {}),
+              ...(query.neighborhood ? { neighborhood: query.neighborhood } : {}),
+            },
+          }
+        : {}),
+      ...(query.genre ? { genre: query.genre as GenreTag } : {}),
+      ...(query.generation ? { generation: query.generation as GenerationPreference } : {}),
+      ...(query.preferenceTag ? { tags: { has: query.preferenceTag } } : {}),
+      ...(query.maxPriceWon != null ? { pricePerPersonWon: { lte: query.maxPriceWon } } : {}),
+      ...(query.maxDifficulty != null ? { difficulty: { lte: query.maxDifficulty } } : {}),
+      ...(query.headcount != null
+        ? { capacityMin: { lte: query.headcount }, capacityMax: { gte: query.headcount } }
+        : {}),
+    };
+
     const themes = await this.prisma.theme.findMany({
-      where: {
-        ...(query.region ? { store: { region: query.region } } : {}),
-        ...(query.preferenceTag ? { tags: { has: query.preferenceTag } } : {}),
-      },
+      where,
       include: { store: true },
       orderBy: { rating: 'desc' },
     });
@@ -55,20 +73,53 @@ export class SearchService {
           storeId: theme.storeId,
           storeName: theme.store.name,
           themeName: theme.name,
+          genre: theme.genre,
+          generation: theme.generation,
+          difficulty: theme.difficulty,
+          pricePerPersonWon: theme.pricePerPersonWon,
+          district: theme.store.district,
+          neighborhood: theme.store.neighborhood,
+          latitude: theme.store.latitude,
+          longitude: theme.store.longitude,
           rating: theme.rating,
           tags: theme.tags,
           capacityMin: cached?.official_capacity_min ?? theme.capacityMin,
           capacityMax: cached?.official_capacity_max ?? theme.capacityMax,
           slots: cached?.slots ?? [],
-          recommendedHeadcount: cached?.recommended_headcount ?? null,
+          // 캐시(실시간 스크래핑 결과)가 아직 없으면 DB에 저장된 초기값(공식 정원/크롤링
+          // 기준값)으로 대체한다 — 리뷰가 쌓이면 headcount_engine이 캐시 값을 갱신한다.
+          recommendedHeadcount:
+            cached?.recommended_headcount ??
+            (theme.recommendedHeadcount
+              ? {
+                  recommended: theme.recommendedHeadcount,
+                  reason: theme.recommendedReason ?? '',
+                  sample_size: 0,
+                }
+              : null),
           cacheStatus: cached ? 'HIT' : 'REFRESHING',
         };
       }),
     );
 
+    let filtered = results;
     if (query.availableOnly) {
-      return results.filter((r) => r.slots.some((s) => s.status !== 'CLOSED'));
+      filtered = filtered.filter((r) => r.slots.some((s) => s.status !== 'CLOSED'));
     }
-    return results;
+
+    if (query.lat != null && query.lng != null) {
+      const origin = { lat: query.lat, lng: query.lng };
+      return filtered
+        .map((r) => ({
+          ...r,
+          distanceKm:
+            r.latitude != null && r.longitude != null
+              ? haversineDistanceKm(origin.lat, origin.lng, r.latitude, r.longitude)
+              : null,
+        }))
+        .sort((a, b) => (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity));
+    }
+
+    return filtered;
   }
 }
