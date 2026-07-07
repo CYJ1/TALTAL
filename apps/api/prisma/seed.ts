@@ -79,6 +79,27 @@ const KAKAO_STORES: KakaoStoreSeed[] = JSON.parse(
   readFileSync(join(__dirname, 'data/seoul-escape-rooms.json'), 'utf-8'),
 );
 
+// 지점 수가 많은 상위 체인부터 실제 테마 목록/장르/난이도/가격/평점을 웹 검색으로
+// 조사해 채워 넣는 중이다 (매장 자체 홈페이지는 이 샌드박스 네트워크 정책상 직접
+// 크롤링이 막혀있어, 커뮤니티 후기·블로그 검색 결과 기반으로 조사했다 — 협찬/광고
+// 표기가 있는 글은 제외). storeId -> 테마 배열이 있으면 그 매장은 아래 KAKAO_STORES
+// 루프에서 "(확인 필요)" 플레이스홀더 대신 이 실데이터로 테마를 생성한다.
+interface VerifiedThemeSeed {
+  name: string;
+  genre: GenreTag;
+  generation: GenerationPreference;
+  difficulty: number;
+  pricePerPersonWon: number;
+  capacityMin: number;
+  capacityMax: number;
+  rating: number;
+  tags: string[];
+}
+
+const VERIFIED_THEMES: Record<string, VerifiedThemeSeed[]> = JSON.parse(
+  readFileSync(join(__dirname, 'data/verified-themes.json'), 'utf-8'),
+);
+
 const THEMES = [
   {
     id: 'confession',
@@ -161,6 +182,27 @@ const KAKAO_PLACEHOLDER_THEME_DEFAULTS = {
   weight: { logic: 3, observe: 3, speed: 3, story: 3, solving: 3, tank: 3 },
 };
 
+// 실제 후기 기반으로 조사한 테마는 육각형 스탯까지는 확인할 수 없어, 장르 특성에
+// 따른 대략적인 가중치를 부여한다 (후기가 쌓이면 실제 스탯으로 대체될 값).
+function genreBasedWeight(genre: GenreTag) {
+  const base = { logic: 3, observe: 3, speed: 3, story: 3, solving: 3, tank: 3 };
+  switch (genre) {
+    case 'HORROR_THRILLER':
+      return { ...base, tank: 8, observe: 4 };
+    case 'EMOTIONAL_ROMANCE':
+      return { ...base, story: 8, tank: 1 };
+    case 'MYSTERY_DETECTIVE':
+      return { ...base, logic: 7, solving: 6 };
+    case 'ACTION_ADVENTURE':
+      return { ...base, speed: 6, observe: 5 };
+    case 'SCIFI_FANTASY':
+      return { ...base, story: 6, observe: 5 };
+    case 'COMEDY_ETC':
+    default:
+      return base;
+  }
+}
+
 const USERS = [
   {
     id: 'escaper_pro',
@@ -238,6 +280,55 @@ async function main() {
       create: store,
     });
 
+    const verified = VERIFIED_THEMES[store.id];
+    if (verified) {
+      // 실제 테마 데이터가 조사된 매장은 예전에 생성된 "(확인 필요)" 플레이스홀더
+      // 1개짜리 테마를 제거하고, 조사된 실제 테마들로 대체한다 (FK 제약 때문에
+      // ThemeStatWeight를 먼저 지운다).
+      await prisma.themeStatWeight.deleteMany({ where: { themeId: `${store.id}-theme` } });
+      await prisma.theme.deleteMany({ where: { id: `${store.id}-theme` } });
+
+      for (let i = 0; i < verified.length; i++) {
+        const t = verified[i];
+        const themeId = `${store.id}-t${i + 1}`;
+        const weight = genreBasedWeight(t.genre);
+        await prisma.theme.upsert({
+          where: { id: themeId },
+          update: {
+            storeId: store.id,
+            name: t.name,
+            genre: t.genre,
+            generation: t.generation,
+            difficulty: t.difficulty,
+            pricePerPersonWon: t.pricePerPersonWon,
+            capacityMin: t.capacityMin,
+            capacityMax: t.capacityMax,
+            rating: t.rating,
+            tags: t.tags,
+          },
+          create: {
+            id: themeId,
+            storeId: store.id,
+            name: t.name,
+            genre: t.genre,
+            generation: t.generation,
+            difficulty: t.difficulty,
+            pricePerPersonWon: t.pricePerPersonWon,
+            capacityMin: t.capacityMin,
+            capacityMax: t.capacityMax,
+            rating: t.rating,
+            tags: t.tags,
+          },
+        });
+        await prisma.themeStatWeight.upsert({
+          where: { themeId },
+          update: weight,
+          create: { themeId, ...weight },
+        });
+      }
+      continue;
+    }
+
     const themeId = `${store.id}-theme`;
     await prisma.theme.upsert({
       where: { id: themeId },
@@ -305,8 +396,10 @@ async function main() {
     });
   }
 
+  const verifiedThemeCount = Object.values(VERIFIED_THEMES).reduce((sum, arr) => sum + arr.length, 0);
+  const placeholderThemeCount = KAKAO_STORES.length - Object.keys(VERIFIED_THEMES).length;
   console.log(
-    `Seeded ${STORES.length + KAKAO_STORES.length} stores, ${THEMES.length + KAKAO_STORES.length} themes, ${USERS.length} users`,
+    `Seeded ${STORES.length + KAKAO_STORES.length} stores, ${THEMES.length + verifiedThemeCount + placeholderThemeCount} themes, ${USERS.length} users`,
   );
 }
 
