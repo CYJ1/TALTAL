@@ -55,17 +55,15 @@ export const OAUTH_PROVIDERS: Record<OAuthProviderId, OAuthProviderConfig> = {
       });
       const body = await res.json();
       if (!res.ok) throw new Error(`Kakao profile fetch failed: ${JSON.stringify(body)}`);
-      const email = body.kakao_account?.email;
-      if (!email) {
-        throw new Error(
-          '카카오 계정에서 이메일 제공에 동의하지 않았습니다. 카카오 개발자 콘솔에서 이메일 항목을 필수 동의로 설정해주세요.',
-        );
-      }
-      return {
-        providerId: String(body.id),
-        email,
-        nickname: body.kakao_account?.profile?.nickname ?? '카카오유저',
-      };
+
+      const providerId = String(body.id);
+      const nickname = body.kakao_account?.profile?.nickname ?? body.properties?.nickname ?? '카카오유저';
+      // 카카오는 이메일 동의항목을 비즈니스 인증(사업자등록) 완료 앱에만 열어준다.
+      // 일반 개발자 앱은 이메일을 받을 수 없으므로, 계정 식별용 내부 전용 placeholder
+      // 이메일로 대체한다 (providerId 기준이라 유일성이 보장된다).
+      const email = body.kakao_account?.email ?? `kakao_${providerId}@kakao.taltal.local`;
+
+      return { providerId, email, nickname };
     },
   },
   naver: {
