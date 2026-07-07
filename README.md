@@ -56,6 +56,7 @@ docker-compose.yml   postgres / redis / rabbitmq / neo4j / api / scraper / ai-en
   <img src="readme_src/new2login.png" width="200px" />
   <img src="readme_src/newloginquestion.png" width="200px" />
   <img src="readme_src/new9profile.png" width="200px" />
+  <img src="readme_src/newsearch.png" width="200px" />
   <img src="readme_src/new5themedetail.png" width="200px" />
   <img src="readme_src/new6booking.png" width="200px" />
   <img src="readme_src/new7bookingcomplete.png" width="200px" />
