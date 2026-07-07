@@ -48,91 +48,13 @@ SEED_STORES = [
         "theme_name": "열쇠공의 이중생활",
         "capacity": (2, 5),
     },
-    {
-        "store_id": "sherlockholmes-gangnam2",
-        "theme_id": "sherlock-signature",
-        "name": "셜록홈즈 강남2호점",
-        "theme_name": "셜록홈즈 대표 테마 (확인 필요)",
-        "capacity": (2, 4),
-    },
-    {
-        "store_id": "doorescape-gangnam",
-        "theme_id": "doorescape-gangnam-signature",
-        "name": "도어이스케이프 강남점",
-        "theme_name": "도어이스케이프 강남 대표 테마 (확인 필요)",
-        "capacity": (2, 5),
-    },
-    {
-        "store_id": "themaze-gangnam",
-        "theme_id": "themaze-gangnam-signature",
-        "name": "더메이즈 강남점",
-        "theme_name": "더메이즈 강남 대표 테마 (확인 필요)",
-        "capacity": (2, 4),
-    },
-    {
-        "store_id": "xscape-gangnam",
-        "theme_id": "xscape-gangnam-signature",
-        "name": "엑스케이프 강남점",
-        "theme_name": "엑스케이프 강남 대표 테마 (확인 필요)",
-        "capacity": (2, 5),
-    },
-    {
-        "store_id": "bitphobia-hongdae",
-        "theme_id": "bitphobia-hongdae-signature",
-        "name": "비트포비아 홍대점",
-        "theme_name": "비트포비아 홍대 대표 테마 (확인 필요)",
-        "capacity": (2, 6),
-    },
-    {
-        "store_id": "doorescape-hongdae",
-        "theme_id": "doorescape-hongdae-signature",
-        "name": "도어이스케이프 홍대점",
-        "theme_name": "도어이스케이프 홍대 대표 테마 (확인 필요)",
-        "capacity": (2, 5),
-    },
-    {
-        "store_id": "decoder-hongdae",
-        "theme_id": "decoder-hongdae-signature",
-        "name": "디코더 홍대점",
-        "theme_name": "디코더 홍대 대표 테마 (확인 필요)",
-        "capacity": (2, 4),
-    },
-    {
-        "store_id": "themaze-konkuk",
-        "theme_id": "themaze-konkuk-signature",
-        "name": "더메이즈 건대점",
-        "theme_name": "더메이즈 건대 대표 테마 (확인 필요)",
-        "capacity": (2, 4),
-    },
-    {
-        "store_id": "xscape-konkuk",
-        "theme_id": "xscape-konkuk-signature",
-        "name": "엑스케이프 건대점",
-        "theme_name": "엑스케이프 건대 대표 테마 (확인 필요)",
-        "capacity": (2, 5),
-    },
-    {
-        "store_id": "bitphobia-sinchon",
-        "theme_id": "bitphobia-sinchon-signature",
-        "name": "비트포비아 신촌점",
-        "theme_name": "비트포비아 신촌 대표 테마 (확인 필요)",
-        "capacity": (2, 6),
-    },
-    {
-        "store_id": "masterkey-sinchon",
-        "theme_id": "masterkey-sinchon-signature",
-        "name": "마스터키 신촌점",
-        "theme_name": "마스터키 신촌 대표 테마 (확인 필요)",
-        "capacity": (2, 4),
-    },
-    {
-        "store_id": "decoder-seongsu",
-        "theme_id": "decoder-seongsu-signature",
-        "name": "디코더 성수점",
-        "theme_name": "디코더 성수 대표 테마 (확인 필요)",
-        "capacity": (2, 4),
-    },
 ]
+
+# 카카오 로컬 API로 수집한 191개 실매장(prisma/seed.ts의 KAKAO_STORES)은 매장
+# 단위 정보만 있고 테마 상세(정원 등)는 확인 전이라, 여기 목업 스크래퍼
+# SEED_STORES에는 아직 포함하지 않았다 — search.service가 캐시 미스 시
+# "REFRESHING" 상태로 정직하게 보여주고, 사이트별 크롤링 어댑터가 붙으면 그때
+# 실제 슬롯 데이터를 채우면 된다.
 
 _SLOT_TIMES = [
     "14:00", "15:30", "16:30", "18:00", "18:15", "19:00",
