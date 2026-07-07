@@ -3,6 +3,11 @@ export interface TimeSlot {
   status: 'AVAILABLE' | 'FEW_LEFT' | 'CLOSED';
 }
 
+export interface DistrictFacet {
+  district: string;
+  neighborhoods: string[];
+}
+
 export interface RecommendedHeadcount {
   recommended: number;
   reason: string;

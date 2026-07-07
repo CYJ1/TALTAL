@@ -4,6 +4,7 @@ import { getSessionToken } from './session';
 import type {
   CalendarEntry,
   CreateReviewInput,
+  DistrictFacet,
   GenerationPreference,
   GenreTag,
   HexagonStat,
@@ -94,6 +95,11 @@ export async function searchThemes(query: {
     cacheStatus: r.cacheStatus,
     distanceKm: r.distanceKm ?? null,
   }));
+}
+
+export async function getDistrictFacets(): Promise<DistrictFacet[]> {
+  if (!IS_REMOTE_MODE) return mock.getDistrictFacets();
+  return remoteJson<DistrictFacet[]>('/search/facets');
 }
 
 export async function getThemeDetail(themeId: string): Promise<ThemeSearchResult | null> {

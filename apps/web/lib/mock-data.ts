@@ -1,6 +1,7 @@
 import type {
   CalendarEntry,
   CreateReviewInput,
+  DistrictFacet,
   GenerationPreference,
   GenreTag,
   HexagonStat,
@@ -170,6 +171,17 @@ function recommendedHeadcountFor(theme: ThemeSeed) {
   };
   const reason = reasonMap[bestN] ?? `스토리 집중형 ${bestN}인 최적`;
   return { recommended: bestN, reason: `집계 체감 추천인원: ${bestN}인 (${reason})`, sampleSize };
+}
+
+export function getDistrictFacets(): DistrictFacet[] {
+  const byDistrict = new Map<string, Set<string>>();
+  for (const t of THEMES) {
+    if (!byDistrict.has(t.district)) byDistrict.set(t.district, new Set());
+    byDistrict.get(t.district)!.add(t.neighborhood);
+  }
+  return Array.from(byDistrict.entries())
+    .map(([district, neighborhoods]) => ({ district, neighborhoods: Array.from(neighborhoods).sort() }))
+    .sort((a, b) => a.district.localeCompare(b.district));
 }
 
 export function getThemesForSearch(query: {
