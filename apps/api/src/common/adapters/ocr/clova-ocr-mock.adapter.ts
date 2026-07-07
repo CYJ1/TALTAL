@@ -14,7 +14,9 @@ import {
 export class ClovaOcrMockAdapter implements OcrAdapter {
   private readonly logger = new Logger('ClovaOcrMockAdapter(MOCK)');
 
-  async verifyBooking(input: BookingVerificationInput): Promise<BookingVerificationResult> {
+  async verifyBooking(
+    input: BookingVerificationInput,
+  ): Promise<BookingVerificationResult> {
     this.logger.log(
       `[MOCK] OCR parsing capture for "${input.expectedStoreName} - ${input.expectedThemeName}"`,
     );

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
 import { getCalendar, getProfile } from '@/lib/data';
+import { getPreferenceBadge } from '@/lib/preferences';
 import { getSessionUser } from '@/lib/session';
 
 const DEMO_MONTH = '2026-07';
@@ -33,7 +34,8 @@ export default async function CalendarPage() {
               {profile.nickname} <span className="ml-1 rounded-full bg-indigo-600 px-2 py-0.5 text-xs text-white">Lv.{profile.level} 헤비 에스케이퍼</span>
             </p>
             <p className="mt-1 text-xs text-zinc-500">
-              매너온도 {profile.mannerTemp.toFixed(1)}°C · 성향 <span className="font-medium text-indigo-600">🛡 탱커</span>
+              매너온도 {profile.mannerTemp.toFixed(1)}°C · 성향{' '}
+              <span className="font-medium text-indigo-600">{getPreferenceBadge(profile)}</span>
             </p>
           </div>
           <Link href="/profile" className="shrink-0 text-xs font-medium text-indigo-600 underline">

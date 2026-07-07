@@ -19,5 +19,7 @@ export interface BookingVerificationResult {
  * DB의 공식 가용 테마 엔티티와 대조 검증한다 (허위·리셀 룸 유입 차단).
  */
 export interface OcrAdapter {
-  verifyBooking(input: BookingVerificationInput): Promise<BookingVerificationResult>;
+  verifyBooking(
+    input: BookingVerificationInput,
+  ): Promise<BookingVerificationResult>;
 }

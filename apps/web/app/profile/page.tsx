@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
 import LogoutButton from '@/components/LogoutButton';
 import { getProfile } from '@/lib/data';
+import { getPreferenceBadge } from '@/lib/preferences';
 import { getSessionUser } from '@/lib/session';
 
 const STAT_LABELS: { key: keyof Awaited<ReturnType<typeof getProfile>>['stat']; label: string }[] = [
@@ -31,7 +32,7 @@ export default async function ProfilePage() {
         </span>
         <p className="mt-2 text-sm text-zinc-500">
           매너온도 <span className="font-semibold text-rose-500">{profile.mannerTemp.toFixed(1)}°C</span> · 성향{' '}
-          <span className="font-semibold text-indigo-600">🛡 탱커</span>
+          <span className="font-semibold text-indigo-600">{getPreferenceBadge(profile)}</span>
         </p>
       </section>
 

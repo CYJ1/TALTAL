@@ -13,7 +13,11 @@ export function remainingTimeScore(remainingSec: number): number {
   return Math.min(2, Math.max(0.5, remainingMinutes / 10));
 }
 
-export function computeStatGain(weight: number, cleared: boolean, remainingSec: number): number {
+export function computeStatGain(
+  weight: number,
+  cleared: boolean,
+  remainingSec: number,
+): number {
   const clearBonus = cleared ? CLEAR_BONUS_MULTIPLIER : FAIL_BONUS_MULTIPLIER;
   return weight * clearBonus * remainingTimeScore(remainingSec);
 }
@@ -38,11 +42,23 @@ export function applyStatGains(
   remainingSec: number,
 ): StatAxes {
   return {
-    logic: clampStat(current.logic + computeStatGain(weight.logic, cleared, remainingSec)),
-    observe: clampStat(current.observe + computeStatGain(weight.observe, cleared, remainingSec)),
-    speed: clampStat(current.speed + computeStatGain(weight.speed, cleared, remainingSec)),
-    story: clampStat(current.story + computeStatGain(weight.story, cleared, remainingSec)),
-    solving: clampStat(current.solving + computeStatGain(weight.solving, cleared, remainingSec)),
-    tank: clampStat(current.tank + computeStatGain(weight.tank, cleared, remainingSec)),
+    logic: clampStat(
+      current.logic + computeStatGain(weight.logic, cleared, remainingSec),
+    ),
+    observe: clampStat(
+      current.observe + computeStatGain(weight.observe, cleared, remainingSec),
+    ),
+    speed: clampStat(
+      current.speed + computeStatGain(weight.speed, cleared, remainingSec),
+    ),
+    story: clampStat(
+      current.story + computeStatGain(weight.story, cleared, remainingSec),
+    ),
+    solving: clampStat(
+      current.solving + computeStatGain(weight.solving, cleared, remainingSec),
+    ),
+    tank: clampStat(
+      current.tank + computeStatGain(weight.tank, cleared, remainingSec),
+    ),
   };
 }

@@ -1,4 +1,9 @@
-import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as amqp from 'amqp-connection-manager';
 import type { ChannelWrapper } from 'amqp-connection-manager';
@@ -14,7 +19,10 @@ export class RabbitmqService implements OnModuleInit, OnModuleDestroy {
   constructor(private readonly config: ConfigService) {}
 
   onModuleInit() {
-    const url = this.config.get<string>('RABBITMQ_URL', 'amqp://guest:guest@localhost:5672');
+    const url = this.config.get<string>(
+      'RABBITMQ_URL',
+      'amqp://guest:guest@localhost:5672',
+    );
     this.connection = amqp.connect([url]);
     this.connection.on('disconnect', ({ err }) =>
       this.logger.warn(`RabbitMQ disconnected: ${err?.message}`),
@@ -33,7 +41,9 @@ export class RabbitmqService implements OnModuleInit, OnModuleDestroy {
         { persistent: true },
       );
     } catch (err) {
-      this.logger.warn(`Failed to publish scrape request: ${(err as Error).message}`);
+      this.logger.warn(
+        `Failed to publish scrape request: ${(err as Error).message}`,
+      );
     }
   }
 

@@ -17,8 +17,7 @@ export class StatsService {
     if (!user) throw new NotFoundException(`user ${userId} not found`);
 
     const stat =
-      user.stat ??
-      (await this.prisma.userStat.create({ data: { userId } }));
+      user.stat ?? (await this.prisma.userStat.create({ data: { userId } }));
 
     return {
       userId: user.id,
@@ -26,7 +25,15 @@ export class StatsService {
       level: user.level,
       mannerTemp: user.mannerTemp,
       totalClears: user.totalClears,
-      expPercent: Math.min(100, Math.round((user.currentExp / EXP_PER_LEVEL) * 100)),
+      expPercent: Math.min(
+        100,
+        Math.round((user.currentExp / EXP_PER_LEVEL) * 100),
+      ),
+      isBeginner: user.isBeginner,
+      genrePreferences: user.genrePreferences,
+      pacingPreference: user.pacingPreference,
+      roomTypePreference: user.roomTypePreference,
+      horrorRole: user.horrorRole,
       stat: {
         logic: stat.logic,
         observe: stat.observe,
@@ -99,7 +106,10 @@ export class StatsService {
     if (user.currentExp >= EXP_PER_LEVEL) {
       await this.prisma.user.update({
         where: { id: params.userId },
-        data: { level: { increment: 1 }, currentExp: { decrement: EXP_PER_LEVEL } },
+        data: {
+          level: { increment: 1 },
+          currentExp: { decrement: EXP_PER_LEVEL },
+        },
       });
     }
 

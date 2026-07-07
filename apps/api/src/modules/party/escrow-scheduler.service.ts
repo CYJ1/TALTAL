@@ -23,7 +23,9 @@ export class EscrowSchedulerService {
 
   @Cron(CronExpression.EVERY_MINUTE)
   async handleCron() {
-    const releaseCutoff = new Date(Date.now() - PLAY_DURATION_MS - DISPUTE_WINDOW_MS);
+    const releaseCutoff = new Date(
+      Date.now() - PLAY_DURATION_MS - DISPUTE_WINDOW_MS,
+    );
 
     const parties = await this.prisma.party.findMany({
       where: { status: 'FILLED', reservedAt: { lte: releaseCutoff } },
@@ -39,8 +41,13 @@ export class EscrowSchedulerService {
           data: { escrowStatus: 'RELEASED' },
         });
       }
-      await this.prisma.party.update({ where: { id: party.id }, data: { status: 'SETTLED' } });
-      this.logger.log(`Party ${party.id} auto-settled: escrow released to host`);
+      await this.prisma.party.update({
+        where: { id: party.id },
+        data: { status: 'SETTLED' },
+      });
+      this.logger.log(
+        `Party ${party.id} auto-settled: escrow released to host`,
+      );
     }
   }
 }

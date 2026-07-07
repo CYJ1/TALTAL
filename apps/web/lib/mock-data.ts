@@ -1,9 +1,13 @@
 import type {
   CalendarEntry,
   CreateReviewInput,
+  GenreTag,
   HexagonStat,
+  HorrorRole,
+  PacingPreference,
   PartyDetail,
   RecommendationResponse,
+  RoomTypePreference,
   ThemeSearchResult,
   TimeSlot,
   UserProfile,
@@ -187,6 +191,11 @@ interface UserRecord {
   mannerTemp: number;
   totalClears: number;
   currentExp: number;
+  isBeginner: boolean;
+  genrePreferences: GenreTag[];
+  pacingPreference: PacingPreference | null;
+  roomTypePreference: RoomTypePreference | null;
+  horrorRole: HorrorRole | null;
   stat: HexagonStat;
 }
 
@@ -198,6 +207,11 @@ const USERS: Record<string, UserRecord> = {
     mannerTemp: 98.2,
     totalClears: 148,
     currentExp: 84,
+    isBeginner: false,
+    genrePreferences: ['HORROR', 'IMMERSIVE'],
+    pacingPreference: 'SPEED',
+    roomTypePreference: 'DEVICE',
+    horrorRole: 'TANK',
     stat: { logic: 95, observe: 90, speed: 88, story: 72, solving: 76, tank: 98 },
   },
 };
@@ -216,6 +230,11 @@ export function getUserProfile(userId: string): UserProfile {
     mannerTemp: u.mannerTemp,
     totalClears: u.totalClears,
     expPercent: Math.min(100, Math.round((u.currentExp / 100) * 100)),
+    isBeginner: u.isBeginner,
+    genrePreferences: u.genrePreferences,
+    pacingPreference: u.pacingPreference,
+    roomTypePreference: u.roomTypePreference,
+    horrorRole: u.horrorRole,
     stat: { ...u.stat },
   };
 }

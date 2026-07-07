@@ -53,22 +53,51 @@ enum SocialProvider {
   GOOGLE
 }
 
+// 가입 시 선호도 설문 (사양: 방린이면 종료, 아니면 장르/진행스타일/공간유형 + 공포 선택 시 역할까지)
+enum GenreTag {
+  EMOTIONAL // 감성테마
+  HORROR // 공포테마
+  SCIFI // SF관련
+  IMMERSIVE // 이머시브
+}
+
+enum PacingPreference {
+  STORY // 스토리위주
+  SPEED // 문제빨리풀기위주
+}
+
+enum RoomTypePreference {
+  PUZZLE // 문제방선호
+  DEVICE // 장치방선호
+}
+
+enum HorrorRole {
+  SCARED // 쫄
+  PUSH_THROUGH // 전진쫄
+  TANK // 탱커
+}
+
 model User {
-  id           String             @id @default(cuid())
-  email        String             @unique
-  passwordHash String? // 소셜 로그인 전용 계정은 비밀번호가 없다
-  provider     SocialProvider?
-  providerId   String?
-  nickname     String
-  mannerTemp   Float              @default(36.5)
-  level        Int                @default(1)
-  totalClears  Int                @default(0)
-  currentExp   Float              @default(0)
-  stat         UserStat?
-  historyLogs  UserHistoryLog[]
-  reviews      ThemeReview[]
-  partyEntries PartyParticipant[]
-  createdAt    DateTime           @default(now())
+  id                 String               @id @default(cuid())
+  email              String               @unique
+  passwordHash       String? // 소셜 로그인 전용 계정은 비밀번호가 없다
+  provider           SocialProvider?
+  providerId         String?
+  nickname           String
+  mannerTemp         Float                @default(36.5)
+  level              Int                  @default(1)
+  totalClears        Int                  @default(0)
+  currentExp         Float                @default(0)
+  isBeginner         Boolean              @default(false)
+  genrePreferences   GenreTag[]           @default([])
+  pacingPreference   PacingPreference?
+  roomTypePreference RoomTypePreference?
+  horrorRole         HorrorRole?
+  stat               UserStat?
+  historyLogs        UserHistoryLog[]
+  reviews            ThemeReview[]
+  partyEntries       PartyParticipant[]
+  createdAt          DateTime             @default(now())
 
   @@unique([provider, providerId])
 }

@@ -1,4 +1,9 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import type { Request } from 'express';
 
@@ -18,8 +23,14 @@ export class JwtAuthGuard implements CanActivate {
     }
 
     try {
-      const payload = await this.jwt.verifyAsync<{ sub: string; email: string }>(token);
-      (req as AuthenticatedRequest).user = { userId: payload.sub, email: payload.email };
+      const payload = await this.jwt.verifyAsync<{
+        sub: string;
+        email: string;
+      }>(token);
+      (req as AuthenticatedRequest).user = {
+        userId: payload.sub,
+        email: payload.email,
+      };
       return true;
     } catch {
       throw new UnauthorizedException('인증 토큰이 유효하지 않습니다.');

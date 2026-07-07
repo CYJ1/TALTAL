@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache';
 import { API_BASE_URL, DEMO_USER_ID, IS_REMOTE_MODE } from './config';
 import { createPartyRequest, joinPartyRequest, submitReview } from './data';
 import { getSessionUser, SESSION_COOKIE, setSessionCookie } from './session';
-import type { CreateReviewInput, NewPartyInput } from './types';
+import type { CreateReviewInput, NewPartyInput, SignupPreferences } from './types';
 
 export async function submitReviewAction(input: Omit<CreateReviewInput, 'userId'>) {
   const userId = (await getSessionUser())?.id ?? DEMO_USER_ID;
@@ -30,7 +30,7 @@ export async function createPartyAction(input: Omit<NewPartyInput, 'hostUserId'>
   return { id };
 }
 
-export interface SignupInput {
+export interface SignupInput extends SignupPreferences {
   email: string;
   password: string;
   nickname: string;
