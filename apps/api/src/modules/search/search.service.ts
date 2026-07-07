@@ -10,7 +10,11 @@ interface CachedSnapshot {
   official_capacity_min: number;
   official_capacity_max: number;
   slots: { time: string; status: string }[];
-  recommended_headcount: { recommended: number; reason: string; sample_size: number };
+  recommended_headcount: {
+    recommended: number;
+    reason: string;
+    sample_size: number;
+  };
   scraped_at: string;
   source: string;
 }

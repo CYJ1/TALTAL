@@ -39,6 +39,11 @@ export interface UserProfile {
   mannerTemp: number;
   totalClears: number;
   expPercent: number;
+  isBeginner: boolean;
+  genrePreferences: GenreTag[];
+  pacingPreference: PacingPreference | null;
+  roomTypePreference: RoomTypePreference | null;
+  horrorRole: HorrorRole | null;
   stat: HexagonStat;
 }
 
@@ -110,4 +115,18 @@ export interface CreateReviewInput {
   remainingSec: number;
   hintsUsed: number;
   comment?: string;
+}
+
+// 가입 시 선호도 설문 (방린이면 종료, 아니면 장르/진행스타일/공간유형 + 공포 선택 시 역할)
+export type GenreTag = 'EMOTIONAL' | 'HORROR' | 'SCIFI' | 'IMMERSIVE';
+export type PacingPreference = 'STORY' | 'SPEED';
+export type RoomTypePreference = 'PUZZLE' | 'DEVICE';
+export type HorrorRole = 'SCARED' | 'PUSH_THROUGH' | 'TANK';
+
+export interface SignupPreferences {
+  isBeginner: boolean;
+  genrePreferences?: GenreTag[];
+  pacingPreference?: PacingPreference;
+  roomTypePreference?: RoomTypePreference;
+  horrorRole?: HorrorRole;
 }

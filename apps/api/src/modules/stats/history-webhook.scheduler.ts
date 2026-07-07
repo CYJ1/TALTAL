@@ -29,7 +29,11 @@ export class HistoryWebhookScheduler {
     for (const party of parties) {
       for (const participant of party.participants) {
         const exists = await this.prisma.userHistoryLog.findFirst({
-          where: { userId: participant.userId, themeId: party.themeId, partyId: party.id },
+          where: {
+            userId: participant.userId,
+            themeId: party.themeId,
+            partyId: party.id,
+          },
         });
         if (exists) continue;
 

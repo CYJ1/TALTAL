@@ -12,10 +12,20 @@ export class RedisService implements OnModuleDestroy {
 
   constructor(config: ConfigService) {
     const url = config.get<string>('REDIS_URL', 'redis://localhost:6379/0');
-    this.client = new Redis(url, { lazyConnect: false, retryStrategy: () => 2000 });
-    this.subscriber = new Redis(url, { lazyConnect: false, retryStrategy: () => 2000 });
-    this.client.on('error', (err) => this.logger.warn(`Redis client error: ${err.message}`));
-    this.subscriber.on('error', (err) => this.logger.warn(`Redis subscriber error: ${err.message}`));
+    this.client = new Redis(url, {
+      lazyConnect: false,
+      retryStrategy: () => 2000,
+    });
+    this.subscriber = new Redis(url, {
+      lazyConnect: false,
+      retryStrategy: () => 2000,
+    });
+    this.client.on('error', (err) =>
+      this.logger.warn(`Redis client error: ${err.message}`),
+    );
+    this.subscriber.on('error', (err) =>
+      this.logger.warn(`Redis subscriber error: ${err.message}`),
+    );
   }
 
   async getJson<T>(key: string): Promise<T | null> {
@@ -24,11 +34,18 @@ export class RedisService implements OnModuleDestroy {
     return JSON.parse(raw) as T;
   }
 
-  async setJson(key: string, value: unknown, ttlSeconds = CACHE_TTL_SECONDS): Promise<void> {
+  async setJson(
+    key: string,
+    value: unknown,
+    ttlSeconds = CACHE_TTL_SECONDS,
+  ): Promise<void> {
     await this.client.set(key, JSON.stringify(value), 'EX', ttlSeconds);
   }
 
-  async subscribe(channel: string, onMessage: (payload: string) => void): Promise<void> {
+  async subscribe(
+    channel: string,
+    onMessage: (payload: string) => void,
+  ): Promise<void> {
     await this.subscriber.subscribe(channel);
     this.subscriber.on('message', (ch, message) => {
       if (ch === channel) onMessage(message);

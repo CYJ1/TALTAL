@@ -36,7 +36,9 @@ export class PartyService {
     });
 
     if (!ocrResult.verified) {
-      throw new BadRequestException('예약 캡처본 OCR 검증에 실패했습니다 (허위/리셀 룸 의심)');
+      throw new BadRequestException(
+        '예약 캡처본 OCR 검증에 실패했습니다 (허위/리셀 룸 의심)',
+      );
     }
 
     return this.prisma.party.create({
@@ -75,7 +77,11 @@ export class PartyService {
     }
 
     const depositWon = Math.round(party.totalPriceWon / party.capacity);
-    const hold = await this.payment.holdDeposit({ partyId, userId, amountWon: depositWon });
+    const hold = await this.payment.holdDeposit({
+      partyId,
+      userId,
+      amountWon: depositWon,
+    });
 
     const participant = await this.prisma.partyParticipant.create({
       data: {
@@ -89,7 +95,10 @@ export class PartyService {
 
     const isNowFull = party.participants.length + 1 >= party.capacity;
     if (isNowFull) {
-      await this.prisma.party.update({ where: { id: partyId }, data: { status: 'FILLED' } });
+      await this.prisma.party.update({
+        where: { id: partyId },
+        data: { status: 'FILLED' },
+      });
     }
 
     return participant;
@@ -98,8 +107,11 @@ export class PartyService {
   /** [도메인 4] 사양 #3: 무단 위반자 페널티 집행 (예치금 방장 귀속 + 매너온도 0점 영구 밴) */
   async reportNoShow(partyId: string, offenderUserId: string) {
     const party = await this.findOne(partyId);
-    const offender = party.participants.find((p) => p.userId === offenderUserId);
-    if (!offender) throw new NotFoundException('해당 참여자를 찾을 수 없습니다');
+    const offender = party.participants.find(
+      (p) => p.userId === offenderUserId,
+    );
+    if (!offender)
+      throw new NotFoundException('해당 참여자를 찾을 수 없습니다');
 
     await this.payment.forfeit(offender.escrowTxRef!);
 
@@ -107,12 +119,19 @@ export class PartyService {
       where: { id: offender.id },
       data: { escrowStatus: 'FORFEITED' },
     });
-    await this.prisma.party.update({ where: { id: partyId }, data: { status: 'DISPUTED' } });
+    await this.prisma.party.update({
+      where: { id: partyId },
+      data: { status: 'DISPUTED' },
+    });
     await this.prisma.user.update({
       where: { id: offenderUserId },
       data: { mannerTemp: 0 },
     });
 
-    return { partyId, offenderUserId, penalty: 'DEPOSIT_FORFEITED_MANNER_TEMP_ZEROED' };
+    return {
+      partyId,
+      offenderUserId,
+      penalty: 'DEPOSIT_FORFEITED_MANNER_TEMP_ZEROED',
+    };
   }
 }

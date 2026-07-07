@@ -1,4 +1,12 @@
-import { Controller, ForbiddenException, Get, Param, Query, Req, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  ForbiddenException,
+  Get,
+  Param,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
 import type { AuthenticatedRequest } from '../auth/jwt-auth.guard';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { StatsService } from './stats.service';
@@ -9,7 +17,10 @@ export class StatsController {
   constructor(private readonly statsService: StatsService) {}
 
   @Get('profile')
-  getProfile(@Param('userId') userId: string, @Req() req: AuthenticatedRequest) {
+  getProfile(
+    @Param('userId') userId: string,
+    @Req() req: AuthenticatedRequest,
+  ) {
     this.assertSelf(userId, req);
     return this.statsService.getProfile(userId);
   }

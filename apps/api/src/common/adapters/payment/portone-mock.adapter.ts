@@ -30,6 +30,8 @@ export class PortoneMockAdapter implements PaymentAdapter {
   }
 
   async forfeit(txRef: string): Promise<void> {
-    this.logger.log(`[MOCK] Forfeit escrow hold ${txRef} -> transferred to host as penalty`);
+    this.logger.log(
+      `[MOCK] Forfeit escrow hold ${txRef} -> transferred to host as penalty`,
+    );
   }
 }
