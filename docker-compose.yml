@@ -73,6 +73,11 @@ services:
       REDIS_URL: redis://redis:6379/0
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
       AI_ENGINE_URL: http://ai-engine:8000
+      # 개발용 기본값이다. 실서비스 배포 시에는 반드시 별도의 강력한 비밀값으로 교체할 것.
+      JWT_SECRET: dev-only-secret-change-in-production
+      JWT_EXPIRES_IN: 7d
+      # web 컨테이너만 호출할 수 있어야 하는 POST /auth/social 내부 엔드포인트 공유 비밀값.
+      INTERNAL_API_SECRET: dev-only-internal-secret-change-in-production
       PORT: 4000
     ports:
       - "4000:4000"
@@ -112,6 +117,17 @@ services:
     environment:
       # 설정 시 Next.js 서버가 목업 대신 실제 NestJS API를 호출한다 (lib/config.ts 참고)
       API_BASE_URL: http://api:4000
+      APP_BASE_URL: http://localhost:3000
+      # api 서비스와 동일한 값이어야 한다 (POST /auth/social 호출 인증용).
+      INTERNAL_API_SECRET: dev-only-internal-secret-change-in-production
+      # 소셜 로그인은 카카오/네이버/구글 개발자 콘솔에서 앱을 등록해 발급받은 값을
+      # 채워야 동작한다 (비워두면 로그인 화면에서 해당 버튼이 "준비중" 오류로 안내됨).
+      KAKAO_CLIENT_ID: ""
+      KAKAO_CLIENT_SECRET: ""
+      NAVER_CLIENT_ID: ""
+      NAVER_CLIENT_SECRET: ""
+      GOOGLE_CLIENT_ID: ""
+      GOOGLE_CLIENT_SECRET: ""
     ports:
       - "3000:3000"
 

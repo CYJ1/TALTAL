@@ -15,11 +15,11 @@ export class ReviewsService {
    * 저장 직후 [도메인 2] 사양 #4의 UserStatCalculator를 트리거하여 실시간 육각
    * 스탯 성장과 AI 데이터 피딩(Neo4j 그래프 증분 반영 대상)을 동시에 처리한다.
    */
-  async create(dto: CreateReviewDto) {
+  async create(dto: CreateReviewDto, userId: string) {
     const review = await this.prisma.themeReview.create({
       data: {
         themeId: dto.themeId,
-        userId: dto.userId,
+        userId,
         grade: dto.grade,
         selectedTags: dto.selectedTags,
         votedHeadcount: dto.votedHeadcount,
@@ -31,12 +31,12 @@ export class ReviewsService {
     });
 
     await this.prisma.userHistoryLog.updateMany({
-      where: { userId: dto.userId, themeId: dto.themeId, status: 'PENDING_REVIEW' },
+      where: { userId, themeId: dto.themeId, status: 'PENDING_REVIEW' },
       data: { status: 'REVIEWED' },
     });
 
     const updatedStat = await this.statsService.applyReviewStatGain({
-      userId: dto.userId,
+      userId,
       themeId: dto.themeId,
       cleared: dto.cleared,
       remainingSec: dto.remainingSec,

@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
-import { DEMO_USER_ID } from '@/lib/config';
 import { getCalendar, getProfile } from '@/lib/data';
+import { getSessionUser } from '@/lib/session';
 
 const DEMO_MONTH = '2026-07';
 const DAYS_IN_MONTH = 31;
@@ -9,9 +10,11 @@ const FIRST_WEEKDAY = 3; // 2026-07-01 is a Wednesday (0=Sun)
 const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 export default async function CalendarPage() {
+  const sessionUser = await getSessionUser();
+  if (!sessionUser) redirect('/login');
   const [profile, entries] = await Promise.all([
-    getProfile(DEMO_USER_ID),
-    getCalendar(DEMO_USER_ID, DEMO_MONTH),
+    getProfile(sessionUser.id),
+    getCalendar(sessionUser.id, DEMO_MONTH),
   ]);
 
   const entriesByDay = new Map(entries.map((e) => [Number(e.date.split('-')[2]), e]));

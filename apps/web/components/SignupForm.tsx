@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { signupAction } from '@/lib/actions';
 
 const PERSONALITY = [
   { key: 'tank', label: '🛡 탱커', desc: '문제보다 몸이 먼저 나간다' },
@@ -16,12 +17,19 @@ export default function SignupForm() {
   const [password, setPassword] = useState('');
   const [personality, setPersonality] = useState('tank');
   const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setError(null);
     setPending(true);
-    // 데모 모드: 실제 회원가입 API 연동 없이 입력 값만 검증하고 통과시킨다.
-    setTimeout(() => router.push('/home'), 500);
+    try {
+      await signupAction({ email, password, nickname });
+      router.push('/home');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '회원가입에 실패했습니다.');
+      setPending(false);
+    }
   }
 
   return (
@@ -49,7 +57,8 @@ export default function SignupForm() {
         <input
           type="password"
           required
-          placeholder="비밀번호"
+          minLength={8}
+          placeholder="비밀번호 (8자 이상)"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="w-full rounded-xl border border-zinc-200 px-4 py-3 text-sm outline-none focus:border-indigo-400"
@@ -83,6 +92,7 @@ export default function SignupForm() {
         >
           {pending ? '가입 처리 중...' : '가입하고 시작하기'}
         </button>
+        {error && <p className="text-center text-xs text-rose-500">{error}</p>}
       </form>
     </div>
   );

@@ -1,6 +1,14 @@
+import 'dotenv/config';
+import { PrismaPg } from '@prisma/adapter-pg';
+import * as bcrypt from 'bcrypt';
 import { PrismaClient } from '../generated/prisma';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }),
+});
+
+// 데모 계정 공통 비밀번호 (시드 전용, 실서비스 데이터에는 절대 사용 금지)
+const DEMO_PASSWORD_HASH = bcrypt.hashSync('password123!', 10);
 
 // store_id / theme_id는 apps/scraper와 apps/ai-engine의 시드 데이터와 동일하게
 // 고정해 서비스 간 참조가 일관되도록 한다.
@@ -61,6 +69,7 @@ const THEMES = [
 const USERS = [
   {
     id: 'escaper_pro',
+    email: 'escaper_pro@taltal.demo',
     nickname: '방탈출고인물',
     mannerTemp: 98.2,
     level: 42,
@@ -70,6 +79,7 @@ const USERS = [
   },
   {
     id: 'user_b',
+    email: 'user_b@taltal.demo',
     nickname: '유저B',
     mannerTemp: 36.5,
     level: 8,
@@ -119,6 +129,7 @@ async function main() {
     await prisma.user.upsert({
       where: { id: user.id },
       update: {
+        email: user.email,
         nickname: user.nickname,
         mannerTemp: user.mannerTemp,
         level: user.level,
@@ -127,6 +138,8 @@ async function main() {
       },
       create: {
         id: user.id,
+        email: user.email,
+        passwordHash: DEMO_PASSWORD_HASH,
         nickname: user.nickname,
         mannerTemp: user.mannerTemp,
         level: user.level,

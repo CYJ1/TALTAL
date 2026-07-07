@@ -1,7 +1,7 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import PartyJoinButton from '@/components/PartyJoinButton';
-import { DEMO_USER_ID } from '@/lib/config';
 import { getPartyDetail } from '@/lib/data';
+import { getSessionUser } from '@/lib/session';
 
 const STATUS_LABEL: Record<string, string> = {
   OPEN: '모집 중',
@@ -21,13 +21,16 @@ function formatReservedAt(iso: string) {
 }
 
 export default async function PartyDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const sessionUser = await getSessionUser();
+  if (!sessionUser) redirect('/login');
+
   const { id } = await params;
   const party = await getPartyDetail(id);
   if (!party) notFound();
 
   const emptySlots = Math.max(0, party.capacity - party.participants.length);
   const perPersonDeposit = Math.round(party.totalPriceWon / party.capacity);
-  const alreadyJoined = party.participants.some((p) => p.userId === DEMO_USER_ID);
+  const alreadyJoined = party.participants.some((p) => p.userId === sessionUser.id);
 
   return (
     <div className="space-y-4 px-4 py-4 pb-10">

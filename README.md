@@ -19,6 +19,23 @@
   - **포트원(PortOne) 에스크로 결제** → `apps/api/src/common/adapters/payment/portone-mock.adapter.ts`
 - **GraphSAGE/Node2Vec 학습 파이프라인**도 실제 학습 데이터·GPU 배치잡이 없는 단계라,
   동일한 Neo4j 그래프 스키마 위에서 태그 코사인 유사도 + 취약 스탯 보정 점수를
+  계산하는 경량 대체 알고리즘(`apps/ai-engine/app/recommend.py`)으로 구현했습니다.
+  Neo4j 자체와 그래프 스키마는 실제입니다.
+- **로그인/회원가입은 실제 인증 시스템**입니다 (`apps/api/src/modules/auth`) — bcrypt
+  비밀번호 해싱 + JWT 발급/검증, Next.js가 httpOnly 세션 쿠키를 관리하며
+  `proxy.ts`가 비로그인 사용자를 보호된 화면에서 리다이렉트합니다. `API_BASE_URL`을
+  설정하지 않은 목업 모드에서는 여전히 로그인 없이 전체 화면을 데모할 수 있습니다.
+  리뷰/파티/프로필/캘린더/추천 API도 전부 `JwtAuthGuard`로 보호되어, 클라이언트가
+  보낸 `userId`가 아니라 토큰에서 검증된 사용자 본인의 데이터만 조회·수정할 수 있습니다.
+- **소셜 로그인(카카오/네이버/Google)은 코드까지 준비되어 있지만, 실제 발급받은
+  OAuth 클라이언트 ID/Secret이 없어 아직 테스트는 못했습니다.** 로그인 화면의
+  소셜 버튼 → `apps/web/app/api/oauth/[provider]` (인가 리다이렉트) →
+  `.../callback` (코드 교환 + 프로필 조회) → NestJS의 내부 전용 `POST /auth/social`
+  (Next.js 서버만 호출 가능하도록 `x-internal-secret` 공유 비밀값으로 보호) 순으로
+  이어지는 전체 플로우는 구현되어 있습니다. 각 프로바이더 개발자 콘솔에서 앱을
+  등록해 `KAKAO_CLIENT_ID` 등 환경변수를 채우면 바로 동작합니다 — 비워두면 로그인
+  화면에서 해당 버튼 클릭 시 "아직 연동 준비 중" 안내로 안전하게 되돌아갑니다.
+- 디자인 톤앤매너는 **라이트 모드** 기준 (PRD v1 명시)으로 통일했습니다.
   계산하는 경량 대체 알고리즘(`apps/ai-engine/app/recommend.py`)으로 구현
   Neo4j 자체와 그래프 스키마는 실제
 - **로그인/회원가입도 목업** — 실제 인증 서버 연동 없이 입력값만 있으면
@@ -118,6 +135,20 @@ docker compose exec api npm run prisma:seed
 curl -X POST http://localhost:8000/internal/seed
 ```
 
+### 인증 관련 환경변수
+
+| 변수 | 어디서 | 설명 |
+|---|---|---|
+| `JWT_SECRET`, `JWT_EXPIRES_IN` | api | JWT 서명 비밀값/만료 기간. 실서비스에서는 반드시 교체할 것 |
+| `INTERNAL_API_SECRET` | api, web (동일한 값) | web(Next.js)만 `POST /auth/social`을 호출할 수 있도록 하는 공유 비밀값 |
+| `APP_BASE_URL` | web | OAuth `redirect_uri` 생성 기준 도메인 (Host 헤더를 신뢰하지 않기 위해 명시적으로 설정) |
+| `KAKAO_CLIENT_ID` / `_SECRET` | web | 카카오 개발자 콘솔에서 앱 등록 후 발급 |
+| `NAVER_CLIENT_ID` / `_SECRET` | web | 네이버 개발자 콘솔에서 앱 등록 후 발급 |
+| `GOOGLE_CLIENT_ID` / `_SECRET` | web | Google Cloud Console에서 OAuth 클라이언트 등록 후 발급 |
+
+소셜 로그인 변수를 비워두면 로그인 화면의 해당 버튼은 클릭 시 `/login?oauthError=not_configured`로
+안전하게 돌아오며 안내 메시지를 보여줍니다 (에러 없이 동작).
+
 ## 검증한 것
 - `apps/api`: `npm run build` (Nest/TS 컴파일) 통과
 - `apps/web`: `npm run build`, `npm run lint` 통과 (14개 라우트 전부 컴파일)
@@ -128,4 +159,22 @@ curl -X POST http://localhost:8000/internal/seed
     (OCR 캡처본 업로드 mock) → 새로 생성된 파티 상세 페이지까지 전체 플로우,
     콘솔 에러 없음
 - `apps/scraper`, `apps/ai-engine`: Python 구문 검사(`py_compile`) 통과
+- 인증(`apps/api/src/modules/auth`): 로컬 PostgreSQL/Redis를 직접 기동해 real DB
+  기준으로 `prisma migrate dev` 적용 + API 서버 구동 후, 회원가입 → 로그인 →
+  `/auth/me` → 보호된 화면 접근 → 로그아웃 → 재로그인 → 잘못된 비밀번호/중복
+  이메일 에러까지 Playwright로 실제 브라우저에서 end-to-end 검증 완료.
+- 인가 가드: `curl`로 실제 DB 기준 검증 — 미인증 리뷰 작성 401, 본인이 아닌
+  `/users/:userId/profile` 조회 403, 소셜 로그인(`/auth/social`) 신규가입·기존
+  이메일 계정 연동·재로그인 idempotency 확인, 내부 비밀값 없이 `/auth/social`
+  호출 시 401.
+- 소셜 로그인 프론트 배선: 로그인 화면의 카카오 버튼이 실제 링크로 렌더링되는지,
+  클라이언트 ID 미설정 시 `/login?oauthError=not_configured`로 안전하게
+  되돌아오며 안내 메시지가 뜨는지 Playwright로 확인. 실제 OAuth 인가 화면
+  왕복 자체는 카카오/네이버/Google 개발자 콘솔에 앱을 등록해야 테스트 가능해
+  이번 범위에서는 확인하지 못했습니다.
+- 이 과정에서 `/login`, `/calendar`, `/profile`, `/recommendations` 화면이
+  Docker 이미지 build 시점(런타임 환경변수가 아직 없는 시점)에 목업 모드로
+  정적 프리렌더링되어 실제 배포 시 로그인 세션이 영구히 무시되는 잠재 버그를
+  발견해 `lib/session.ts`가 항상 `cookies()`를 호출하도록 고쳐 동적 렌더링을
+  강제했습니다.
 

@@ -5,9 +5,6 @@ export class CreateReviewDto {
   themeId: string;
 
   @IsString()
-  userId: string;
-
-  @IsString()
   grade: string; // 풀길 | 흙길 | 인생테마 | 꽃길
 
   @IsArray()

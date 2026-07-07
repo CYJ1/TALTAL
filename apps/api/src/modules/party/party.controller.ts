@@ -1,16 +1,18 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, UseGuards } from '@nestjs/common';
+import type { AuthenticatedRequest } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { PartyService } from './party.service';
 import { CreatePartyDto } from './dto/create-party.dto';
-import { JoinPartyDto } from './dto/join-party.dto';
 import { ReportNoShowDto } from './dto/report-noshow.dto';
 
 @Controller('parties')
+@UseGuards(JwtAuthGuard)
 export class PartyController {
   constructor(private readonly partyService: PartyService) {}
 
   @Post()
-  create(@Body() dto: CreatePartyDto) {
-    return this.partyService.create(dto);
+  create(@Body() dto: CreatePartyDto, @Req() req: AuthenticatedRequest) {
+    return this.partyService.create(dto, req.user.userId);
   }
 
   @Get(':id')
@@ -19,8 +21,8 @@ export class PartyController {
   }
 
   @Post(':id/join')
-  join(@Param('id') id: string, @Body() dto: JoinPartyDto) {
-    return this.partyService.join(id, dto.userId);
+  join(@Param('id') id: string, @Req() req: AuthenticatedRequest) {
+    return this.partyService.join(id, req.user.userId);
   }
 
   @Post(':id/report-noshow')

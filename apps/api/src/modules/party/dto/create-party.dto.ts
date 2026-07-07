@@ -4,9 +4,6 @@ export class CreatePartyDto {
   @IsString()
   themeId: string;
 
-  @IsString()
-  hostUserId: string;
-
   @IsDateString()
   reservedAt: string;
 

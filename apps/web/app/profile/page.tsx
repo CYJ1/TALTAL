@@ -1,7 +1,8 @@
+import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
 import LogoutButton from '@/components/LogoutButton';
-import { DEMO_USER_ID } from '@/lib/config';
 import { getProfile } from '@/lib/data';
+import { getSessionUser } from '@/lib/session';
 
 const STAT_LABELS: { key: keyof Awaited<ReturnType<typeof getProfile>>['stat']; label: string }[] = [
   { key: 'logic', label: '추리력' },
@@ -13,7 +14,9 @@ const STAT_LABELS: { key: keyof Awaited<ReturnType<typeof getProfile>>['stat']; 
 ];
 
 export default async function ProfilePage() {
-  const profile = await getProfile(DEMO_USER_ID);
+  const sessionUser = await getSessionUser();
+  if (!sessionUser) redirect('/login');
+  const profile = await getProfile(sessionUser.id);
 
   return (
     <div className="space-y-5 px-4 py-6 pb-10">

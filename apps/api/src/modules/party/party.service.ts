@@ -21,7 +21,7 @@ export class PartyService {
   ) {}
 
   /** [도메인 4] 사양 #1: Naver CLOVA OCR 연동 허위 매칭 원천 차단 */
-  async create(dto: CreatePartyDto) {
+  async create(dto: CreatePartyDto, hostUserId: string) {
     const theme = await this.prisma.theme.findUnique({
       where: { id: dto.themeId },
       include: { store: true },
@@ -42,7 +42,7 @@ export class PartyService {
     return this.prisma.party.create({
       data: {
         themeId: dto.themeId,
-        hostUserId: dto.hostUserId,
+        hostUserId,
         reservedAt: new Date(dto.reservedAt),
         capacity: dto.capacity,
         totalPriceWon: dto.totalPriceWon,

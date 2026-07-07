@@ -11,6 +11,7 @@ import { ReviewsModule } from './modules/reviews/reviews.module';
 import { StatsModule } from './modules/stats/stats.module';
 import { PartyModule } from './modules/party/party.module';
 import { RecommendationModule } from './modules/recommendation/recommendation.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { RecommendationModule } from './modules/recommendation/recommendation.mo
     PrismaModule,
     RedisModule,
     RabbitmqModule,
+    AuthModule,
     SearchModule,
     ReviewsModule,
     StatsModule,

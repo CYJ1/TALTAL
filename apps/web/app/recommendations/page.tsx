@@ -1,11 +1,14 @@
+import { redirect } from 'next/navigation';
 import TagChip from '@/components/TagChip';
-import { DEMO_USER_ID } from '@/lib/config';
 import { getProfile, getRecommendations } from '@/lib/data';
+import { getSessionUser } from '@/lib/session';
 
 export default async function RecommendationsPage() {
+  const sessionUser = await getSessionUser();
+  if (!sessionUser) redirect('/login');
   const [profile, recommendations] = await Promise.all([
-    getProfile(DEMO_USER_ID),
-    getRecommendations(DEMO_USER_ID),
+    getProfile(sessionUser.id),
+    getRecommendations(sessionUser.id),
   ]);
 
   return (
