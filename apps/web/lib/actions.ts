@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { API_BASE_URL, DEMO_USER_ID, IS_REMOTE_MODE } from './config';
 import { createPartyRequest, joinPartyRequest, submitReview } from './data';
-import { getSessionUser, SESSION_COOKIE } from './session';
+import { getSessionUser, SESSION_COOKIE, setSessionCookie } from './session';
 import type { CreateReviewInput, NewPartyInput } from './types';
 
 export async function submitReviewAction(input: Omit<CreateReviewInput, 'userId'>) {
@@ -39,17 +39,6 @@ export interface SignupInput {
 export interface LoginInput {
   email: string;
   password: string;
-}
-
-async function setSessionCookie(accessToken: string) {
-  const store = await cookies();
-  store.set(SESSION_COOKIE, accessToken, {
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    path: '/',
-    maxAge: 60 * 60 * 24 * 7, // 7일 (API 쪽 JWT 만료값과 동일하게 유지)
-  });
 }
 
 export async function signupAction(input: SignupInput) {

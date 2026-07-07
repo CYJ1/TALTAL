@@ -47,10 +47,18 @@ model ThemeStatWeight {
   tank    Float  @default(0)
 }
 
+enum SocialProvider {
+  KAKAO
+  NAVER
+  GOOGLE
+}
+
 model User {
   id           String             @id @default(cuid())
   email        String             @unique
-  passwordHash String
+  passwordHash String? // 소셜 로그인 전용 계정은 비밀번호가 없다
+  provider     SocialProvider?
+  providerId   String?
   nickname     String
   mannerTemp   Float              @default(36.5)
   level        Int                @default(1)
@@ -61,6 +69,8 @@ model User {
   reviews      ThemeReview[]
   partyEntries PartyParticipant[]
   createdAt    DateTime           @default(now())
+
+  @@unique([provider, providerId])
 }
 
 // [도메인 2] Live_Hexagon_Radar_Chart 스탯 (theme_stat_weights 매핑 결과 누적치)
