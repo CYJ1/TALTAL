@@ -51,20 +51,35 @@ docker-compose.yml   postgres / redis / rabbitmq / neo4j / api / scraper / ai-en
 <br>
 
 ## 화면 Wireframe - 초안
+### 로그인/회원가입
 <div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
-  <img src="readme_src/splashfixed.png" width="200px" />
-  <img src="readme_src/new2login.png" width="200px" />
-  <img src="readme_src/newloginquestion.png" width="200px" />
-  <img src="readme_src/new9profile.png" width="200px" />
-  <img src="readme_src/newsearch.png" width="200px" />
-  <img src="readme_src/new5themedetail.png" width="200px" />
-  <img src="readme_src/new6booking.png" width="200px" />
-  <img src="readme_src/new7bookingcomplete.png" width="200px" />
-  <img src="readme_src/new8partynew.png" width="200px" />
-  <img src="readme_src/new10notifications.png" width="200px" />
-</div>
-<br><br>
+  <img src="readme_src/splashfixed.png" width="250px" />
+  <img src="readme_src/new2login.png" width="250px" />
+  <img src="readme_src/newloginquestion.png" width="250px" />
+</div> <br>
 
+### 전체테마 검색 및 예약창 (현재 위치기반, 위치 선택가능)
+<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
+  <img src="readme_src/newsearch.png" width="250px" />
+  <img src="readme_src/new5themedetail.png" width="250px" />
+  <img src="readme_src/newmap.png" width="250px" />
+  <img src="readme_src/new6booking.png" width="250px" />
+  <img src="readme_src/new7bookingcomplete.png" width="250px" />
+</div> <br>
+
+### 동행구하기 기능
+<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;"> 
+  <img src="readme_src/new8partynew.png" width="250px" />
+  <img src="readme_src/new10notifications.png" width="250px" />
+</div> <br>
+
+
+### 프로필화면
+<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
+  <img src="readme_src/new9profile.png" width="250px" />
+</div> <br>
+
+<br><br>
 
 ## 화면 구조 (`apps/web/app`)
 
