@@ -17,25 +17,25 @@
   - **방탈출 매장 크롤링** → `apps/scraper/app/mock_source.py` (시드 기반 재현 가능한 가짜 예약 데이터)
   - **Naver CLOVA OCR** → `apps/api/src/common/adapters/ocr/clova-ocr-mock.adapter.ts`
   - **포트원(PortOne) 에스크로 결제** → `apps/api/src/common/adapters/payment/portone-mock.adapter.ts`
-- **GraphSAGE/Node2Vec 학습 파이프라인**도 실제 학습 데이터·GPU 배치잡이 없는 단계라,
+- **GraphSAGE/Node2Vec 학습 파이프라인**도 실제 학습 데이터·GPU 배치잡 X<br>
   동일한 Neo4j 그래프 스키마 위에서 태그 코사인 유사도 + 취약 스탯 보정 점수를
-  계산하는 경량 대체 알고리즘(`apps/ai-engine/app/recommend.py`)으로 구현했습니다.
-  Neo4j 자체와 그래프 스키마는 실제입니다.
-- **로그인/회원가입은 실제 인증 시스템**입니다 (`apps/api/src/modules/auth`) — bcrypt
+  계산하는 경량 대체 알고리즘(`apps/ai-engine/app/recommend.py`)으로 구현함<br>
+  Neo4j 자체와 그래프 스키마는 실제 구현완료
+- **로그인/회원가입: 실제 인증 시스템** (`apps/api/src/modules/auth`) — bcrypt
   비밀번호 해싱 + JWT 발급/검증, Next.js가 httpOnly 세션 쿠키를 관리하며
-  `proxy.ts`가 비로그인 사용자를 보호된 화면에서 리다이렉트합니다. `API_BASE_URL`을
-  설정하지 않은 목업 모드에서는 여전히 로그인 없이 전체 화면을 데모할 수 있습니다.
+  `proxy.ts`가 비로그인 사용자를 보호된 화면에서 리다이렉트함 <br>
+  `API_BASE_URL`을 설정하지 않은 목업 모드에서는 여전히 로그인 없이 데모 가능
   리뷰/파티/프로필/캘린더/추천 API도 전부 `JwtAuthGuard`로 보호되어, 클라이언트가
-  보낸 `userId`가 아니라 토큰에서 검증된 사용자 본인의 데이터만 조회·수정할 수 있습니다.
+  보낸 `userId`가 아니라 토큰에서 검증된 사용자 본인의 데이터만 조회·수정됨<br>
 - **소셜 로그인(카카오/네이버/Google)은 코드까지 준비되어 있지만, 실제 발급받은
-  OAuth 클라이언트 ID/Secret이 없어 아직 테스트는 못했습니다.** 로그인 화면의
-  소셜 버튼 → `apps/web/app/api/oauth/[provider]` (인가 리다이렉트) →
+  OAuth 클라이언트 ID/Secret이 없어 실제 테스트 필요** <br>
+  로그인 화면의 소셜 버튼 → `apps/web/app/api/oauth/[provider]` (인가 리다이렉트) →
   `.../callback` (코드 교환 + 프로필 조회) → NestJS의 내부 전용 `POST /auth/social`
   (Next.js 서버만 호출 가능하도록 `x-internal-secret` 공유 비밀값으로 보호) 순으로
-  이어지는 전체 플로우는 구현되어 있습니다. 각 프로바이더 개발자 콘솔에서 앱을
-  등록해 `KAKAO_CLIENT_ID` 등 환경변수를 채우면 바로 동작합니다 — 비워두면 로그인
-  화면에서 해당 버튼 클릭 시 "아직 연동 준비 중" 안내로 안전하게 되돌아갑니다.
-- 디자인 톤앤매너는 **라이트 모드** 기준 (PRD v1 명시)으로 통일했습니다.
+  이어지는 전체 플로우는 구현되어 있음<br>
+  각 프로바이더 개발자 콘솔에서 앱을 등록해 `KAKAO_CLIENT_ID` 등 환경변수를 채우면 바로 동작
+  — 비워두면 로그인 화면에서 해당 버튼 클릭 시 "아직 연동 준비 중" 안내로 복귀
+- 디자인 톤앤매너는 **라이트 모드** 기준으로 통일
 <br>
 
 ## 아키텍처
@@ -54,12 +54,12 @@ docker-compose.yml   postgres / redis / rabbitmq / neo4j / api / scraper / ai-en
 <div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
   <img src="readme_src/splashfixed.png" width="200px" />
   <img src="readme_src/new2login.png" width="200px" />
-  <img src="readme_src/new3signup.png" width="200px" />
+  <img src="readme_src/newloginquestion.png" width="200px" />
+  <img src="readme_src/new9profile.png" width="200px" />
   <img src="readme_src/new5themedetail.png" width="200px" />
   <img src="readme_src/new6booking.png" width="200px" />
   <img src="readme_src/new7bookingcomplete.png" width="200px" />
   <img src="readme_src/new8partynew.png" width="200px" />
-  <img src="readme_src/new9profile.png" width="200px" />
   <img src="readme_src/new10notifications.png" width="200px" />
 </div>
 <br><br>
