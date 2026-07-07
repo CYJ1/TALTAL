@@ -152,22 +152,3 @@ docker compose exec api npm run prisma:seed
 curl -X POST http://localhost:8000/internal/seed
 ```
 
-### 인증 관련 환경변수
-
-| 변수 | 어디서 | 설명 |
-|---|---|---|
-| `JWT_SECRET`, `JWT_EXPIRES_IN` | api | JWT 서명 비밀값/만료 기간. 실서비스에서는 반드시 교체할 것 |
-| `INTERNAL_API_SECRET` | api, web (동일한 값) | web(Next.js)만 `POST /auth/social`을 호출할 수 있도록 하는 공유 비밀값 |
-| `APP_BASE_URL` | web | OAuth `redirect_uri` 생성 기준 도메인 (Host 헤더를 신뢰하지 않기 위해 명시적으로 설정) |
-| `KAKAO_CLIENT_ID` / `_SECRET` | web | 카카오 개발자 콘솔에서 앱 등록 후 발급 |
-| `NAVER_CLIENT_ID` / `_SECRET` | web | 네이버 개발자 콘솔에서 앱 등록 후 발급 |
-| `GOOGLE_CLIENT_ID` / `_SECRET` | web | Google Cloud Console에서 OAuth 클라이언트 등록 후 발급 |
-
-소셜 로그인 변수를 비워두면 로그인 화면의 해당 버튼은 클릭 시 `/login?oauthError=not_configured`로
-안전하게 돌아오며 안내 메시지를 보여줍니다 (에러 없이 동작).
-
-카카오는 정책상 이메일 동의항목을 비즈니스 인증(사업자등록) 완료 앱에만 열어주기 때문에,
-일반 개발자 앱은 닉네임만 받아올 수 있습니다. 이 경우 `apps/web/lib/oauth-providers.ts`가
-`kakao_{카카오ID}@kakao.taltal.local` 형태의 내부 전용 placeholder 이메일을 자동 생성해
-계정을 만듭니다 (사용자에게 노출되지 않는 식별용 값).
-
