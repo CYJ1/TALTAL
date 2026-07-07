@@ -2953,5 +2953,91 @@
         "판타지"
       ]
     }
+  ],
+  "kakao-1528582359": [
+    {
+      "name": "해전",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.2,
+      "tags": [
+        "임진왜란",
+        "국내최초해전테마"
+      ]
+    }
+  ],
+  "kakao-215985076": [
+    {
+      "name": "꼬레아 우라",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "판타지"
+      ]
+    }
+  ],
+  "kakao-1385414031": [
+    {
+      "name": "목격자",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": [
+        "추리"
+      ]
+    },
+    {
+      "name": "다이얼",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": [
+        "육각형테마"
+      ]
+    },
+    {
+      "name": "그 날",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": []
+    }
+  ],
+  "kakao-319189034": [
+    {
+      "name": "재즈바 W : 위험한 거래",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "범죄",
+        "느와르"
+      ]
+    }
   ]
 }
