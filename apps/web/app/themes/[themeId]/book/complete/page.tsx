@@ -7,10 +7,10 @@ export default async function BookCompletePage({
   searchParams,
 }: {
   params: Promise<{ themeId: string }>;
-  searchParams: Promise<{ time?: string; headcount?: string }>;
+  searchParams: Promise<{ date?: string; time?: string; headcount?: string }>;
 }) {
   const { themeId } = await params;
-  const { time, headcount } = await searchParams;
+  const { date, time, headcount } = await searchParams;
   const theme = await getThemeDetail(themeId);
   if (!theme) notFound();
 
@@ -25,6 +25,19 @@ export default async function BookCompletePage({
           {theme.storeName} · {theme.themeName}
         </p>
         <div className="mt-2 space-y-1 text-zinc-500">
+          <p>
+            📅 날짜{' '}
+            <span className="float-right font-medium text-zinc-900">
+              {date
+                ? new Intl.DateTimeFormat('ko-KR', {
+                    month: 'long',
+                    day: 'numeric',
+                    weekday: 'short',
+                    timeZone: 'UTC',
+                  }).format(new Date(`${date}T00:00:00Z`))
+                : '-'}
+            </span>
+          </p>
           <p>
             🕐 시간 <span className="float-right font-medium text-zinc-900">{time ?? '-'}</span>
           </p>

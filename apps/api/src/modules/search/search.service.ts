@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import type { GenreTag, GenerationPreference, Prisma } from '../../../generated/prisma';
 import { PrismaService } from '../../prisma/prisma.service';
 import { RedisService } from '../../common/redis/redis.service';
 import { RabbitmqService } from '../../common/rabbitmq/rabbitmq.service';
 import { haversineDistanceKm } from '../../common/geo/haversine';
 import { SearchQueryDto } from './dto/search-query.dto';
+import { generateMockSlotsForDate } from './future-slot-mock';
+
+const FUTURE_SLOT_CACHE_TTL_SECONDS = 60 * 60 * 24; // 하루치 — 다음날이 되면 "오늘" 캐시로 자연 교체
 
 interface CachedSnapshot {
   store_id: string;
@@ -121,6 +124,47 @@ export class SearchService {
     }
 
     return filtered;
+  }
+
+  /**
+   * 예약 화면의 날짜별 시간대 조회. "오늘"은 기존 Redis 1차 조회 -> RabbitMQ
+   * 크롤링 위임 파이프라인을 그대로 쓰고, 오늘 이후 날짜는 매장별 실제 크롤러
+   * 어댑터가 아직 없어 테마+날짜 시드 기반 목업 데이터를 생성해 캐싱한다
+   * (실제 어댑터가 붙으면 이 분기는 제거하고 전부 실제 스크래핑 결과로 대체).
+   */
+  async getSlotsForDates(themeId: string, dates: string[]) {
+    const theme = await this.prisma.theme.findUnique({ where: { id: themeId } });
+    if (!theme) throw new NotFoundException(`theme ${themeId} not found`);
+
+    const today = new Date().toISOString().slice(0, 10);
+
+    const results = await Promise.all(
+      dates.map(async (date) => {
+        if (date === today) {
+          const cacheKey = `timeslots:${theme.storeId}:${theme.id}`;
+          const cached = await this.redis.getJson<CachedSnapshot>(cacheKey);
+          if (!cached) {
+            await this.rabbitmq.publishScrapeRequest(theme.storeId, theme.id);
+            return { date, slots: [], cacheStatus: 'REFRESHING' as const };
+          }
+          return { date, slots: cached.slots, cacheStatus: 'HIT' as const };
+        }
+
+        const dateCacheKey = `timeslots:${theme.storeId}:${theme.id}:${date}`;
+        const cached = await this.redis.getJson<{ slots: { time: string; status: string }[] }>(
+          dateCacheKey,
+        );
+        if (cached) {
+          return { date, slots: cached.slots, cacheStatus: 'MOCK_ESTIMATE' as const };
+        }
+
+        const slots = generateMockSlotsForDate(theme.id, date);
+        await this.redis.setJson(dateCacheKey, { slots }, FUTURE_SLOT_CACHE_TTL_SECONDS);
+        return { date, slots, cacheStatus: 'MOCK_ESTIMATE' as const };
+      }),
+    );
+
+    return results;
   }
 
   /** 구/동 선택기 UI를 위해 실제 등록된 매장 기준 구 -> 동 목록을 반환한다. */

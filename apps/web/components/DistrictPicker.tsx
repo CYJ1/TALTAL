@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import type { DistrictFacet } from '@/lib/types';
 
@@ -13,7 +13,6 @@ export default function DistrictPicker({
   currentDistrict?: string;
   currentNeighborhood?: string;
 }) {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
   const [pickerDistrict, setPickerDistrict] = useState(currentDistrict ?? '');
@@ -30,7 +29,10 @@ export default function DistrictPicker({
     else params.delete('district');
     if (neighborhood) params.set('neighborhood', neighborhood);
     else params.delete('neighborhood');
-    router.push(`/home?${params.toString()}`);
+    const query = params.toString();
+    // router.push()는 파라미터가 줄어드는 네비게이션(같은 경로, 쿼리만 제거)을
+    // 간헐적으로 무시하는 현상이 있어 확실한 전체 새로고침으로 처리한다.
+    window.location.href = query ? `/home?${query}` : '/home';
     setIsOpen(false);
   }
 

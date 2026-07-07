@@ -1,6 +1,7 @@
 import type {
   CalendarEntry,
   CreateReviewInput,
+  DateSlots,
   DistrictFacet,
   GenerationPreference,
   GenreTag,
@@ -12,6 +13,7 @@ import type {
   ThemeSearchResult,
   TimeSlot,
   UserProfile,
+  UserReview,
 } from './types';
 
 /**
@@ -153,6 +155,27 @@ function generateSlots(themeId: string): TimeSlot[] {
     const roll = rng();
     const status: TimeSlot['status'] = roll > 0.55 ? 'AVAILABLE' : roll > 0.4 ? 'FEW_LEFT' : 'CLOSED';
     return { time, status };
+  });
+}
+
+/** "오늘" 이후 날짜는 스크래퍼가 아직 실제 매장 어댑터를 갖추지 못해, 테마+날짜
+ * 시드로 재현 가능한 목업 시간대를 생성한다 (apps/api의 future-slot-mock.ts와 동일 발상). */
+function generateSlotsForDate(themeId: string, date: string): TimeSlot[] {
+  const rng = mulberry32(hashSeed(`${themeId}:${date}`));
+  return SLOT_TIMES.map((time) => {
+    const roll = rng();
+    const status: TimeSlot['status'] = roll > 0.55 ? 'AVAILABLE' : roll > 0.4 ? 'FEW_LEFT' : 'CLOSED';
+    return { time, status };
+  });
+}
+
+export function getSlotsForDates(themeId: string, dates: string[]): DateSlots[] {
+  const theme = getThemeById(themeId);
+  const today = new Date().toISOString().slice(0, 10);
+  return dates.map((date) => {
+    if (!theme) return { date, slots: [], cacheStatus: 'REFRESHING' as const };
+    if (date === today) return { date, slots: generateSlots(themeId), cacheStatus: 'HIT' as const };
+    return { date, slots: generateSlotsForDate(themeId, date), cacheStatus: 'MOCK_ESTIMATE' as const };
   });
 }
 
@@ -298,6 +321,28 @@ const CALENDAR: CalendarEntry[] = [
   { id: 'log-2', date: '2026-07-12', themeId: 'confession', themeName: '고백', status: 'REVIEWED' },
 ];
 
+interface ReviewRecord extends UserReview {
+  userId: string;
+}
+
+const REVIEWS: ReviewRecord[] = [
+  {
+    id: 'review-1',
+    userId: 'escaper_pro',
+    themeId: 'confession',
+    themeName: '고백',
+    storeName: '키이스케이프 강남점',
+    grade: '꽃길',
+    selectedTags: ['장치중심', '감성레전드'],
+    votedHeadcount: 3,
+    cleared: true,
+    remainingSec: 420,
+    hintsUsed: 1,
+    comment: '스토리 몰입도가 정말 좋았어요. 3인이 딱 적당한 것 같아요.',
+    createdAt: '2026-07-12T20:30:00+09:00',
+  },
+];
+
 export function getUserProfile(userId: string): UserProfile {
   const u = USERS[userId] ?? USERS.escaper_pro;
   return {
@@ -318,6 +363,12 @@ export function getUserProfile(userId: string): UserProfile {
 
 export function getUserCalendar(userId: string, month: string): CalendarEntry[] {
   return CALENDAR.filter((c) => c.date.startsWith(month));
+}
+
+export function getUserReviews(userId: string): UserReview[] {
+  return REVIEWS.filter((r) => r.userId === userId)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+    .map(({ userId: _userId, ...review }) => review);
 }
 
 function clampStat(v: number) {
@@ -343,6 +394,22 @@ export function createReview(input: CreateReviewInput) {
     user.totalClears += input.cleared ? 1 : 0;
     user.currentExp = Math.min(100, user.currentExp + 12);
   }
+
+  REVIEWS.unshift({
+    id: `review-${Date.now()}`,
+    userId: input.userId,
+    themeId: input.themeId,
+    themeName: theme?.themeName ?? '',
+    storeName: theme?.storeName ?? '',
+    grade: input.grade,
+    selectedTags: input.selectedTags,
+    votedHeadcount: input.votedHeadcount,
+    cleared: input.cleared,
+    remainingSec: input.remainingSec,
+    hintsUsed: input.hintsUsed,
+    comment: input.comment ?? null,
+    createdAt: new Date().toISOString(),
+  });
 
   const pendingEntry = CALENDAR.find(
     (c) => c.themeName === theme?.themeName && c.status === 'PENDING_REVIEW',

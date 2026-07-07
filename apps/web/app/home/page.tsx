@@ -57,7 +57,6 @@ export default async function HomePage({
             currentDistrict={params.district}
             currentNeighborhood={params.neighborhood}
           />
-          <GeoLocationSync />
         </Suspense>
 
         <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none]">
@@ -71,11 +70,9 @@ export default async function HomePage({
           >
             예약가능 토글 {params.availableOnly === 'true' ? 'ON' : 'OFF'}
           </Link>
-          {lat != null && lng != null && (
-            <span className="shrink-0 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700">
-              📍 내 위치 기준 가까운 순
-            </span>
-          )}
+          <Suspense fallback={null}>
+            <GeoLocationSync />
+          </Suspense>
           <span className="shrink-0 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-medium text-indigo-700">
             👥 체감 추천인원 필터
           </span>

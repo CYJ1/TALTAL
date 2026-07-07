@@ -8,6 +8,12 @@ export interface DistrictFacet {
   neighborhoods: string[];
 }
 
+export interface DateSlots {
+  date: string;
+  slots: TimeSlot[];
+  cacheStatus: 'HIT' | 'REFRESHING' | 'MOCK_ESTIMATE';
+}
+
 export interface RecommendedHeadcount {
   recommended: number;
   reason: string;
@@ -129,6 +135,21 @@ export interface CreateReviewInput {
   remainingSec: number;
   hintsUsed: number;
   comment?: string;
+}
+
+export interface UserReview {
+  id: string;
+  themeId: string;
+  themeName: string;
+  storeName: string;
+  grade: string;
+  selectedTags: string[];
+  votedHeadcount: number;
+  cleared: boolean;
+  remainingSec: number;
+  hintsUsed: number;
+  comment: string | null;
+  createdAt: string;
 }
 
 // 가입 시 선호도 설문 (방린이면 종료, 아니면 장르/진행스타일/선호세대 + 공포 선택 시 역할)

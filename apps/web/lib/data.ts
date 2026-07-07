@@ -4,6 +4,7 @@ import { getSessionToken } from './session';
 import type {
   CalendarEntry,
   CreateReviewInput,
+  DateSlots,
   DistrictFacet,
   GenerationPreference,
   GenreTag,
@@ -13,6 +14,7 @@ import type {
   RecommendationResponse,
   ThemeSearchResult,
   UserProfile,
+  UserReview,
 } from './types';
 
 /**
@@ -108,6 +110,12 @@ export async function getThemeDetail(themeId: string): Promise<ThemeSearchResult
   return all.find((t) => t.themeId === themeId) ?? null;
 }
 
+export async function getThemeSlotsForDates(themeId: string, dates: string[]): Promise<DateSlots[]> {
+  if (!IS_REMOTE_MODE) return mock.getSlotsForDates(themeId, dates);
+  const raw = await remoteJson<Json[]>(`/search/themes/${themeId}/slots?dates=${dates.join(',')}`);
+  return raw.map((r) => ({ date: r.date, slots: r.slots, cacheStatus: r.cacheStatus }));
+}
+
 export async function getThemeMeta(
   themeId: string,
 ): Promise<{ themeId: string; themeName: string; storeName: string } | null> {
@@ -118,6 +126,25 @@ export async function getThemeMeta(
 export async function getProfile(userId: string): Promise<UserProfile> {
   if (!IS_REMOTE_MODE) return mock.getUserProfile(userId);
   return remoteJson<UserProfile>(`/users/${userId}/profile`);
+}
+
+export async function getUserReviews(userId: string): Promise<UserReview[]> {
+  if (!IS_REMOTE_MODE) return mock.getUserReviews(userId);
+  const raw = await remoteJson<Json[]>(`/users/${userId}/reviews`);
+  return raw.map((r) => ({
+    id: r.id,
+    themeId: r.themeId,
+    themeName: r.themeName,
+    storeName: r.storeName,
+    grade: r.grade,
+    selectedTags: r.selectedTags,
+    votedHeadcount: r.votedHeadcount,
+    cleared: r.cleared,
+    remainingSec: r.remainingSec,
+    hintsUsed: r.hintsUsed,
+    comment: r.comment ?? null,
+    createdAt: r.createdAt,
+  }));
 }
 
 export async function getCalendar(userId: string, month: string): Promise<CalendarEntry[]> {

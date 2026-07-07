@@ -4,7 +4,8 @@ import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { submitReviewAction } from '@/lib/actions';
 
-const GRADES = ['풀길', '흙길', '인생테마', '꽃길'];
+// 흙길(최하) < 풀길 < 풀꽃길 < 꽃길 < 꽃밭길 < 인생테마(최상) 순
+const GRADES = ['흙길', '풀길', '풀꽃길', '꽃길', '꽃밭길', '인생테마'];
 const FEATURE_TAGS = ['나레이션필수', '장치노후화', '활동성높음', '스토리연계성', '연출대박'];
 const HEADCOUNT_OPTIONS = [2, 3, 4, 5];
 
@@ -58,7 +59,7 @@ export default function ReviewForm({ themeId }: { themeId: string }) {
     <div className="mt-4 space-y-5">
       <section>
         <h2 className="mb-2 text-sm font-semibold text-zinc-700">1. 종합 등급 평가</h2>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-3 gap-2">
           {GRADES.map((g) => (
             <button
               key={g}

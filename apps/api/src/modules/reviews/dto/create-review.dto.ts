@@ -12,7 +12,7 @@ export class CreateReviewDto {
   themeId: string;
 
   @IsString()
-  grade: string; // 풀길 | 흙길 | 인생테마 | 꽃길
+  grade: string; // 흙길 < 풀길 < 풀꽃길 < 꽃길 < 꽃밭길 < 인생테마 (오름차순)
 
   @IsArray()
   @IsString({ each: true })
