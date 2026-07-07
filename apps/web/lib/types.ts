@@ -14,6 +14,14 @@ export interface ThemeSearchResult {
   storeId: string;
   storeName: string;
   themeName: string;
+  genre: GenreTag;
+  generation: GenerationPreference;
+  difficulty: number;
+  pricePerPersonWon: number;
+  district: string;
+  neighborhood: string | null;
+  latitude: number | null;
+  longitude: number | null;
   rating: number;
   tags: string[];
   capacityMin: number;
@@ -21,6 +29,7 @@ export interface ThemeSearchResult {
   slots: TimeSlot[];
   recommendedHeadcount: RecommendedHeadcount | null;
   cacheStatus: 'HIT' | 'REFRESHING';
+  distanceKm?: number | null;
 }
 
 export interface HexagonStat {
