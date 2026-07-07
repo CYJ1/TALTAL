@@ -21,8 +21,12 @@
   동일한 Neo4j 그래프 스키마 위에서 태그 코사인 유사도 + 취약 스탯 보정 점수를
   계산하는 경량 대체 알고리즘(`apps/ai-engine/app/recommend.py`)으로 구현했습니다.
   Neo4j 자체와 그래프 스키마는 실제입니다.
-- **로그인/회원가입도 목업**입니다 — 실제 인증 서버 연동 없이 입력값만 있으면
-  통과되는 데모 화면입니다 (`apps/web/components/LoginForm.tsx`, `SignupForm.tsx`).
+- **로그인/회원가입은 실제 인증 시스템**입니다 (`apps/api/src/modules/auth`) — bcrypt
+  비밀번호 해싱 + JWT 발급/검증, Next.js가 httpOnly 세션 쿠키를 관리하며
+  `proxy.ts`가 비로그인 사용자를 보호된 화면에서 리다이렉트합니다. `API_BASE_URL`을
+  설정하지 않은 목업 모드에서는 여전히 로그인 없이 전체 화면을 데모할 수 있습니다.
+  카카오/네이버/Google 소셜 로그인 버튼은 아직 실제 OAuth 연동 전이라 비활성화
+  상태입니다.
 - 디자인 톤앤매너는 **라이트 모드** 기준 (PRD v1 명시)으로 통일했습니다.
 
 ## 아키텍처
@@ -111,6 +115,10 @@ curl -X POST http://localhost:8000/internal/seed
     (OCR 캡처본 업로드 mock) → 새로 생성된 파티 상세 페이지까지 전체 플로우,
     콘솔 에러 없음
 - `apps/scraper`, `apps/ai-engine`: Python 구문 검사(`py_compile`) 통과
+- 인증(`apps/api/src/modules/auth`): 로컬 PostgreSQL/Redis를 직접 기동해 real DB
+  기준으로 `prisma migrate dev` 적용 + API 서버 구동 후, 회원가입 → 로그인 →
+  `/auth/me` → 보호된 화면 접근 → 로그아웃 → 재로그인 → 잘못된 비밀번호/중복
+  이메일 에러까지 Playwright로 실제 브라우저에서 end-to-end 검증 완료.
 
 Docker Compose 전체 스택(Postgres/Redis/RabbitMQ/Neo4j 실제 기동)은 이 개발
 환경에 Docker 데몬이 없어 직접 기동 테스트는 하지 못했습니다. 로컬에 Docker가
