@@ -3,7 +3,6 @@
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { submitReviewAction } from '@/lib/actions';
-import { DEMO_USER_ID } from '@/lib/config';
 
 const GRADES = ['풀길', '흙길', '인생테마', '꽃길'];
 const FEATURE_TAGS = ['나레이션필수', '장치노후화', '활동성높음', '스토리연계성', '연출대박'];
@@ -31,7 +30,6 @@ export default function ReviewForm({ themeId }: { themeId: string }) {
     startTransition(async () => {
       await submitReviewAction({
         themeId,
-        userId: DEMO_USER_ID,
         grade,
         selectedTags,
         votedHeadcount,

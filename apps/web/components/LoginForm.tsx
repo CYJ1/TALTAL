@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { loginAction } from '@/lib/actions';
 
 const SOCIAL = [
   { label: '카카오로 계속하기', className: 'bg-[#FEE500] text-zinc-900', icon: '💬' },
@@ -15,12 +16,19 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setError(null);
     setPending(true);
-    // 데모 모드: 실제 인증 서버 연동 없이 입력만 있으면 통과시킨다.
-    setTimeout(() => router.push('/home'), 400);
+    try {
+      await loginAction({ email, password });
+      router.push('/home');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '로그인에 실패했습니다.');
+      setPending(false);
+    }
   }
 
   return (
@@ -52,6 +60,7 @@ export default function LoginForm() {
         >
           {pending ? '로그인 중...' : '로그인'}
         </button>
+        {error && <p className="text-center text-xs text-rose-500">{error}</p>}
       </form>
 
       <div className="my-6 flex items-center gap-3 text-xs text-zinc-400">
@@ -65,11 +74,12 @@ export default function LoginForm() {
           <button
             key={s.label}
             type="button"
-            onClick={() => router.push('/home')}
-            className={`flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-medium ${s.className}`}
+            disabled
+            title="준비 중인 기능입니다"
+            className={`flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-medium opacity-50 ${s.className}`}
           >
             <span>{s.icon}</span>
-            {s.label}
+            {s.label} (준비중)
           </button>
         ))}
       </div>

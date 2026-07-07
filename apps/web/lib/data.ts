@@ -1,5 +1,6 @@
 import { API_BASE_URL, IS_REMOTE_MODE } from './config';
 import * as mock from './mock-data';
+import { getSessionToken } from './session';
 import type {
   CalendarEntry,
   CreateReviewInput,
@@ -20,7 +21,12 @@ import type {
  */
 
 async function remoteJson<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE_URL}${path}`, { ...init, cache: 'no-store' });
+  const token = await getSessionToken();
+  const headers = {
+    ...init?.headers,
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  };
+  const res = await fetch(`${API_BASE_URL}${path}`, { ...init, headers, cache: 'no-store' });
   if (!res.ok) throw new Error(`API ${path} failed: ${res.status}`);
   return res.json() as Promise<T>;
 }

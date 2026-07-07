@@ -73,6 +73,9 @@ services:
       REDIS_URL: redis://redis:6379/0
       RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
       AI_ENGINE_URL: http://ai-engine:8000
+      # 개발용 기본값이다. 실서비스 배포 시에는 반드시 별도의 강력한 비밀값으로 교체할 것.
+      JWT_SECRET: dev-only-secret-change-in-production
+      JWT_EXPIRES_IN: 7d
       PORT: 4000
     ports:
       - "4000:4000"
