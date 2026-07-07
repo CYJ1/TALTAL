@@ -6,11 +6,14 @@ import { getProfile, getUserReviews } from '@/lib/data';
 import { getPreferenceBadge } from '@/lib/preferences';
 import { getSessionUser } from '@/lib/session';
 
+// 흙길(최하) < 풀길 < 풀꽃길 < 꽃길 < 꽃밭길 < 인생테마(최상) 순
 const GRADE_STYLE: Record<string, string> = {
-  꽃길: 'bg-emerald-50 text-emerald-700',
-  인생테마: 'bg-amber-50 text-amber-700',
-  풀길: 'bg-zinc-100 text-zinc-600',
   흙길: 'bg-rose-50 text-rose-600',
+  풀길: 'bg-zinc-100 text-zinc-600',
+  풀꽃길: 'bg-lime-50 text-lime-700',
+  꽃길: 'bg-emerald-50 text-emerald-700',
+  꽃밭길: 'bg-teal-50 text-teal-700',
+  인생테마: 'bg-amber-50 text-amber-700',
 };
 
 const STAT_LABELS: { key: keyof Awaited<ReturnType<typeof getProfile>>['stat']; label: string }[] = [
