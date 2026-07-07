@@ -2642,5 +2642,245 @@
         "감옥"
       ]
     }
+  ],
+  "kakao-522639283": [
+    {
+      "name": "상속자",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": [
+        "장치多",
+        "비추천초보"
+      ]
+    }
+  ],
+  "kakao-212176813": [
+    {
+      "name": "1세대 방탈출 박물관",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 1,
+      "capacityMax": 3,
+      "rating": 3.8,
+      "tags": [
+        "인디",
+        "레트로"
+      ]
+    }
+  ],
+  "kakao-401872428": [
+    {
+      "name": "젠틀맨 뱅크",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "범죄",
+        "하이스트"
+      ]
+    }
+  ],
+  "kakao-578778978": [
+    {
+      "name": "실직요정 비상대책위원회",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 46000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.2,
+      "tags": [
+        "코믹",
+        "프리미엄"
+      ]
+    },
+    {
+      "name": "신비로운 직원생활",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 40000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "코믹"
+      ]
+    },
+    {
+      "name": "백순대",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN1",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "코믹",
+        "저가"
+      ]
+    }
+  ],
+  "kakao-103606910": [
+    {
+      "name": "클레임",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 29000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.4,
+      "tags": [
+        "판타지",
+        "센서장치",
+        "인기"
+      ]
+    }
+  ],
+  "kakao-225341934": [
+    {
+      "name": "오감",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": [
+        "오감활용"
+      ]
+    },
+    {
+      "name": "알카트라즈",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": [
+        "감옥",
+        "1세대연출"
+      ]
+    }
+  ],
+  "kakao-1277196871": [
+    {
+      "name": "귀문기담",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": [
+        "공포무난"
+      ]
+    },
+    {
+      "name": "메아리",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": [
+        "공포약함",
+        "쫄보용"
+      ]
+    },
+    {
+      "name": "D",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": []
+    }
+  ],
+  "kakao-1213158520": [
+    {
+      "name": "끼리코 구조대",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN1",
+      "difficulty": 1,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.1,
+      "tags": [
+        "가족",
+        "영어지원",
+        "쉬운난이도"
+      ]
+    },
+    {
+      "name": "티모의 모험 : 정찰대편",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 1,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.0,
+      "tags": [
+        "가족",
+        "영어지원"
+      ]
+    },
+    {
+      "name": "왕자와 공주",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN1",
+      "difficulty": 1,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.0,
+      "tags": [
+        "가족",
+        "영어지원",
+        "동화"
+      ]
+    }
+  ],
+  "kakao-123477337": [
+    {
+      "name": "Room444",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN3",
+      "difficulty": 5,
+      "pricePerPersonWon": 40000,
+      "capacityMin": 4,
+      "capacityMax": 4,
+      "rating": 4.3,
+      "tags": [
+        "국내최초혈흔공포",
+        "직원연출",
+        "19금"
+      ]
+    }
   ]
 }
