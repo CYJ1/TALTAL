@@ -2882,5 +2882,76 @@
         "19금"
       ]
     }
+  ],
+  "kakao-911063716": [
+    {
+      "name": "그녀를 만나기 한시간 전",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.4,
+      "tags": [
+        "감성",
+        "쉬운난이도"
+      ]
+    }
+  ],
+  "kakao-40766168": [
+    {
+      "name": "V.E.T",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "코믹",
+        "귀여움"
+      ]
+    },
+    {
+      "name": "Dolphin",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.4,
+      "tags": [
+        "감성"
+      ]
+    },
+    {
+      "name": "올더박스",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "추리"
+      ]
+    },
+    {
+      "name": "파라다이스",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "판타지"
+      ]
+    }
   ]
 }
