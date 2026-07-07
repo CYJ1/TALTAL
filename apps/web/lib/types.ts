@@ -42,7 +42,7 @@ export interface UserProfile {
   isBeginner: boolean;
   genrePreferences: GenreTag[];
   pacingPreference: PacingPreference | null;
-  roomTypePreference: RoomTypePreference | null;
+  generationPreference: GenerationPreference | null;
   horrorRole: HorrorRole | null;
   stat: HexagonStat;
 }
@@ -117,16 +117,24 @@ export interface CreateReviewInput {
   comment?: string;
 }
 
-// 가입 시 선호도 설문 (방린이면 종료, 아니면 장르/진행스타일/공간유형 + 공포 선택 시 역할)
-export type GenreTag = 'EMOTIONAL' | 'HORROR' | 'SCIFI' | 'IMMERSIVE';
+// 가입 시 선호도 설문 (방린이면 종료, 아니면 장르/진행스타일/선호세대 + 공포 선택 시 역할)
+// 장르는 한국 방탈출 어워즈 시상 부문 기준 6개 분류를 그대로 채택한다.
+export type GenreTag =
+  | 'HORROR_THRILLER'
+  | 'EMOTIONAL_ROMANCE'
+  | 'MYSTERY_DETECTIVE'
+  | 'ACTION_ADVENTURE'
+  | 'SCIFI_FANTASY'
+  | 'COMEDY_ETC';
 export type PacingPreference = 'STORY' | 'SPEED';
-export type RoomTypePreference = 'PUZZLE' | 'DEVICE';
+// 방탈출 세대: 1세대(자물쇠·퀴즈) / 2세대(장치·센서) / 3세대(이머시브·앱연동)
+export type GenerationPreference = 'GEN1' | 'GEN2' | 'GEN3';
 export type HorrorRole = 'SCARED' | 'PUSH_THROUGH' | 'TANK';
 
 export interface SignupPreferences {
   isBeginner: boolean;
   genrePreferences?: GenreTag[];
   pacingPreference?: PacingPreference;
-  roomTypePreference?: RoomTypePreference;
+  generationPreference?: GenerationPreference;
   horrorRole?: HorrorRole;
 }

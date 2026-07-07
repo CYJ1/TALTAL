@@ -32,7 +32,7 @@ export class StatsService {
       isBeginner: user.isBeginner,
       genrePreferences: user.genrePreferences,
       pacingPreference: user.pacingPreference,
-      roomTypePreference: user.roomTypePreference,
+      generationPreference: user.generationPreference,
       horrorRole: user.horrorRole,
       stat: {
         logic: stat.logic,

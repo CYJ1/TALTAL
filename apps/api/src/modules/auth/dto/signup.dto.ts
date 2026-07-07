@@ -9,14 +9,23 @@ import {
   MinLength,
 } from 'class-validator';
 
-const GENRE_TAGS = ['EMOTIONAL', 'HORROR', 'SCIFI', 'IMMERSIVE'] as const;
+// 한국 방탈출 어워즈 시상 부문 기준 6개 장르 분류.
+const GENRE_TAGS = [
+  'HORROR_THRILLER',
+  'EMOTIONAL_ROMANCE',
+  'MYSTERY_DETECTIVE',
+  'ACTION_ADVENTURE',
+  'SCIFI_FANTASY',
+  'COMEDY_ETC',
+] as const;
 const PACING_PREFERENCES = ['STORY', 'SPEED'] as const;
-const ROOM_TYPE_PREFERENCES = ['PUZZLE', 'DEVICE'] as const;
+// 방탈출 세대 구분: 1세대(자물쇠·퀴즈) / 2세대(장치·센서) / 3세대(이머시브·앱연동)
+const GENERATION_PREFERENCES = ['GEN1', 'GEN2', 'GEN3'] as const;
 const HORROR_ROLES = ['SCARED', 'PUSH_THROUGH', 'TANK'] as const;
 
 export type GenreTagValue = (typeof GENRE_TAGS)[number];
 export type PacingPreferenceValue = (typeof PACING_PREFERENCES)[number];
-export type RoomTypePreferenceValue = (typeof ROOM_TYPE_PREFERENCES)[number];
+export type GenerationPreferenceValue = (typeof GENERATION_PREFERENCES)[number];
 export type HorrorRoleValue = (typeof HORROR_ROLES)[number];
 
 export class SignupDto {
@@ -47,10 +56,10 @@ export class SignupDto {
   pacingPreference?: PacingPreferenceValue;
 
   @IsOptional()
-  @IsIn(ROOM_TYPE_PREFERENCES)
-  roomTypePreference?: RoomTypePreferenceValue;
+  @IsIn(GENERATION_PREFERENCES)
+  generationPreference?: GenerationPreferenceValue;
 
-  // genrePreferences에 HORROR가 포함된 경우에만 의미가 있다.
+  // genrePreferences에 HORROR_THRILLER가 포함된 경우에만 의미가 있다.
   @IsOptional()
   @IsIn(HORROR_ROLES)
   horrorRole?: HorrorRoleValue;
