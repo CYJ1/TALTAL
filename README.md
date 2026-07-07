@@ -73,10 +73,16 @@ docker-compose.yml   postgres / redis / rabbitmq / neo4j / api / scraper / ai-en
   <img src="readme_src/new10notifications.png" width="250px" />
 </div> <br>
 
+### 리뷰작성
+<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;"> 
+  <img src="readme_src/7reviewgrades.png" width="250px" />
+</div> <br>
+
 
 ### 프로필화면
 <div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
   <img src="readme_src/new9profile.png" width="250px" />
+  <img src="readme_src/8profilescrolled.png" width="250px" />
 </div> <br>
 
 <br><br>
