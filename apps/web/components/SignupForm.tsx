@@ -251,11 +251,11 @@ export default function SignupForm() {
             className="mt-0.5 h-4 w-4 shrink-0 rounded border-zinc-300 text-indigo-600 focus:ring-indigo-400"
           />
           <span>
-            <Link href="/legal/terms" target="_blank" className="font-medium text-indigo-600 underline">
+            <Link href="/legal/terms" className="font-medium text-indigo-600 underline">
               이용약관
             </Link>{' '}
             및{' '}
-            <Link href="/legal/privacy" target="_blank" className="font-medium text-indigo-600 underline">
+            <Link href="/legal/privacy" className="font-medium text-indigo-600 underline">
               개인정보처리방침
             </Link>
             에 동의합니다 (필수)
