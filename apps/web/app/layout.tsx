@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import BottomNav from "@/components/BottomNav";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import { IS_REMOTE_MODE } from "@/lib/config";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -42,6 +43,11 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-zinc-50">
         <ServiceWorkerRegister />
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col bg-[var(--background)] shadow-sm">
+          {!IS_REMOTE_MODE && (
+            <p className="bg-amber-400 px-3 py-1 text-center text-[11px] font-semibold text-amber-950">
+              ⚠️ 목업 데모 모드 — API_BASE_URL 미설정으로 소수의 강남 예시 데이터만 표시됩니다 (실제 191개 매장 아님)
+            </p>
+          )}
           <div className="flex-1">{children}</div>
           <BottomNav />
         </div>
