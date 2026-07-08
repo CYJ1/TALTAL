@@ -3426,5 +3426,527 @@
         "노설명진행"
       ]
     }
+  ],
+  "kakao-1987907479": [
+    {
+      "name": "검은의사",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "공포"
+      ]
+    }
+  ],
+  "kakao-462553617": [
+    {
+      "name": "프로젝트 - 노아",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 2.7,
+      "tags": [
+        "포스트아포칼립스"
+      ]
+    }
+  ],
+  "kakao-1460924995": [
+    {
+      "name": "데.코.연. (데이트 코스 연구회)",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN3",
+      "difficulty": 2,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.5,
+      "tags": [
+        "커플테마",
+        "로맨스"
+      ]
+    }
+  ],
+  "kakao-190103388": [
+    {
+      "name": "빠삐용",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "탈옥",
+        "조직범죄"
+      ]
+    }
+  ],
+  "kakao-1183396756": [
+    {
+      "name": "그 남자 그 여자",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.1,
+      "tags": [
+        "로맨스",
+        "입문용"
+      ]
+    }
+  ],
+  "kakao-1862264503": [
+    {
+      "name": "동창회",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 2,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 3,
+      "capacityMax": 5,
+      "rating": 4.3,
+      "tags": [
+        "복수극",
+        "아날로그"
+      ]
+    }
+  ],
+  "kakao-1604521778": [
+    {
+      "name": "칠칠",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.3,
+      "tags": [
+        "경쟁",
+        "프리미엄"
+      ]
+    },
+    {
+      "name": "엠",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 5,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.9,
+      "tags": [
+        "고난도"
+      ]
+    },
+    {
+      "name": "밴드의 탄생",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN1",
+      "difficulty": 2,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.3,
+      "tags": [
+        "입문용",
+        "음악"
+      ]
+    }
+  ],
+  "kakao-4331171": [
+    {
+      "name": "The Cube",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 5,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.2,
+      "tags": [
+        "공포"
+      ]
+    }
+  ],
+  "kakao-466116790": [
+    {
+      "name": "집착",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 2.3,
+      "tags": [
+        "실종",
+        "추적"
+      ]
+    },
+    {
+      "name": "로미오 포인트",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.2,
+      "tags": [
+        "로맨스"
+      ]
+    }
+  ],
+  "kakao-1429324904": [
+    {
+      "name": "크라임씬 EP.16 폐가 살인사건",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.2,
+      "tags": [
+        "살인사건",
+        "추리"
+      ]
+    },
+    {
+      "name": "크라임씬 EP.17 나무꾼 살인사건",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.2,
+      "tags": [
+        "살인사건",
+        "추리"
+      ]
+    },
+    {
+      "name": "크라임씬 EP.18 호그와트 살인사건",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.2,
+      "tags": [
+        "살인사건",
+        "추리"
+      ]
+    }
+  ],
+  "kakao-1516730952": [
+    {
+      "name": "나이트워크",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 35000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.9,
+      "tags": [
+        "프리미엄",
+        "판타지"
+      ]
+    }
+  ],
+  "kakao-1743886829": [
+    {
+      "name": "호러맨스",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 35000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.5,
+      "tags": [
+        "스릴러",
+        "로맨스"
+      ]
+    },
+    {
+      "name": "Didn't",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 5,
+      "pricePerPersonWon": 35000,
+      "capacityMin": 3,
+      "capacityMax": 4,
+      "rating": 3.9,
+      "tags": [
+        "19금",
+        "고난도"
+      ]
+    }
+  ],
+  "kakao-2069651128": [
+    {
+      "name": "섬 - 잊혀진 이야기",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.0,
+      "tags": [
+        "미스터리"
+      ]
+    },
+    {
+      "name": "NOMON - THE ORDEAL",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "판타지"
+      ]
+    }
+  ],
+  "kakao-377197835": [
+    {
+      "name": "그림자 없는 상자",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 4.7,
+      "tags": [
+        "방탈출어워드수상",
+        "SF"
+      ]
+    },
+    {
+      "name": "사람들은 그것을 행복이라 부르기로 했다",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 4.5,
+      "tags": [
+        "방탈출어워드수상",
+        "추리"
+      ]
+    }
+  ],
+  "kakao-1871864524": [
+    {
+      "name": "기억을 잃은 자들",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.3,
+      "tags": [
+        "드라마"
+      ]
+    }
+  ],
+  "kakao-1531362613": [
+    {
+      "name": "피의 일요일",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 2.2,
+      "tags": [
+        "스릴러"
+      ]
+    }
+  ],
+  "kakao-628138029": [
+    {
+      "name": "악몽",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 5,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "공포",
+        "저조도"
+      ]
+    }
+  ],
+  "kakao-27367643": [
+    {
+      "name": "사라진 왕관",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22500,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 2.4,
+      "tags": [
+        "판타지"
+      ]
+    }
+  ],
+  "kakao-2012633570": [
+    {
+      "name": "버디",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 4.5,
+      "tags": [
+        "공포",
+        "인생테마"
+      ]
+    }
+  ],
+  "kakao-874592991": [
+    {
+      "name": "브루클린 마이 러브",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "스릴러"
+      ]
+    },
+    {
+      "name": "MY PRIVATE HEAVEN",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "스릴러"
+      ]
+    }
+  ],
+  "kakao-200411443": [
+    {
+      "name": "홀리데이",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 23000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.8,
+      "tags": [
+        "판타지"
+      ]
+    },
+    {
+      "name": "삐릿-뽀",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 4.0,
+      "tags": [
+        "로봇",
+        "인기테마"
+      ]
+    },
+    {
+      "name": "고백",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 5,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 4.0,
+      "tags": [
+        "반야외",
+        "최고난도"
+      ]
+    }
+  ],
+  "kakao-890251040": [
+    {
+      "name": "아랑 - 굶주린 이리",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 30000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "공포"
+      ]
+    }
+  ],
+  "kakao-1757443413": [
+    {
+      "name": "악마를 보았다",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "스릴러"
+      ]
+    }
+  ],
+  "kakao-451924760": [
+    {
+      "name": "서리브럼",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 3,
+      "capacityMax": 4,
+      "rating": 3.3,
+      "tags": [
+        "글로벌프랜차이즈"
+      ]
+    }
   ]
 }
