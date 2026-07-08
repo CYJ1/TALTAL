@@ -3948,5 +3948,577 @@
         "글로벌프랜차이즈"
       ]
     }
+  ],
+  "kakao-1551717206": [
+    {
+      "name": "기억의 틈",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.5,
+      "tags": [
+        "스릴러"
+      ]
+    }
+  ],
+  "kakao-829247174": [
+    {
+      "name": "녹",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.1,
+      "tags": [
+        "미스터리"
+      ]
+    }
+  ],
+  "kakao-27354377": [
+    {
+      "name": "숨바꼭질",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.8,
+      "tags": [
+        "추적"
+      ]
+    }
+  ],
+  "kakao-1872221698": [
+    {
+      "name": "AYAKO 아야코",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 35000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.8,
+      "tags": [
+        "일본괴담",
+        "프리미엄"
+      ]
+    }
+  ],
+  "kakao-1044925351": [
+    {
+      "name": "낙원",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "실화기반",
+        "스릴러"
+      ]
+    }
+  ],
+  "kakao-1000900386": [
+    {
+      "name": "손 없는 날",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.3,
+      "tags": [
+        "공포"
+      ]
+    }
+  ],
+  "kakao-1834149457": [
+    {
+      "name": "컨티뉴얼",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.1,
+      "tags": [
+        "공포",
+        "대형세트"
+      ]
+    }
+  ],
+  "kakao-1811986888": [
+    {
+      "name": "비밀의 가족",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "가족",
+        "드라마"
+      ]
+    },
+    {
+      "name": "팩토리 엠",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "SF"
+      ]
+    },
+    {
+      "name": "기다려, 금방 갈게",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "야외테마"
+      ]
+    }
+  ],
+  "kakao-1479036971": [
+    {
+      "name": "타임크랙 (TIME CRACK)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.8,
+      "tags": [
+        "공포"
+      ]
+    }
+  ],
+  "kakao-27329834": [
+    {
+      "name": "에이전트 - 노출된 미션",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "첩보"
+      ]
+    }
+  ],
+  "kakao-280887856": [
+    {
+      "name": "조난자들",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 2.4,
+      "tags": [
+        "산악",
+        "생존"
+      ]
+    }
+  ],
+  "kakao-1516889516": [
+    {
+      "name": "인지상점",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.5,
+      "tags": [
+        "실종",
+        "추적"
+      ]
+    }
+  ],
+  "kakao-983012264": [
+    {
+      "name": "마리오네뜨",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.3,
+      "tags": [
+        "스릴러",
+        "인형"
+      ]
+    },
+    {
+      "name": "소공녀",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.8,
+      "tags": [
+        "스릴러"
+      ]
+    }
+  ],
+  "kakao-1351400084": [
+    {
+      "name": "아마존의 잃어버린 도시",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 3,
+      "capacityMax": 4,
+      "rating": 3.5,
+      "tags": [
+        "정글",
+        "활동성높음"
+      ]
+    }
+  ],
+  "kakao-1541961243": [
+    {
+      "name": "도넛살인사건",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.9,
+      "tags": [
+        "추리",
+        "입문용"
+      ]
+    }
+  ],
+  "kakao-187287513": [
+    {
+      "name": "두껍아 두껍아 헌집줄게 새집다오",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.7,
+      "tags": [
+        "동요모티프",
+        "인생테마"
+      ]
+    }
+  ],
+  "kakao-887263854": [
+    {
+      "name": "PIG",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN3",
+      "difficulty": 2,
+      "pricePerPersonWon": 29000,
+      "capacityMin": 3,
+      "capacityMax": 6,
+      "rating": 4.7,
+      "tags": [
+        "공포",
+        "인기테마"
+      ]
+    }
+  ],
+  "kakao-949587061": [
+    {
+      "name": "좌뇌우뇌연구소",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 40000,
+      "capacityMin": 1,
+      "capacityMax": 3,
+      "rating": 4.4,
+      "tags": [
+        "아케이드",
+        "1인가능"
+      ]
+    }
+  ],
+  "kakao-1521613397": [
+    {
+      "name": "Hanna Is Fired (한나는 해고됐어)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.3,
+      "tags": [
+        "스릴러"
+      ]
+    }
+  ],
+  "kakao-72705514": [
+    {
+      "name": "크라임씬 - 이상한 부부 이야기",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 2.7,
+      "tags": [
+        "크라임씬모드",
+        "살인사건"
+      ]
+    }
+  ],
+  "kakao-1588388344": [
+    {
+      "name": "게인 타임",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.8,
+      "tags": [
+        "추리"
+      ]
+    }
+  ],
+  "kakao-458997744": [
+    {
+      "name": "STAGE",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 30000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.0,
+      "tags": [
+        "공포",
+        "고난도"
+      ]
+    }
+  ],
+  "kakao-1168819420": [
+    {
+      "name": "호텔 레토",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN3",
+      "difficulty": 5,
+      "pricePerPersonWon": 44000,
+      "capacityMin": 3,
+      "capacityMax": 5,
+      "rating": 4.6,
+      "tags": [
+        "방탈출어워드수상",
+        "잠입",
+        "고난도"
+      ]
+    }
+  ],
+  "kakao-888192913": [
+    {
+      "name": "봉인의 탑 - 마법사의 길",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 11000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.4,
+      "tags": [
+        "판타지",
+        "입문용"
+      ]
+    }
+  ],
+  "kakao-1045036053": [
+    {
+      "name": "도둑들",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.2,
+      "tags": [
+        "하이스트",
+        "미술관"
+      ]
+    },
+    {
+      "name": "혼 : 원혼의 저주",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.2,
+      "tags": [
+        "공포"
+      ]
+    }
+  ],
+  "kakao-2145277612": [
+    {
+      "name": "마법사의 세계",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 2.5,
+      "tags": [
+        "판타지"
+      ]
+    }
+  ],
+  "kakao-1444854771": [
+    {
+      "name": "다시 만날 수 있을까?",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.4,
+      "tags": [
+        "재회",
+        "로맨스"
+      ]
+    }
+  ],
+  "kakao-192767471": [
+    {
+      "name": "사자의 서",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 30000,
+      "capacityMin": 3,
+      "capacityMax": 4,
+      "rating": 4.2,
+      "tags": [
+        "신화",
+        "고난도"
+      ]
+    }
+  ],
+  "kakao-28201117": [
+    {
+      "name": "세상의 진실을 마주하는 일에 대하여",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.8,
+      "tags": [
+        "연극형",
+        "몰입형"
+      ]
+    }
+  ],
+  "kakao-751793807": [
+    {
+      "name": "연애조작단",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 1,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.9,
+      "tags": [
+        "로맨스",
+        "입문용"
+      ]
+    }
+  ],
+  "kakao-1560724472": [
+    {
+      "name": "연 - 그날의 기억",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.5,
+      "tags": [
+        "야외테마",
+        "추억"
+      ]
+    }
+  ],
+  "kakao-969459474": [
+    {
+      "name": "서커스",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.5,
+      "tags": [
+        "공포",
+        "서커스"
+      ]
+    }
+  ],
+  "kakao-2022859547": [
+    {
+      "name": "에피소드 36",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 4,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "크라임씬",
+        "롤플레잉"
+      ]
+    }
   ]
 }
