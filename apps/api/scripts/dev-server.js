@@ -25,12 +25,14 @@ function syncGenerated() {
 syncGenerated();
 const interval = setInterval(syncGenerated, 300);
 
+// npx/npx.cmd를 통해 spawn하면 Windows에서 "spawn EINVAL"이 나서(.cmd 래퍼는
+// shell 없이 직접 spawn 불가), @nestjs/cli의 실제 진입 스크립트를 node로 바로 실행한다.
+const nestBin = require.resolve('@nestjs/cli/bin/nest.js');
 const nestArgs = process.argv.slice(2);
-const child = spawn(
-  process.platform === 'win32' ? 'npx.cmd' : 'npx',
-  ['nest', 'start', ...nestArgs],
-  { stdio: 'inherit', cwd: ROOT },
-);
+const child = spawn(process.execPath, [nestBin, 'start', ...nestArgs], {
+  stdio: 'inherit',
+  cwd: ROOT,
+});
 
 child.on('exit', (code) => {
   clearInterval(interval);
