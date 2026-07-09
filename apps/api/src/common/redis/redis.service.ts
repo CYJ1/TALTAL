@@ -12,13 +12,20 @@ export class RedisService implements OnModuleDestroy {
 
   constructor(config: ConfigService) {
     const url = config.get<string>('REDIS_URL', 'redis://localhost:6379/0');
+    // maxRetriesPerRequest: null — 기본값(20)으로 두면 Redis가 계속 연결 안 될 때
+    // 대기 중이던 명령이 결국 MaxRetriesPerRequestError로 거부되고, 이걸 아무도
+    // catch하지 않으면(예: 앱 시작 시 fire-and-forget로 구독하는 코드) 처리되지
+    // 않은 프로미스 거부로 서버 전체가 죽는다. null로 두면 재연결될 때까지 계속
+    // 대기만 하고 절대 던지지 않는다 (Redis 없이도 나머지 기능은 정상 동작해야 함).
     this.client = new Redis(url, {
       lazyConnect: false,
       retryStrategy: () => 2000,
+      maxRetriesPerRequest: null,
     });
     this.subscriber = new Redis(url, {
       lazyConnect: false,
       retryStrategy: () => 2000,
+      maxRetriesPerRequest: null,
     });
     this.client.on('error', (err) =>
       this.logger.warn(`Redis client error: ${err.message}`),
