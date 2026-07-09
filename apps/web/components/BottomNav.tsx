@@ -7,7 +7,7 @@ const ITEMS = [
   { href: '/home', label: '검색', icon: '🔍' },
   { href: '/calendar', label: '마이캘린더', icon: '📅' },
   { href: '/recommendations', label: 'AI추천', icon: '✨' },
-  { href: '/party/party-demo-1', label: '동행매칭', icon: '🤝' },
+  { href: '/party', label: '동행매칭', icon: '🤝' },
   { href: '/profile', label: '프로필', icon: '👤' },
 ];
 

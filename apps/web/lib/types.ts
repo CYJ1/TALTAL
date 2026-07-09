@@ -91,6 +91,7 @@ export interface RecommendationResponse {
   userId: string;
   peerSampleSize: number;
   items: RecommendedTheme[];
+  aiEngineAvailable: boolean;
 }
 
 export interface PartyParticipantView {

@@ -459,7 +459,12 @@ export function getRecommendations(userId: string): RecommendationResponse {
     };
   });
 
-  return { userId, peerSampleSize: 1500, items: items.sort((a, b) => b.matchScore - a.matchScore) };
+  return {
+    userId,
+    peerSampleSize: 1500,
+    items: items.sort((a, b) => b.matchScore - a.matchScore),
+    aiEngineAvailable: true,
+  };
 }
 
 // ---- 파티 / 에스크로 ----

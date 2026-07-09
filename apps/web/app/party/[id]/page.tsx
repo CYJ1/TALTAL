@@ -1,4 +1,5 @@
-import { notFound, redirect } from 'next/navigation';
+import { redirect } from 'next/navigation';
+import PartyEmptyState from '@/components/PartyEmptyState';
 import PartyJoinButton from '@/components/PartyJoinButton';
 import { getPartyDetail } from '@/lib/data';
 import { getSessionUser } from '@/lib/session';
@@ -26,7 +27,7 @@ export default async function PartyDetailPage({ params }: { params: Promise<{ id
 
   const { id } = await params;
   const party = await getPartyDetail(id);
-  if (!party) notFound();
+  if (!party) return <PartyEmptyState notFoundId={id} />;
 
   const emptySlots = Math.max(0, party.capacity - party.participants.length);
   const perPersonDeposit = Math.round(party.totalPriceWon / party.capacity);

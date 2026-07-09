@@ -177,6 +177,7 @@ export async function getRecommendations(userId: string): Promise<Recommendation
       capacityMax: i.capacity_max ?? i.capacityMax,
       reason: i.reason,
     })),
+    aiEngineAvailable: raw.aiEngineAvailable ?? true,
   };
 }
 
