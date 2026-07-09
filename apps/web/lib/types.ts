@@ -60,6 +60,7 @@ export interface UserProfile {
   totalClears: number;
   expPercent: number;
   isBeginner: boolean;
+  experienceTier: ExperienceTier | null;
   genrePreferences: GenreTag[];
   pacingPreference: PacingPreference | null;
   generationPreference: GenerationPreference | null;
@@ -166,9 +167,12 @@ export type PacingPreference = 'STORY' | 'SPEED';
 // 방탈출 세대: 1세대(자물쇠·퀴즈) / 2세대(장치·센서) / 3세대(이머시브·앱연동)
 export type GenerationPreference = 'GEN1' | 'GEN2' | 'GEN3';
 export type HorrorRole = 'SCARED' | 'PUSH_THROUGH' | 'TANK';
+// 방린이가 아닐 때 누적 클리어 방수 구간
+export type ExperienceTier = 'TIER_10' | 'TIER_50' | 'TIER_100' | 'TIER_100_PLUS';
 
 export interface SignupPreferences {
   isBeginner: boolean;
+  experienceTier?: ExperienceTier;
   genrePreferences?: GenreTag[];
   pacingPreference?: PacingPreference;
   generationPreference?: GenerationPreference;

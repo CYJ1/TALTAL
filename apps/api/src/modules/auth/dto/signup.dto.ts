@@ -22,11 +22,15 @@ const PACING_PREFERENCES = ['STORY', 'SPEED'] as const;
 // 방탈출 세대 구분: 1세대(자물쇠·퀴즈) / 2세대(장치·센서) / 3세대(이머시브·앱연동)
 const GENERATION_PREFERENCES = ['GEN1', 'GEN2', 'GEN3'] as const;
 const HORROR_ROLES = ['SCARED', 'PUSH_THROUGH', 'TANK'] as const;
+// 방린이가 아닐 때 누적 클리어 방수 구간. "경험 있음" 하나로는 1방 해본 사람과
+// 100방 넘게 해본 헤비 유저를 구분할 수 없어 별도로 받는다.
+const EXPERIENCE_TIERS = ['TIER_10', 'TIER_50', 'TIER_100', 'TIER_100_PLUS'] as const;
 
 export type GenreTagValue = (typeof GENRE_TAGS)[number];
 export type PacingPreferenceValue = (typeof PACING_PREFERENCES)[number];
 export type GenerationPreferenceValue = (typeof GENERATION_PREFERENCES)[number];
 export type HorrorRoleValue = (typeof HORROR_ROLES)[number];
+export type ExperienceTierValue = (typeof EXPERIENCE_TIERS)[number];
 
 export class SignupDto {
   @IsEmail()
@@ -45,6 +49,11 @@ export class SignupDto {
   // 방탈출 입문자인지 여부. true면 아래 선호도 항목은 모두 무시된다.
   @IsBoolean()
   isBeginner: boolean;
+
+  // isBeginner가 false일 때만 의미가 있다.
+  @IsOptional()
+  @IsIn(EXPERIENCE_TIERS)
+  experienceTier?: ExperienceTierValue;
 
   @IsOptional()
   @IsArray()

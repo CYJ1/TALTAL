@@ -94,6 +94,15 @@ enum HorrorRole {
   TANK // 탱커
 }
 
+// 방린이가 아닌 경우 누적 클리어 방수 구간. "경험 있음"만으로는 방 1개를 해본
+// 사람과 100개 넘게 해본 헤비 유저를 구분할 수 없어 별도로 받는다.
+enum ExperienceTier {
+  TIER_10 // ~10방
+  TIER_50 // ~50방
+  TIER_100 // ~100방
+  TIER_100_PLUS // 100방 이상
+}
+
 model User {
   id                   String                @id @default(cuid())
   email                String                @unique
@@ -106,6 +115,7 @@ model User {
   totalClears          Int                   @default(0)
   currentExp           Float                 @default(0)
   isBeginner           Boolean               @default(false)
+  experienceTier       ExperienceTier? // 방린이가 아닐 때만 채워짐 (누적 클리어 방수 구간)
   genrePreferences     GenreTag[]            @default([])
   pacingPreference     PacingPreference?
   generationPreference GenerationPreference?
