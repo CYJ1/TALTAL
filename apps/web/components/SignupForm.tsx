@@ -1,10 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signupAction } from '@/lib/actions';
 import type { GenerationPreference, GenreTag, HorrorRole, PacingPreference } from '@/lib/types';
+
+// 이용약관/개인정보처리방침 보기 -> 뒤로가기로 돌아왔을 때 작성 중이던 내용이
+// 날아가지 않도록 sessionStorage에 임시 저장한다 (탭을 닫으면 사라짐).
+// 비밀번호는 보안상 저장하지 않는다 — 뒤로가기 후 비밀번호만 다시 입력하면 된다.
+const DRAFT_KEY = 'taltal-signup-draft';
+
+interface SignupDraft {
+  nickname: string;
+  email: string;
+  isBeginner: boolean | null;
+  genrePreferences: GenreTag[];
+  pacingPreference: PacingPreference | null;
+  generationPreference: GenerationPreference | null;
+  horrorRole: HorrorRole | null;
+  agreed: boolean;
+}
+
+function loadDraft(): SignupDraft | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = sessionStorage.getItem(DRAFT_KEY);
+    return raw ? (JSON.parse(raw) as SignupDraft) : null;
+  } catch {
+    return null;
+  }
+}
 
 // 한국 방탈출 어워즈 시상 부문 기준 6개 장르 분류
 const GENRE_OPTIONS: { key: GenreTag; label: string }[] = [
@@ -35,19 +61,37 @@ const HORROR_ROLE_OPTIONS: { key: HorrorRole; label: string; desc: string }[] = 
 
 export default function SignupForm() {
   const router = useRouter();
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
+  const [nickname, setNickname] = useState(() => loadDraft()?.nickname ?? '');
+  const [email, setEmail] = useState(() => loadDraft()?.email ?? '');
   const [password, setPassword] = useState('');
 
-  const [isBeginner, setIsBeginner] = useState<boolean | null>(null);
-  const [genrePreferences, setGenrePreferences] = useState<GenreTag[]>([]);
-  const [pacingPreference, setPacingPreference] = useState<PacingPreference | null>(null);
-  const [generationPreference, setGenerationPreference] = useState<GenerationPreference | null>(null);
-  const [horrorRole, setHorrorRole] = useState<HorrorRole | null>(null);
+  const [isBeginner, setIsBeginner] = useState<boolean | null>(() => loadDraft()?.isBeginner ?? null);
+  const [genrePreferences, setGenrePreferences] = useState<GenreTag[]>(() => loadDraft()?.genrePreferences ?? []);
+  const [pacingPreference, setPacingPreference] = useState<PacingPreference | null>(
+    () => loadDraft()?.pacingPreference ?? null,
+  );
+  const [generationPreference, setGenerationPreference] = useState<GenerationPreference | null>(
+    () => loadDraft()?.generationPreference ?? null,
+  );
+  const [horrorRole, setHorrorRole] = useState<HorrorRole | null>(() => loadDraft()?.horrorRole ?? null);
 
-  const [agreed, setAgreed] = useState(false);
+  const [agreed, setAgreed] = useState(() => loadDraft()?.agreed ?? false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const draft: SignupDraft = {
+      nickname,
+      email,
+      isBeginner,
+      genrePreferences,
+      pacingPreference,
+      generationPreference,
+      horrorRole,
+      agreed,
+    };
+    sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+  }, [nickname, email, isBeginner, genrePreferences, pacingPreference, generationPreference, horrorRole, agreed]);
 
   const wantsHorror = genrePreferences.includes('HORROR_THRILLER');
   const preferencesComplete =
@@ -81,6 +125,7 @@ export default function SignupForm() {
         generationPreference: isBeginner ? undefined : (generationPreference ?? undefined),
         horrorRole: isBeginner || !wantsHorror ? undefined : (horrorRole ?? undefined),
       });
+      sessionStorage.removeItem(DRAFT_KEY);
       router.push('/home');
     } catch (err) {
       setError(err instanceof Error ? err.message : '회원가입에 실패했습니다.');

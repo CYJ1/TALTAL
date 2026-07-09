@@ -12,21 +12,20 @@ export class RedisService implements OnModuleDestroy {
 
   constructor(config: ConfigService) {
     const url = config.get<string>('REDIS_URL', 'redis://localhost:6379/0');
-    // maxRetriesPerRequest: null — 기본값(20)으로 두면 Redis가 계속 연결 안 될 때
-    // 대기 중이던 명령이 결국 MaxRetriesPerRequestError로 거부되고, 이걸 아무도
-    // catch하지 않으면(예: 앱 시작 시 fire-and-forget로 구독하는 코드) 처리되지
-    // 않은 프로미스 거부로 서버 전체가 죽는다. null로 두면 재연결될 때까지 계속
-    // 대기만 하고 절대 던지지 않는다 (Redis 없이도 나머지 기능은 정상 동작해야 함).
-    this.client = new Redis(url, {
+    // Redis는 캐시 레이어일 뿐이라 "연결 안 됨"은 "캐시 미스"와 동일하게 취급되어야
+    // 한다 — 아래 getJson/setJson/subscribe가 실제로 그렇게 처리한다. 그러려면
+    // 명령이 적당히 빨리 실패해야 하는데, maxRetriesPerRequest 기본값(20)은
+    // retryStrategy 간격(2초)과 겹쳐 ~40초씩 걸리고(응답이 뻣뻣하게 느려짐),
+    // null로 두면 아예 끝없이 기다린다(요청이 몇 분씩 멈춘 것처럼 보임). 짧게
+    // 잡아 몇 초 안에 실패하고 캐시 미스로 넘어가도록 한다. 백그라운드 재연결
+    // 시도(retryStrategy) 자체는 계속되므로 Redis가 나중에 뜨면 자동으로 복구된다.
+    const redisOptions = {
       lazyConnect: false,
-      retryStrategy: () => 2000,
-      maxRetriesPerRequest: null,
-    });
-    this.subscriber = new Redis(url, {
-      lazyConnect: false,
-      retryStrategy: () => 2000,
-      maxRetriesPerRequest: null,
-    });
+      retryStrategy: () => 500,
+      maxRetriesPerRequest: 2,
+    };
+    this.client = new Redis(url, redisOptions);
+    this.subscriber = new Redis(url, redisOptions);
     this.client.on('error', (err) =>
       this.logger.warn(`Redis client error: ${err.message}`),
     );
@@ -36,9 +35,14 @@ export class RedisService implements OnModuleDestroy {
   }
 
   async getJson<T>(key: string): Promise<T | null> {
-    const raw = await this.client.get(key);
-    if (!raw) return null;
-    return JSON.parse(raw) as T;
+    try {
+      const raw = await this.client.get(key);
+      if (!raw) return null;
+      return JSON.parse(raw) as T;
+    } catch (err) {
+      this.logger.warn(`getJson(${key}) failed, treating as cache miss: ${(err as Error).message}`);
+      return null;
+    }
   }
 
   async setJson(
@@ -46,17 +50,25 @@ export class RedisService implements OnModuleDestroy {
     value: unknown,
     ttlSeconds = CACHE_TTL_SECONDS,
   ): Promise<void> {
-    await this.client.set(key, JSON.stringify(value), 'EX', ttlSeconds);
+    try {
+      await this.client.set(key, JSON.stringify(value), 'EX', ttlSeconds);
+    } catch (err) {
+      this.logger.warn(`setJson(${key}) failed, skipping cache write: ${(err as Error).message}`);
+    }
   }
 
   async subscribe(
     channel: string,
     onMessage: (payload: string) => void,
   ): Promise<void> {
-    await this.subscriber.subscribe(channel);
-    this.subscriber.on('message', (ch, message) => {
-      if (ch === channel) onMessage(message);
-    });
+    try {
+      await this.subscriber.subscribe(channel);
+      this.subscriber.on('message', (ch, message) => {
+        if (ch === channel) onMessage(message);
+      });
+    } catch (err) {
+      this.logger.warn(`subscribe(${channel}) failed: ${(err as Error).message}`);
+    }
   }
 
   async onModuleDestroy() {
