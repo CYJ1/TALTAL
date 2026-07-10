@@ -70,68 +70,80 @@ export class SearchService {
       orderBy: { rating: 'desc' },
     });
 
-    const results = await Promise.all(
-      themes.map(async (theme) => {
-        const cacheKey = `timeslots:${theme.storeId}:${theme.id}`;
-        const cached = await this.redis.getJson<CachedSnapshot>(cacheKey);
-
-        if (!cached) {
-          await this.rabbitmq.publishScrapeRequest(theme.storeId, theme.id);
-        }
-
-        return {
-          themeId: theme.id,
-          storeId: theme.storeId,
-          storeName: theme.store.name,
-          themeName: theme.name,
-          genre: theme.genre,
-          generation: theme.generation,
-          difficulty: theme.difficulty,
-          pricePerPersonWon: theme.pricePerPersonWon,
-          district: theme.store.district,
-          neighborhood: theme.store.neighborhood,
-          latitude: theme.store.latitude,
-          longitude: theme.store.longitude,
-          rating: theme.rating,
-          tags: theme.tags,
-          capacityMin: cached?.official_capacity_min ?? theme.capacityMin,
-          capacityMax: cached?.official_capacity_max ?? theme.capacityMax,
-          slots: cached?.slots ?? [],
-          // 캐시(실시간 스크래핑 결과)가 아직 없으면 DB에 저장된 초기값(공식 정원/크롤링
-          // 기준값)으로 대체한다 — 리뷰가 쌓이면 headcount_engine이 캐시 값을 갱신한다.
-          recommendedHeadcount:
-            cached?.recommended_headcount ??
-            (theme.recommendedHeadcount
-              ? {
-                  recommended: theme.recommendedHeadcount,
-                  reason: theme.recommendedReason ?? '',
-                  sample_size: 0,
-                }
-              : null),
-          cacheStatus: cached ? 'HIT' : 'REFRESHING',
-        };
-      }),
-    );
-
-    let filtered = results;
-    if (query.availableOnly) {
-      filtered = filtered.filter((r) => r.slots.some((s) => s.status !== 'CLOSED'));
-    }
-
+    // 위치 정렬은 store 좌표만 있으면 계산 가능해서, 캐시/스크래핑 조회(enrich)
+    // 전에 먼저 정렬해둔다 — 페이지네이션이 "가까운 순 상위 N개"를 자르게 하기 위함.
+    type ThemeWithDistance = (typeof themes)[number] & { distanceKm: number | null };
+    let ordered: ThemeWithDistance[] = themes.map((t) => ({ ...t, distanceKm: null }));
     if (query.lat != null && query.lng != null) {
       const origin = { lat: query.lat, lng: query.lng };
-      return filtered
-        .map((r) => ({
-          ...r,
+      ordered = ordered
+        .map((t) => ({
+          ...t,
           distanceKm:
-            r.latitude != null && r.longitude != null
-              ? haversineDistanceKm(origin.lat, origin.lng, r.latitude, r.longitude)
+            t.store.latitude != null && t.store.longitude != null
+              ? haversineDistanceKm(origin.lat, origin.lng, t.store.latitude, t.store.longitude)
               : null,
         }))
         .sort((a, b) => (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity));
     }
 
-    return filtered;
+    // availableOnly는 캐시된 실시간 슬롯 데이터가 있어야 판단 가능해서, 이 필터를
+    // 쓸 때만 전체를 enrich한 뒤 필터링 -> 페이지네이션 순서로 간다 (느리지만
+    // 정확함). 기본 화면(필터 없음)은 반대로 페이지네이션 -> enrich 순서라
+    // Redis 조회/스크래핑 트리거가 실제로 보여줄 페이지 분량만큼만 일어난다.
+    const enrich = async (theme: ThemeWithDistance) => {
+      const cacheKey = `timeslots:${theme.storeId}:${theme.id}`;
+      const cached = await this.redis.getJson<CachedSnapshot>(cacheKey);
+
+      if (!cached) {
+        await this.rabbitmq.publishScrapeRequest(theme.storeId, theme.id);
+      }
+
+      return {
+        themeId: theme.id,
+        storeId: theme.storeId,
+        storeName: theme.store.name,
+        themeName: theme.name,
+        genre: theme.genre,
+        generation: theme.generation,
+        difficulty: theme.difficulty,
+        pricePerPersonWon: theme.pricePerPersonWon,
+        district: theme.store.district,
+        neighborhood: theme.store.neighborhood,
+        latitude: theme.store.latitude,
+        longitude: theme.store.longitude,
+        rating: theme.rating,
+        tags: theme.tags,
+        capacityMin: cached?.official_capacity_min ?? theme.capacityMin,
+        capacityMax: cached?.official_capacity_max ?? theme.capacityMax,
+        slots: cached?.slots ?? [],
+        // 캐시(실시간 스크래핑 결과)가 아직 없으면 DB에 저장된 초기값(공식 정원/크롤링
+        // 기준값)으로 대체한다 — 리뷰가 쌓이면 headcount_engine이 캐시 값을 갱신한다.
+        recommendedHeadcount:
+          cached?.recommended_headcount ??
+          (theme.recommendedHeadcount
+            ? {
+                recommended: theme.recommendedHeadcount,
+                reason: theme.recommendedReason ?? '',
+                sample_size: 0,
+              }
+            : null),
+        cacheStatus: cached ? ('HIT' as const) : ('REFRESHING' as const),
+        distanceKm: theme.distanceKm,
+      };
+    };
+
+    if (query.availableOnly) {
+      const enriched = await Promise.all(ordered.map(enrich));
+      const filtered = enriched.filter((r) => r.slots.some((s) => s.status !== 'CLOSED'));
+      return query.limit != null
+        ? filtered.slice(query.offset ?? 0, (query.offset ?? 0) + query.limit)
+        : filtered;
+    }
+
+    const page =
+      query.limit != null ? ordered.slice(query.offset ?? 0, (query.offset ?? 0) + query.limit) : ordered;
+    return Promise.all(page.map(enrich));
   }
 
   /**

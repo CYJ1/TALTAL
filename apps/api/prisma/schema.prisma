@@ -132,7 +132,7 @@ model User {
 // [도메인 2] Live_Hexagon_Radar_Chart 스탯 (theme_stat_weights 매핑 결과 누적치)
 model UserStat {
   userId  String @id
-  user    User   @relation(fields: [userId], references: [id])
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   logic   Float  @default(50)
   observe Float  @default(50)
   speed   Float  @default(50)
@@ -151,7 +151,7 @@ enum HistoryStatus {
 model UserHistoryLog {
   id        String        @id @default(cuid())
   userId    String
-  user      User          @relation(fields: [userId], references: [id])
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   themeId   String
   theme     Theme         @relation(fields: [themeId], references: [id])
   playedAt  DateTime
@@ -166,7 +166,7 @@ model ThemeReview {
   themeId        String
   theme          Theme    @relation(fields: [themeId], references: [id])
   userId         String
-  user           User     @relation(fields: [userId], references: [id])
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   grade          String // 풀길 | 흙길 | 인생테마 | 꽃길
   selectedTags   String[] // VARCHAR[] + GIN 인덱스 대상 컬럼
   votedHeadcount Int // 실체감 플레이 인원수 매칭 투표
@@ -212,7 +212,7 @@ model PartyParticipant {
   partyId      String
   party        Party        @relation(fields: [partyId], references: [id])
   userId       String
-  user         User         @relation(fields: [userId], references: [id])
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
   depositWon   Int
   escrowStatus EscrowStatus @default(HOLDING)
   escrowTxRef  String? // 포트원 결제 트랜잭션 참조값 (mock)

@@ -4,6 +4,7 @@ import { applyStatGains } from './user-stat-calculator';
 
 const EXP_PER_CLEAR = 12;
 const EXP_PER_LEVEL = 100;
+const MAX_LEVEL = 10;
 
 @Injectable()
 export class StatsService {
@@ -127,13 +128,19 @@ export class StatsService {
       },
     });
 
-    if (user.currentExp >= EXP_PER_LEVEL) {
+    if (user.currentExp >= EXP_PER_LEVEL && user.level < MAX_LEVEL) {
       await this.prisma.user.update({
         where: { id: params.userId },
         data: {
           level: { increment: 1 },
           currentExp: { decrement: EXP_PER_LEVEL },
         },
+      });
+    } else if (user.level >= MAX_LEVEL) {
+      // 만렙(10)이면 경험치 바가 계속 꽉 차 보이도록 고정한다.
+      await this.prisma.user.update({
+        where: { id: params.userId },
+        data: { currentExp: EXP_PER_LEVEL },
       });
     }
 

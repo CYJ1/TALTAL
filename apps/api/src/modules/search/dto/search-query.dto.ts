@@ -76,4 +76,16 @@ export class SearchQueryDto {
   @Type(() => Boolean)
   @IsBoolean()
   availableOnly?: boolean;
+
+  // 홈 화면 무한스크롤용 페이지네이션 — 안 넘기면 기존처럼 전체를 반환한다
+  // (다른 호출부들, 예: 테마 이름 검색, 를 깨지 않기 위함).
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  limit?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  offset?: number;
 }

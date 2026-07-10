@@ -221,6 +221,8 @@ export function getThemesForSearch(query: {
   lat?: number;
   lng?: number;
   q?: string;
+  limit?: number;
+  offset?: number;
 }): ThemeSearchResult[] {
   let themes = THEMES;
   if (query.district) themes = themes.filter((t) => t.district === query.district);
@@ -247,7 +249,12 @@ export function getThemesForSearch(query: {
   // 위경도가 아직 지오코딩되지 않아 목업 모드에서는 실거리 정렬 대신 원래 순서를 유지한다
   // (실연동 모드와 동일하게 lat/lng가 주어지면 distanceKm 필드는 null로 채워 UI 계약을 맞춘다).
   if (query.lat != null && query.lng != null) {
-    return results.map((r) => ({ ...r, distanceKm: null }));
+    results = results.map((r) => ({ ...r, distanceKm: null }));
+  }
+
+  if (query.limit != null) {
+    const offset = query.offset ?? 0;
+    return results.slice(offset, offset + query.limit);
   }
 
   return results;
