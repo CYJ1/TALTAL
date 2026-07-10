@@ -2019,6 +2019,20 @@
         "입문",
         "쉬운편"
       ]
+    },
+    {
+      "name": "하이팜",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 23000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "감성",
+        "자물쇠+장치"
+      ]
     }
   ],
   "kakao-2140363473": [
@@ -3038,6 +3052,33 @@
         "탈출",
         "감옥"
       ]
+    },
+    {
+      "name": "더 맨",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 3,
+      "capacityMax": 3,
+      "rating": 3.2,
+      "tags": [
+        "전쟁",
+        "디스토피아"
+      ]
+    },
+    {
+      "name": "STAFF ONLY",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 21000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.9,
+      "tags": [
+        "배신자추적"
+      ]
     }
   ],
   "kakao-522639283": [
@@ -3629,6 +3670,34 @@
       "capacityMax": 6,
       "rating": 4.1,
       "tags": []
+    },
+    {
+      "name": "Stepfather - 사라진 천사들",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 2.2,
+      "tags": [
+        "공포",
+        "전부장치형"
+      ]
+    },
+    {
+      "name": "장기밀매 Part 2",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.1,
+      "tags": [
+        "감금",
+        "납치"
+      ]
     }
   ],
   "kakao-1735229345": [
@@ -3911,6 +3980,47 @@
       "rating": 4.2,
       "tags": [
         "반전세계관"
+      ]
+    },
+    {
+      "name": "배드 타임 (BÆD TIME)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 32000,
+      "capacityMin": 3,
+      "capacityMax": 6,
+      "rating": 4.6,
+      "tags": [
+        "이머시브",
+        "몽환적"
+      ]
+    },
+    {
+      "name": "하이맥스 (HIGH MAX)",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN1",
+      "difficulty": 5,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.4,
+      "tags": [
+        "자물쇠위주",
+        "타임어택랭킹"
+      ]
+    },
+    {
+      "name": "4 SUM 1",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.4,
+      "tags": [
+        "장르비공개"
       ]
     }
   ],
