@@ -2,7 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { IS_REMOTE_MODE } from './lib/config';
 import { SESSION_COOKIE } from './lib/session';
 
-const PROTECTED_PREFIXES = ['/calendar', '/profile', '/recommendations', '/notifications', '/party'];
+const PROTECTED_PREFIXES = [
+  '/calendar',
+  '/profile',
+  '/recommendations',
+  '/notifications',
+  '/party',
+  '/onboarding',
+];
 const PROTECTED_SEGMENTS = ['/book', '/review']; // /themes/[themeId]/book, /themes/[themeId]/review
 const AUTH_PAGES = ['/login', '/signup'];
 

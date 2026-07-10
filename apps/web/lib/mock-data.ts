@@ -220,6 +220,7 @@ export function getThemesForSearch(query: {
   availableOnly?: boolean;
   lat?: number;
   lng?: number;
+  q?: string;
 }): ThemeSearchResult[] {
   let themes = THEMES;
   if (query.district) themes = themes.filter((t) => t.district === query.district);
@@ -232,6 +233,10 @@ export function getThemesForSearch(query: {
     themes = themes.filter((t) => t.capacityMin <= query.headcount! && t.capacityMax >= query.headcount!);
   }
   if (query.tag) themes = themes.filter((t) => t.tags.includes(query.tag!));
+  if (query.q) {
+    const q = query.q.toLowerCase();
+    themes = themes.filter((t) => t.themeName.toLowerCase().includes(q) || t.storeName.toLowerCase().includes(q));
+  }
 
   let results = themes.map(mapThemeToSearchResult).sort((a, b) => b.rating - a.rating);
 

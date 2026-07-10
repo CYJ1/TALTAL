@@ -64,7 +64,10 @@ export async function GET(
     }
 
     await setSessionCookie(body.accessToken);
-    return NextResponse.redirect(new URL('/home', APP_BASE_URL));
+    // 소셜 신규 가입은 이메일 가입과 달리 선호도 설문을 아직 안 거쳤으므로,
+    // 온보딩 화면으로 보내 방린이 여부/장르 등을 채우게 한다.
+    const destination = body.isNewUser ? '/onboarding/preferences' : '/home';
+    return NextResponse.redirect(new URL(destination, APP_BASE_URL));
   } catch (err) {
     console.error(`[oauth:${provider}] callback failed`, err);
     return loginRedirect('server_error');

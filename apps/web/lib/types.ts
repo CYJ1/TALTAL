@@ -137,6 +137,8 @@ export interface CreateReviewInput {
   remainingSec: number;
   hintsUsed: number;
   comment?: string;
+  // 앱 예약 없이 플레이한 테마를 수동으로 기록할 때만 채움 (YYYY-MM-DD).
+  playedAt?: string;
 }
 
 export interface UserReview {

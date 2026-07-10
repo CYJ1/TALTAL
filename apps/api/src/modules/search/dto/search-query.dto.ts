@@ -20,6 +20,12 @@ export class SearchQueryDto {
   @IsString()
   neighborhood?: string; // 동 (예: 역삼동)
 
+  // 테마/매장 이름 자유 검색 — 앱에서 예약 안 하고 플레이한 테마를 수동으로
+  // 기록/리뷰할 때 테마를 찾는 용도로 쓰인다.
+  @IsOptional()
+  @IsString()
+  q?: string;
+
   @IsOptional()
   @IsIn(GENRE_TAGS)
   genre?: (typeof GENRE_TAGS)[number];

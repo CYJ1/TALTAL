@@ -10,6 +10,8 @@ import { PrismaService } from '../../prisma/prisma.service';
 import { LoginDto } from './dto/login.dto';
 import { SignupDto } from './dto/signup.dto';
 import { SocialLoginDto } from './dto/social-login.dto';
+import { UpdateNicknameDto } from './dto/update-nickname.dto';
+import { UpdatePreferencesDto } from './dto/update-preferences.dto';
 
 const BCRYPT_ROUNDS = 10;
 
@@ -103,14 +105,14 @@ export class AuthService {
    */
   async loginOrCreateSocialUser(
     dto: SocialLoginDto,
-  ): Promise<{ accessToken: string; user: SafeUser }> {
+  ): Promise<{ accessToken: string; user: SafeUser; isNewUser: boolean }> {
     const provider = dto.provider;
 
     const existingByProvider = await this.prisma.user.findUnique({
       where: { provider_providerId: { provider, providerId: dto.providerId } },
     });
     if (existingByProvider) {
-      return this.issueToken(existingByProvider);
+      return { ...this.issueToken(existingByProvider), isNewUser: false };
     }
 
     const existingByEmail = await this.prisma.user.findUnique({
@@ -121,7 +123,7 @@ export class AuthService {
         where: { id: existingByEmail.id },
         data: { provider, providerId: dto.providerId },
       });
-      return this.issueToken(linked);
+      return { ...this.issueToken(linked), isNewUser: false };
     }
 
     const created = await this.prisma.user.create({
@@ -133,7 +135,38 @@ export class AuthService {
         stat: { create: {} },
       },
     });
-    return this.issueToken(created);
+    // 소셜 신규 가입은 이메일 가입과 달리 선호도 설문을 아직 안 거쳤다 — 호출부가
+    // 이 플래그를 보고 온보딩(선호도 입력) 화면으로 보낸다.
+    return { ...this.issueToken(created), isNewUser: true };
+  }
+
+  /** 소셜 신규 가입 직후 온보딩 화면에서 한 번 호출되어 선호도를 채운다. */
+  async updatePreferences(userId: string, dto: UpdatePreferencesDto) {
+    const user = await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        isBeginner: dto.isBeginner,
+        experienceTier: dto.isBeginner ? null : dto.experienceTier,
+        genrePreferences: dto.isBeginner
+          ? []
+          : ((dto.genrePreferences ?? []) as GenreTag[]),
+        pacingPreference: dto.isBeginner ? null : dto.pacingPreference,
+        generationPreference: dto.isBeginner ? null : dto.generationPreference,
+        horrorRole:
+          !dto.isBeginner && dto.genrePreferences?.includes('HORROR_THRILLER')
+            ? dto.horrorRole
+            : null,
+      },
+    });
+    return toSafeUser(user);
+  }
+
+  async updateNickname(userId: string, dto: UpdateNicknameDto): Promise<SafeUser> {
+    const user = await this.prisma.user.update({
+      where: { id: userId },
+      data: { nickname: dto.nickname },
+    });
+    return toSafeUser(user);
   }
 
   async me(userId: string): Promise<SafeUser> {
