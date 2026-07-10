@@ -62,38 +62,46 @@ docker-compose.yml   postgres / redis / rabbitmq / neo4j / api / scraper / ai-en
 <br>
 
 ## 화면 Wireframe - 초안
-### 로그인/회원가입
+
+실제 API(NestJS + PostgreSQL)에 붙여서 캡처함 — 목업 데이터가 아님.
+
+### 로그인 및 회원가입
 <div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
-  <img src="readme_src/splashfixed.png" width="250px" />
-  <img src="readme_src/new2login.png" width="250px" />
-  <img src="readme_src/newloginquestion.png" width="250px" />
+  <img src="readme_src/01-splash.png" width="250px" />
+  <img src="readme_src/02-login.png" width="250px" />
+  <img src="readme_src/03-signup.png" width="250px" />
+  <img src="readme_src/04-signup-experience.png" width="250px" />
 </div> <br>
 
 ### 전체테마 검색 및 예약창 (현재 위치기반, 위치 선택가능)
 <div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
-  <img src="readme_src/newsearch.png" width="250px" />
-  <img src="readme_src/new5themedetail.png" width="250px" />
-  <img src="readme_src/newmap.png" width="250px" />
-  <img src="readme_src/new6booking.PNG" width="250px" />
-  <img src="readme_src/new7bookingcomplete.png" width="250px" />
+  <img src="readme_src/05-search.png" width="250px" />
+  <img src="readme_src/06-district.png" width="250px" />
+  <img src="readme_src/07-theme-detail.png" width="250px" />
+  <img src="readme_src/08-booking.png" width="250px" />
+  <img src="readme_src/09-booking-complete.png" width="250px" />
 </div> <br>
 
 ### 동행구하기 기능
-<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;"> 
-  <img src="readme_src/new8partynew.png" width="250px" />
-  <img src="readme_src/new10notifications.png" width="250px" />
+<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
+  <img src="readme_src/10-party-empty.png" width="250px" />
+  <img src="readme_src/11-party-new.png" width="250px" />
+</div> <br>
+
+### AI매칭
+<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
+  <img src="readme_src/12-recommendations.png" width="250px" />
 </div> <br>
 
 ### 리뷰작성
-<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;"> 
-  <img src="readme_src/7reviewgrades.png" width="250px" />
+<div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
+  <img src="readme_src/13-review.png" width="250px" />
 </div> <br>
-
 
 ### 프로필화면
 <div style="display: flex; overflow-x: auto; white-space: nowrap; gap: 10px;">
-  <img src="readme_src/new9profile.png" width="250px" />
-  <img src="readme_src/8profilescrolled.png" width="250px" />
+  <img src="readme_src/14-profile.png" width="250px" />
+  <img src="readme_src/15-profile-scrolled.png" width="250px" />
 </div> <br>
 
 <br><br>
