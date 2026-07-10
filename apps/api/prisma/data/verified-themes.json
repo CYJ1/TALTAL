@@ -5152,6 +5152,20 @@
       "tags": [
         "판타지"
       ]
+    },
+    {
+      "name": "이상한 나라의 초대",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 2.5,
+      "tags": [
+        "앨리스",
+        "이상한나라"
+      ]
     }
   ],
   "kakao-1444854771": [
@@ -5167,6 +5181,21 @@
       "tags": [
         "재회",
         "로맨스"
+      ]
+    },
+    {
+      "name": "기억의 조각",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 2.8,
+      "tags": [
+        "기억상실",
+        "폐교",
+        "추적"
       ]
     }
   ],
@@ -5199,6 +5228,34 @@
       "tags": [
         "연극형",
         "몰입형"
+      ]
+    },
+    {
+      "name": "아득히 바라던 타오름에 대하여",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.8,
+      "tags": [
+        "이머시브",
+        "전문배우연기"
+      ]
+    },
+    {
+      "name": "사라진 진실과 상실에 대하여",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.8,
+      "tags": [
+        "이머시브",
+        "기억상실"
       ]
     }
   ],
