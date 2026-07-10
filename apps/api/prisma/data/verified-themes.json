@@ -6062,5 +6062,178 @@
       "rating": 3.6,
       "tags": []
     }
+  ],
+  "kakao-1969052262": [
+    {
+      "name": "호그와트: 후플푸프",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "해리포터",
+        "호그와트"
+      ]
+    },
+    {
+      "name": "호그와트: 슬리데린",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "해리포터",
+        "호그와트"
+      ]
+    },
+    {
+      "name": "호그와트: 래번클로",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "해리포터",
+        "호그와트"
+      ]
+    }
+  ],
+  "kakao-97734177": [
+    {
+      "name": "그도... 그럴 것이다",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.0,
+      "tags": [
+        "스릴러",
+        "장치"
+      ]
+    },
+    {
+      "name": "인투더와일드 (Into the Wild)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "모험",
+        "장치"
+      ]
+    },
+    {
+      "name": "SCENE : 404 NOT FOUND",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.6,
+      "tags": [
+        "공포",
+        "연출"
+      ]
+    }
+  ],
+  "kakao-273855007": [
+    {
+      "name": "쏘우 (Saw)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.6,
+      "tags": [
+        "스릴러"
+      ]
+    },
+    {
+      "name": "올드 보이 (Old Boy)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN1",
+      "difficulty": 2,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.2,
+      "tags": [
+        "감금",
+        "복수"
+      ]
+    },
+    {
+      "name": "해리포터 (Harry Potter)",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.6,
+      "tags": [
+        "판타지"
+      ]
+    },
+    {
+      "name": "쇼생크 탈출 (Shawshank Escape)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.6,
+      "tags": [
+        "감옥",
+        "탈출"
+      ]
+    },
+    {
+      "name": "미션 임파서블 (Mission Impossible)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "첩보",
+        "액션"
+      ]
+    }
+  ],
+  "kakao-2000674643": [
+    {
+      "name": "스쿨오브락 (School of Rock)",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN1",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "코미디"
+      ]
+    }
   ]
 }
