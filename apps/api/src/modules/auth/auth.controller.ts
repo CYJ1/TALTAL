@@ -4,7 +4,9 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Patch,
   Post,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -12,6 +14,8 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { SignupDto } from './dto/signup.dto';
 import { SocialLoginDto } from './dto/social-login.dto';
+import { UpdateNicknameDto } from './dto/update-nickname.dto';
+import { UpdatePreferencesDto } from './dto/update-preferences.dto';
 import type { AuthenticatedRequest } from './jwt-auth.guard';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { InternalServiceGuard } from './internal-service.guard';
@@ -43,5 +47,37 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   me(@Req() req: AuthenticatedRequest) {
     return this.authService.me(req.user.userId);
+  }
+
+  // 소셜 신규 가입 직후 온보딩 화면에서 선호도를 한 번 채워 넣는 용도.
+  @Patch('me/preferences')
+  @UseGuards(JwtAuthGuard)
+  updatePreferences(
+    @Req() req: AuthenticatedRequest,
+    @Body() dto: UpdatePreferencesDto,
+  ) {
+    return this.authService.updatePreferences(req.user.userId, dto);
+  }
+
+  @Patch('me/nickname')
+  @UseGuards(JwtAuthGuard)
+  updateNickname(
+    @Req() req: AuthenticatedRequest,
+    @Body() dto: UpdateNicknameDto,
+  ) {
+    return this.authService.updateNickname(req.user.userId, dto);
+  }
+
+  @Get('me/nickname-available')
+  @UseGuards(JwtAuthGuard)
+  async checkNicknameAvailable(
+    @Req() req: AuthenticatedRequest,
+    @Query('nickname') nickname: string,
+  ) {
+    const available = await this.authService.isNicknameAvailable(
+      req.user.userId,
+      nickname,
+    );
+    return { available };
   }
 }

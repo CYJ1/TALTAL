@@ -46,6 +46,14 @@ export class SearchService {
             },
           }
         : {}),
+      ...(query.q
+        ? {
+            OR: [
+              { name: { contains: query.q, mode: 'insensitive' } },
+              { store: { name: { contains: query.q, mode: 'insensitive' } } },
+            ],
+          }
+        : {}),
       ...(query.genre ? { genre: query.genre as GenreTag } : {}),
       ...(query.generation ? { generation: query.generation as GenerationPreference } : {}),
       ...(query.preferenceTag ? { tags: { has: query.preferenceTag } } : {}),

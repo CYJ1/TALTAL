@@ -10,7 +10,7 @@ import {
 } from 'class-validator';
 
 // 한국 방탈출 어워즈 시상 부문 기준 6개 장르 분류.
-const GENRE_TAGS = [
+export const GENRE_TAGS = [
   'HORROR_THRILLER',
   'EMOTIONAL_ROMANCE',
   'MYSTERY_DETECTIVE',
@@ -18,13 +18,13 @@ const GENRE_TAGS = [
   'SCIFI_FANTASY',
   'COMEDY_ETC',
 ] as const;
-const PACING_PREFERENCES = ['STORY', 'SPEED'] as const;
+export const PACING_PREFERENCES = ['STORY', 'SPEED'] as const;
 // 방탈출 세대 구분: 1세대(자물쇠·퀴즈) / 2세대(장치·센서) / 3세대(이머시브·앱연동)
-const GENERATION_PREFERENCES = ['GEN1', 'GEN2', 'GEN3'] as const;
-const HORROR_ROLES = ['SCARED', 'PUSH_THROUGH', 'TANK'] as const;
+export const GENERATION_PREFERENCES = ['GEN1', 'GEN2', 'GEN3'] as const;
+export const HORROR_ROLES = ['SCARED', 'PUSH_THROUGH', 'TANK'] as const;
 // 방린이가 아닐 때 누적 클리어 방수 구간. "경험 있음" 하나로는 1방 해본 사람과
 // 100방 넘게 해본 헤비 유저를 구분할 수 없어 별도로 받는다.
-const EXPERIENCE_TIERS = ['TIER_10', 'TIER_50', 'TIER_100', 'TIER_100_PLUS'] as const;
+export const EXPERIENCE_TIERS = ['TIER_10', 'TIER_50', 'TIER_100', 'TIER_100_PLUS'] as const;
 
 export type GenreTagValue = (typeof GENRE_TAGS)[number];
 export type PacingPreferenceValue = (typeof PACING_PREFERENCES)[number];

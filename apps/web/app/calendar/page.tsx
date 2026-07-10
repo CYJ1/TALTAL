@@ -59,7 +59,12 @@ export default async function CalendarPage() {
       </section>
 
       <section className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
-        <h2 className="mb-3 text-sm font-semibold text-zinc-900">&lt; 2026년 7월 &gt; 스마트 기록 캘린더</h2>
+        <div className="mb-3 flex items-center justify-between">
+          <h2 className="text-sm font-semibold text-zinc-900">&lt; 2026년 7월 &gt; 스마트 기록 캘린더</h2>
+          <Link href="/calendar/log" className="shrink-0 text-xs font-medium text-indigo-600 underline">
+            + 직접 기록 추가
+          </Link>
+        </div>
         <div className="grid grid-cols-7 gap-1 text-center text-xs text-zinc-400">
           {WEEKDAYS.map((d) => (
             <span key={d}>{d}</span>

@@ -30,10 +30,23 @@ export class ReviewsService {
       },
     });
 
-    await this.prisma.userHistoryLog.updateMany({
-      where: { userId, themeId: dto.themeId, status: 'PENDING_REVIEW' },
-      data: { status: 'REVIEWED' },
-    });
+    if (dto.playedAt) {
+      // 앱 예약 없이 플레이한 테마를 지금 처음 기록하는 경우 — 해당 날짜로
+      // 새 일지를 만든다 (PENDING_REVIEW 상태가 아니었으므로 updateMany 대상이 아님).
+      await this.prisma.userHistoryLog.create({
+        data: {
+          userId,
+          themeId: dto.themeId,
+          playedAt: new Date(dto.playedAt),
+          status: 'MANUAL_ENTRY',
+        },
+      });
+    } else {
+      await this.prisma.userHistoryLog.updateMany({
+        where: { userId, themeId: dto.themeId, status: 'PENDING_REVIEW' },
+        data: { status: 'REVIEWED' },
+      });
+    }
 
     const updatedStat = await this.statsService.applyReviewStatGain({
       userId,

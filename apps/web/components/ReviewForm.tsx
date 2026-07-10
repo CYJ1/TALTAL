@@ -9,10 +9,22 @@ const GRADES = ['흙길', '풀길', '풀꽃길', '꽃길', '꽃밭길', '인생�
 const FEATURE_TAGS = ['나레이션필수', '장치노후화', '활동성높음', '스토리연계성', '연출대박'];
 const HEADCOUNT_OPTIONS = [2, 3, 4, 5];
 
-export default function ReviewForm({ themeId }: { themeId: string }) {
+function todayIso() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+export default function ReviewForm({
+  themeId,
+  manualEntry = false,
+}: {
+  themeId: string;
+  /** 앱으로 예약 안 하고 플레이한 테마를 지금 처음 기록하는 경우 — 날짜 선택을 추가로 보여준다. */
+  manualEntry?: boolean;
+}) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
 
+  const [playedAt, setPlayedAt] = useState(todayIso());
   const [grade, setGrade] = useState('인생테마');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [votedHeadcount, setVotedHeadcount] = useState(3);
@@ -38,6 +50,7 @@ export default function ReviewForm({ themeId }: { themeId: string }) {
         remainingSec: remainingMin * 60 + remainingSec,
         hintsUsed,
         comment,
+        playedAt: manualEntry ? playedAt : undefined,
       });
       setDone(true);
       setTimeout(() => router.push('/calendar'), 900);
@@ -57,6 +70,20 @@ export default function ReviewForm({ themeId }: { themeId: string }) {
 
   return (
     <div className="mt-4 space-y-5">
+      {manualEntry && (
+        <section>
+          <h2 className="mb-2 text-sm font-semibold text-zinc-700">플레이한 날짜</h2>
+          <input
+            type="date"
+            required
+            value={playedAt}
+            max={todayIso()}
+            onChange={(e) => setPlayedAt(e.target.value)}
+            className="w-full rounded-xl border border-zinc-200 px-4 py-3 text-sm outline-none focus:border-indigo-400"
+          />
+        </section>
+      )}
+
       <section>
         <h2 className="mb-2 text-sm font-semibold text-zinc-700">1. 종합 등급 평가</h2>
         <div className="grid grid-cols-3 gap-2">

@@ -4,8 +4,8 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import { API_BASE_URL, DEMO_USER_ID, IS_REMOTE_MODE } from './config';
-import { createPartyRequest, joinPartyRequest, submitReview } from './data';
-import { getSessionUser, SESSION_COOKIE, setSessionCookie } from './session';
+import { createPartyRequest, joinPartyRequest, searchThemes, submitReview } from './data';
+import { getSessionToken, getSessionUser, SESSION_COOKIE, setSessionCookie } from './session';
 import type { CreateReviewInput, NewPartyInput, SignupPreferences } from './types';
 
 export async function submitReviewAction(input: Omit<CreateReviewInput, 'userId'>) {
@@ -81,4 +81,63 @@ export async function logoutAction() {
   const store = await cookies();
   store.delete(SESSION_COOKIE);
   redirect('/login');
+}
+
+// 소셜 신규 가입 온보딩 화면에서 호출 — 이메일 가입 폼의 선호도 항목과 동일한 값을 받는다.
+export async function updatePreferencesAction(input: SignupPreferences) {
+  if (!IS_REMOTE_MODE) return;
+
+  const token = await getSessionToken();
+  const res = await fetch(`${API_BASE_URL}/auth/me/preferences`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify(input),
+  });
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new Error(body?.message ?? '선호도 저장에 실패했습니다.');
+  }
+  revalidatePath('/profile');
+}
+
+// 앱으로 예약 안 하고 플레이한 테마를 수동으로 기록할 때, 테마 검색창에서 호출.
+export async function searchThemesForLogAction(q: string) {
+  if (!q.trim()) return [];
+  const results = await searchThemes({ q });
+  return results.slice(0, 10);
+}
+
+export async function checkNicknameAvailableAction(nickname: string): Promise<boolean> {
+  if (!IS_REMOTE_MODE) return true;
+
+  const token = await getSessionToken();
+  const res = await fetch(
+    `${API_BASE_URL}/auth/me/nickname-available?nickname=${encodeURIComponent(nickname)}`,
+    { headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) }, cache: 'no-store' },
+  );
+  if (!res.ok) return false;
+  const body = await res.json();
+  return Boolean(body.available);
+}
+
+export async function updateNicknameAction(nickname: string) {
+  if (!IS_REMOTE_MODE) return;
+
+  const token = await getSessionToken();
+  const res = await fetch(`${API_BASE_URL}/auth/me/nickname`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify({ nickname }),
+  });
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new Error(body?.message ?? '닉네임 변경에 실패했습니다.');
+  }
+  revalidatePath('/profile');
 }
