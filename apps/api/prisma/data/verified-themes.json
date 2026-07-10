@@ -5081,5 +5081,125 @@
         "회사설정"
       ]
     }
+  ],
+  "kakao-880372928": [
+    {
+      "name": "괴담수집가",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.4,
+      "tags": [
+        "공포",
+        "괴담"
+      ]
+    },
+    {
+      "name": "무인도",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.1,
+      "tags": [
+        "생존"
+      ]
+    }
+  ],
+  "kakao-746135486": [
+    {
+      "name": "전지적 교수님 시점",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 30000,
+      "capacityMin": 3,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": [
+        "코믹",
+        "시험감독"
+      ]
+    }
+  ],
+  "kakao-361428621": [
+    {
+      "name": "크라임씬 - 경성도박장",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.8,
+      "tags": [
+        "크라임씬",
+        "1930년대",
+        "도박장"
+      ]
+    },
+    {
+      "name": "베다바리",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.6,
+      "tags": [
+        "크라임씬",
+        "장치多"
+      ]
+    },
+    {
+      "name": "운필귀정",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.7,
+      "tags": [
+        "크라임씬"
+      ]
+    },
+    {
+      "name": "크라임씬 - 그믐달살인사건",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.7,
+      "tags": [
+        "크라임씬",
+        "살인사건"
+      ]
+    }
+  ],
+  "kakao-554838835": [
+    {
+      "name": "숨바꼭질 (The Origin)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN3",
+      "difficulty": 3,
+      "pricePerPersonWon": 21000,
+      "capacityMin": 4,
+      "capacityMax": 6,
+      "rating": 4.0,
+      "tags": [
+        "라이브체이스",
+        "IoT추적",
+        "락퍼즐없음"
+      ]
+    }
   ]
 }
