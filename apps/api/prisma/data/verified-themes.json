@@ -4234,6 +4234,50 @@
       "tags": [
         "드라마"
       ]
+    },
+    {
+      "name": "사라진 성물",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.8,
+      "tags": [
+        "수도원",
+        "성물",
+        "실종"
+      ]
+    },
+    {
+      "name": "악마와 싸우는 자",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "수도원",
+        "구마사제"
+      ]
+    },
+    {
+      "name": "클라바리오 봉쇄수도원",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.5,
+      "tags": [
+        "수도원",
+        "순례",
+        "시리즈종결편"
+      ]
     }
   ],
   "kakao-1531362613": [
@@ -4265,6 +4309,34 @@
         "공포",
         "저조도"
       ]
+    },
+    {
+      "name": "METRO(메트로)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.1,
+      "tags": [
+        "지하철",
+        "스릴러"
+      ]
+    },
+    {
+      "name": "아빠..어디가?",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 34000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.4,
+      "tags": [
+        "코미디",
+        "가족"
+      ]
     }
   ],
   "kakao-27367643": [
@@ -4278,6 +4350,34 @@
       "capacityMax": 2,
       "rating": 2.4,
       "tags": [
+        "판타지"
+      ]
+    },
+    {
+      "name": "인형괴담",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22500,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.8,
+      "tags": [
+        "인형",
+        "괴담"
+      ]
+    },
+    {
+      "name": "소서러",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 22500,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.8,
+      "tags": [
+        "마법사",
         "판타지"
       ]
     }
@@ -4295,6 +4395,20 @@
       "tags": [
         "공포",
         "인생테마"
+      ]
+    },
+    {
+      "name": "용하다 용해!! 용팔도령",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 17500,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 4.6,
+      "tags": [
+        "잠입",
+        "코미디"
       ]
     }
   ],
@@ -4381,6 +4495,20 @@
       "rating": 4.1,
       "tags": [
         "공포"
+      ]
+    },
+    {
+      "name": "바람",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 54000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 4.4,
+      "tags": [
+        "역사",
+        "이야기꾼"
       ]
     }
   ],
