@@ -5,6 +5,7 @@ RUN npm install
 COPY . .
 RUN npx prisma generate
 RUN npm run build
+RUN npm run build:seed
 
 FROM node:22.22.2-slim
 WORKDIR /app

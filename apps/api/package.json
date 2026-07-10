@@ -22,6 +22,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "ts-node prisma/seed.ts",
+    "build:seed": "tsc prisma/seed.ts --outDir prisma --module commonjs --moduleResolution node --esModuleInterop --skipLibCheck --resolveJsonModule --target ES2023 --experimentalDecorators --emitDecoratorMetadata",
+    "prisma:seed:prod": "node prisma/seed.js",
     "fetch:kakao-stores": "ts-node scripts/fetch-kakao-stores.ts"
   },
   "dependencies": {
