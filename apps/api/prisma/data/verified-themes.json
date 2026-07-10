@@ -525,6 +525,20 @@
         "SF판타지어워즈수상",
         "올해의테마"
       ]
+    },
+    {
+      "name": "WANNA GO HOME (워너 고 홈)",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 43500,
+      "capacityMin": 3,
+      "capacityMax": 3,
+      "rating": 4.4,
+      "tags": [
+        "코미디",
+        "올장치"
+      ]
     }
   ],
   "kakao-298789057": [
@@ -539,6 +553,33 @@
       "rating": 4.0,
       "tags": [
         "코미디"
+      ]
+    },
+    {
+      "name": "NOSTALGIA VISTA (노스텔지아 비스타)",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": [
+        "추리"
+      ]
+    },
+    {
+      "name": "머니머니부동산",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 34000,
+      "capacityMin": 3,
+      "capacityMax": 4,
+      "rating": 4.6,
+      "tags": [
+        "코미디",
+        "자본주의풍자"
       ]
     }
   ],
@@ -1162,6 +1203,30 @@
         "악기",
         "저가형"
       ]
+    },
+    {
+      "name": "여행",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 50000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 4.1,
+      "tags": [
+        "부부다툼서사"
+      ]
+    },
+    {
+      "name": "꽁노리",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN1",
+      "difficulty": 2,
+      "pricePerPersonWon": 44000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.3,
+      "tags": []
     }
   ],
   "kakao-1796437751": [
@@ -1176,6 +1241,41 @@
       "rating": 4.1,
       "tags": [
         "귀여운연출"
+      ]
+    },
+    {
+      "name": "파커랜드",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 3,
+      "capacityMax": 3,
+      "rating": 3.9,
+      "tags": []
+    },
+    {
+      "name": "아틀라스(ATLAS)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.7,
+      "tags": []
+    },
+    {
+      "name": "난 그저 여행만 했을 뿐인데..",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.2,
+      "tags": [
+        "이세계생존물"
       ]
     }
   ],
@@ -4729,6 +4829,67 @@
       "tags": [
         "추리",
         "클래식"
+      ]
+    }
+  ],
+  "kakao-1908100709": [
+    {
+      "name": "검은마법사 (The Dark Enchanter)",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 4.0,
+      "tags": [
+        "판타지",
+        "마법사",
+        "2인전용"
+      ]
+    },
+    {
+      "name": "하얀마법사 (White Enchanter)",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 4.0,
+      "tags": [
+        "판타지",
+        "마법사시리즈"
+      ]
+    }
+  ],
+  "kakao-1462418270": [
+    {
+      "name": "온칼로 (ONKALO)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.9,
+      "tags": [
+        "핵폐기물시설",
+        "타이머"
+      ]
+    },
+    {
+      "name": "연애조작단 (Romance Manipulation Squad)",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.9,
+      "tags": [
+        "로맨스",
+        "회사설정"
       ]
     }
   ]
