@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 /**
@@ -10,7 +10,6 @@ import { useState } from 'react';
  * 필터 없는 전체 목록이어야 하고, 위치순 정렬은 사용자가 원할 때 켜는 옵션이다.
  */
 export default function GeoLocationSync() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const isActive = Boolean(searchParams.get('lat') && searchParams.get('lng'));
@@ -39,10 +38,13 @@ export default function GeoLocationSync() {
         const params = new URLSearchParams(searchParams.toString());
         params.set('lat', String(position.coords.latitude));
         params.set('lng', String(position.coords.longitude));
+        // district/neighborhood를 함께 제거하는 네비게이션이라(파라미터가 추가되는
+        // 동시에 줄어듦) router.push()가 간헐적으로 무시하는 문제가 있어, 구/동
+        // 필터 초기화와 동일하게 확실한 전체 새로고침으로 처리한다 — 이 문제 때문에
+        // 구/동을 지정한 상태에서 위치기준으로 켜도 이전 구 필터가 남아있었다.
         params.delete('district');
         params.delete('neighborhood');
-        router.push(`/home?${params.toString()}`);
-        setStatus('idle');
+        window.location.href = `/home?${params.toString()}`;
       },
       () => setStatus('error'),
       { timeout: 5000, maximumAge: 5 * 60 * 1000 },

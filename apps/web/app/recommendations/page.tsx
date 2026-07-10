@@ -24,6 +24,12 @@ export default async function RecommendationsPage() {
         </p>
       </section>
 
+      {!recommendations.aiEngineAvailable && (
+        <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-center text-sm text-amber-700">
+          ⚠️ AI 추천 엔진에 지금 연결할 수 없어요. 잠시 후 다시 시도해주세요.
+        </div>
+      )}
+
       <div className="mt-4 flex snap-x gap-3 overflow-x-auto pb-2 [scrollbar-width:none]">
         {recommendations.items.map((item) => (
           <div

@@ -4,7 +4,13 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signupAction } from '@/lib/actions';
-import type { GenerationPreference, GenreTag, HorrorRole, PacingPreference } from '@/lib/types';
+import type {
+  ExperienceTier,
+  GenerationPreference,
+  GenreTag,
+  HorrorRole,
+  PacingPreference,
+} from '@/lib/types';
 
 // 이용약관/개인정보처리방침 보기 -> 뒤로가기로 돌아왔을 때 작성 중이던 내용이
 // 날아가지 않도록 sessionStorage에 임시 저장한다 (탭을 닫으면 사라짐).
@@ -15,6 +21,7 @@ interface SignupDraft {
   nickname: string;
   email: string;
   isBeginner: boolean | null;
+  experienceTier: ExperienceTier | null;
   genrePreferences: GenreTag[];
   pacingPreference: PacingPreference | null;
   generationPreference: GenerationPreference | null;
@@ -59,6 +66,13 @@ const HORROR_ROLE_OPTIONS: { key: HorrorRole; label: string; desc: string }[] = 
   { key: 'TANK', label: '💪 탱커', desc: '공포엔 안 쫄림' },
 ];
 
+const EXPERIENCE_TIER_OPTIONS: { key: ExperienceTier; label: string }[] = [
+  { key: 'TIER_10', label: '~10방' },
+  { key: 'TIER_50', label: '~50방' },
+  { key: 'TIER_100', label: '~100방' },
+  { key: 'TIER_100_PLUS', label: '100방+' },
+];
+
 export default function SignupForm() {
   const router = useRouter();
   const [nickname, setNickname] = useState(() => loadDraft()?.nickname ?? '');
@@ -66,6 +80,9 @@ export default function SignupForm() {
   const [password, setPassword] = useState('');
 
   const [isBeginner, setIsBeginner] = useState<boolean | null>(() => loadDraft()?.isBeginner ?? null);
+  const [experienceTier, setExperienceTier] = useState<ExperienceTier | null>(
+    () => loadDraft()?.experienceTier ?? null,
+  );
   const [genrePreferences, setGenrePreferences] = useState<GenreTag[]>(() => loadDraft()?.genrePreferences ?? []);
   const [pacingPreference, setPacingPreference] = useState<PacingPreference | null>(
     () => loadDraft()?.pacingPreference ?? null,
@@ -84,6 +101,7 @@ export default function SignupForm() {
       nickname,
       email,
       isBeginner,
+      experienceTier,
       genrePreferences,
       pacingPreference,
       generationPreference,
@@ -91,12 +109,23 @@ export default function SignupForm() {
       agreed,
     };
     sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
-  }, [nickname, email, isBeginner, genrePreferences, pacingPreference, generationPreference, horrorRole, agreed]);
+  }, [
+    nickname,
+    email,
+    isBeginner,
+    experienceTier,
+    genrePreferences,
+    pacingPreference,
+    generationPreference,
+    horrorRole,
+    agreed,
+  ]);
 
   const wantsHorror = genrePreferences.includes('HORROR_THRILLER');
   const preferencesComplete =
     isBeginner === true ||
     (isBeginner === false &&
+      experienceTier !== null &&
       genrePreferences.length > 0 &&
       pacingPreference !== null &&
       generationPreference !== null &&
@@ -120,6 +149,7 @@ export default function SignupForm() {
         password,
         nickname,
         isBeginner: isBeginner ?? false,
+        experienceTier: isBeginner ? undefined : (experienceTier ?? undefined),
         genrePreferences: isBeginner ? undefined : genrePreferences,
         pacingPreference: isBeginner ? undefined : (pacingPreference ?? undefined),
         generationPreference: isBeginner ? undefined : (generationPreference ?? undefined),
@@ -200,6 +230,26 @@ export default function SignupForm() {
 
           {isBeginner === false && (
             <div className="mt-4 space-y-4">
+              <div>
+                <p className="mb-2 text-xs font-semibold text-zinc-500">지금까지 몇 방 정도 클리어하셨나요?</p>
+                <div className="grid grid-cols-4 gap-2">
+                  {EXPERIENCE_TIER_OPTIONS.map((t) => (
+                    <button
+                      key={t.key}
+                      type="button"
+                      onClick={() => setExperienceTier(t.key)}
+                      className={`rounded-xl border py-2 text-xs font-medium ${
+                        experienceTier === t.key
+                          ? 'border-indigo-600 bg-indigo-50 text-indigo-700'
+                          : 'border-zinc-200 text-zinc-500'
+                      }`}
+                    >
+                      {t.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               <div>
                 <p className="mb-2 text-xs font-semibold text-zinc-500">선호 장르 (복수 선택 가능)</p>
                 <div className="grid grid-cols-2 gap-2">

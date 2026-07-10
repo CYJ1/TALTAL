@@ -3,6 +3,7 @@ import type {
   CreateReviewInput,
   DateSlots,
   DistrictFacet,
+  ExperienceTier,
   GenerationPreference,
   GenreTag,
   HexagonStat,
@@ -292,6 +293,7 @@ interface UserRecord {
   totalClears: number;
   currentExp: number;
   isBeginner: boolean;
+  experienceTier: ExperienceTier | null;
   genrePreferences: GenreTag[];
   pacingPreference: PacingPreference | null;
   generationPreference: GenerationPreference | null;
@@ -308,6 +310,7 @@ const USERS: Record<string, UserRecord> = {
     totalClears: 148,
     currentExp: 84,
     isBeginner: false,
+    experienceTier: 'TIER_100_PLUS',
     genrePreferences: ['HORROR_THRILLER', 'ACTION_ADVENTURE'],
     pacingPreference: 'SPEED',
     generationPreference: 'GEN3',
@@ -353,6 +356,7 @@ export function getUserProfile(userId: string): UserProfile {
     totalClears: u.totalClears,
     expPercent: Math.min(100, Math.round((u.currentExp / 100) * 100)),
     isBeginner: u.isBeginner,
+    experienceTier: u.experienceTier,
     genrePreferences: u.genrePreferences,
     pacingPreference: u.pacingPreference,
     generationPreference: u.generationPreference,
@@ -459,7 +463,12 @@ export function getRecommendations(userId: string): RecommendationResponse {
     };
   });
 
-  return { userId, peerSampleSize: 1500, items: items.sort((a, b) => b.matchScore - a.matchScore) };
+  return {
+    userId,
+    peerSampleSize: 1500,
+    items: items.sort((a, b) => b.matchScore - a.matchScore),
+    aiEngineAvailable: true,
+  };
 }
 
 // ---- 파티 / 에스크로 ----

@@ -30,6 +30,7 @@ export class StatsService {
         Math.round((user.currentExp / EXP_PER_LEVEL) * 100),
       ),
       isBeginner: user.isBeginner,
+      experienceTier: user.experienceTier,
       genrePreferences: user.genrePreferences,
       pacingPreference: user.pacingPreference,
       generationPreference: user.generationPreference,

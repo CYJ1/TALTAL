@@ -51,6 +51,7 @@ export class AuthService {
         passwordHash,
         nickname: dto.nickname,
         isBeginner: dto.isBeginner,
+        experienceTier: dto.isBeginner ? null : dto.experienceTier,
         // 방린이는 선호도 설문 자체를 건너뛰므로 값이 없다.
         genrePreferences: dto.isBeginner
           ? []
