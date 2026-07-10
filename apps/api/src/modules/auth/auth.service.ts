@@ -201,6 +201,16 @@ export class AuthService {
     return `${nickname}${Date.now()}`;
   }
 
+  /**
+   * 회원탈퇴 — UserStat/ThemeReview/UserHistoryLog/PartyParticipant는 스키마에
+   * onDelete: Cascade가 걸려 있어 User row 삭제 한 번으로 같이 정리된다.
+   * 주최한 파티(Party.hostUserId)는 FK가 아닌 참조값이라 그대로 남지만, 화면에서
+   * 호스트 정보 조회 실패로만 이어지고 별도 정리가 필요한 상태는 아니다.
+   */
+  async deleteAccount(userId: string): Promise<void> {
+    await this.prisma.user.delete({ where: { id: userId } });
+  }
+
   async me(userId: string): Promise<SafeUser> {
     const user = await this.prisma.user.findUnique({ where: { id: userId } });
     if (!user) {

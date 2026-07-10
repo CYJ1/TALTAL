@@ -3,10 +3,26 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { API_BASE_URL, DEMO_USER_ID, IS_REMOTE_MODE } from './config';
+import { API_BASE_URL, DEMO_USER_ID, HOME_PAGE_SIZE, IS_REMOTE_MODE } from './config';
 import { createPartyRequest, joinPartyRequest, searchThemes, submitReview } from './data';
 import { getSessionToken, getSessionUser, SESSION_COOKIE, setSessionCookie } from './session';
-import type { CreateReviewInput, NewPartyInput, SignupPreferences } from './types';
+import type { CreateReviewInput, NewPartyInput, SignupPreferences, ThemeSearchResult } from './types';
+
+// 홈 화면 무한스크롤 — 첫 페이지는 서버 컴포넌트에서 이미 받았고, 이 액션은
+// 스크롤 끝에 닿을 때마다 다음 페이지를 더 받아오는 용도다.
+export async function loadMoreThemesAction(
+  filters: {
+    district?: string;
+    neighborhood?: string;
+    tag?: string;
+    availableOnly?: boolean;
+    lat?: number;
+    lng?: number;
+  },
+  offset: number,
+): Promise<ThemeSearchResult[]> {
+  return searchThemes({ ...filters, limit: HOME_PAGE_SIZE, offset });
+}
 
 export async function submitReviewAction(input: Omit<CreateReviewInput, 'userId'>) {
   const userId = (await getSessionUser())?.id ?? DEMO_USER_ID;
@@ -108,6 +124,23 @@ export async function searchThemesForLogAction(q: string) {
   if (!q.trim()) return [];
   const results = await searchThemes({ q });
   return results.slice(0, 10);
+}
+
+export async function deleteAccountAction() {
+  if (IS_REMOTE_MODE) {
+    const token = await getSessionToken();
+    const res = await fetch(`${API_BASE_URL}/auth/me`, {
+      method: 'DELETE',
+      headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) },
+    });
+    if (!res.ok) {
+      const body = await res.json().catch(() => null);
+      throw new Error(body?.message ?? '회원탈퇴에 실패했습니다.');
+    }
+  }
+  const store = await cookies();
+  store.delete(SESSION_COOKIE);
+  redirect('/');
 }
 
 export async function checkNicknameAvailableAction(nickname: string): Promise<boolean> {

@@ -3,8 +3,9 @@ import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
 import LogoutButton from '@/components/LogoutButton';
 import { getProfile, getUserReviews } from '@/lib/data';
-import { getPreferenceBadge } from '@/lib/preferences';
+import { getLevelTitle, getPreferenceBadge, MAX_LEVEL } from '@/lib/preferences';
 import { getSessionUser } from '@/lib/session';
+import DeleteAccountLink from '@/components/DeleteAccountLink';
 
 // 흙길(최하) < 풀길 < 풀꽃길 < 꽃길 < 꽃밭길 < 인생테마(최상) 순
 const GRADE_STYLE: Record<string, string> = {
@@ -41,12 +42,25 @@ export default async function ProfilePage() {
         </div>
         <h1 className="mt-3 text-lg font-bold text-zinc-900">{profile.nickname}</h1>
         <span className="mt-1 rounded-full bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">
-          Lv.{profile.level} 헤비 에스케이퍼
+          Lv.{profile.level} {getLevelTitle(profile.level)}
         </span>
         <p className="mt-2 text-sm text-zinc-500">
           매너온도 <span className="font-semibold text-rose-500">{profile.mannerTemp.toFixed(1)}°C</span> · 성향{' '}
           <span className="font-semibold text-indigo-600">{getPreferenceBadge(profile)}</span>
         </p>
+
+        <div className="mt-4 w-full">
+          <div className="flex items-center justify-between text-xs text-zinc-500">
+            <span>Lv.{profile.level}</span>
+            <span>{profile.level >= MAX_LEVEL ? 'MAX' : `Lv.${profile.level + 1}까지 ${profile.expPercent}%`}</span>
+          </div>
+          <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-zinc-100">
+            <div
+              className="h-full rounded-full bg-indigo-600 transition-all"
+              style={{ width: `${profile.level >= MAX_LEVEL ? 100 : profile.expPercent}%` }}
+            />
+          </div>
+        </div>
       </section>
 
       <section className="grid grid-cols-2 gap-3">
@@ -55,8 +69,8 @@ export default async function ProfilePage() {
           <p className="mt-0.5 text-xs text-zinc-500">Total 클리어</p>
         </div>
         <div className="rounded-2xl border border-zinc-200 bg-white p-4 text-center shadow-sm">
-          <p className="text-2xl font-bold text-zinc-900">{profile.expPercent}%</p>
-          <p className="mt-0.5 text-xs text-zinc-500">Next Lv까지 EXP</p>
+          <p className="text-2xl font-bold text-zinc-900">Lv.{profile.level}</p>
+          <p className="mt-0.5 text-xs text-zinc-500">/ {MAX_LEVEL} 레벨</p>
         </div>
       </section>
 
@@ -147,6 +161,7 @@ export default async function ProfilePage() {
       </section>
 
       <LogoutButton />
+      <DeleteAccountLink />
     </div>
   );
 }

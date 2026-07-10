@@ -1,11 +1,12 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
-import ThemeCard from '@/components/ThemeCard';
 import TagChip from '@/components/TagChip';
 import Logo from '@/components/Logo';
 import DistrictPicker from '@/components/DistrictPicker';
 import GeoLocationSync from '@/components/GeoLocationSync';
+import ThemeList from '@/components/ThemeList';
 import { getDistrictFacets, searchThemes } from '@/lib/data';
+import { HOME_PAGE_SIZE } from '@/lib/config';
 
 export default async function HomePage({
   searchParams,
@@ -22,15 +23,16 @@ export default async function HomePage({
   const params = await searchParams;
   const lat = params.lat ? Number(params.lat) : undefined;
   const lng = params.lng ? Number(params.lng) : undefined;
+  const filters = {
+    district: params.district,
+    neighborhood: params.neighborhood,
+    tag: params.tag,
+    availableOnly: params.availableOnly === 'true',
+    lat,
+    lng,
+  };
   const [themes, facets] = await Promise.all([
-    searchThemes({
-      district: params.district,
-      neighborhood: params.neighborhood,
-      tag: params.tag,
-      availableOnly: params.availableOnly === 'true',
-      lat,
-      lng,
-    }),
+    searchThemes({ ...filters, limit: HOME_PAGE_SIZE, offset: 0 }),
     getDistrictFacets(),
   ]);
 
@@ -93,12 +95,7 @@ export default async function HomePage({
       </header>
 
       <main className="space-y-3 px-4 py-4">
-        {themes.length === 0 && (
-          <p className="py-10 text-center text-sm text-zinc-400">조건에 맞는 테마가 없습니다.</p>
-        )}
-        {themes.map((theme) => (
-          <ThemeCard key={theme.themeId} theme={theme} />
-        ))}
+        <ThemeList initialThemes={themes} filters={filters} />
       </main>
     </div>
   );

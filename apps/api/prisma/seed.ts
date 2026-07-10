@@ -213,9 +213,9 @@ const USERS = [
     email: 'escaper_pro@taltal.demo',
     nickname: '방탈출고인물',
     mannerTemp: 98.2,
-    level: 42,
+    level: 10,
     totalClears: 148,
-    currentExp: 84,
+    currentExp: 100,
     stat: { logic: 95, observe: 90, speed: 88, story: 72, solving: 76, tank: 98 },
   },
   {

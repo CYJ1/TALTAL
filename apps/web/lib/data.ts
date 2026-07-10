@@ -53,6 +53,8 @@ export async function searchThemes(query: {
   lat?: number;
   lng?: number;
   q?: string;
+  limit?: number;
+  offset?: number;
 }): Promise<ThemeSearchResult[]> {
   if (!IS_REMOTE_MODE) return mock.getThemesForSearch(query);
 
@@ -69,6 +71,8 @@ export async function searchThemes(query: {
   if (query.lat != null) params.set('lat', String(query.lat));
   if (query.lng != null) params.set('lng', String(query.lng));
   if (query.q) params.set('q', query.q);
+  if (query.limit != null) params.set('limit', String(query.limit));
+  if (query.offset != null) params.set('offset', String(query.offset));
 
   const raw = await remoteJson<Json[]>(`/search?${params.toString()}`);
   return raw.map((r) => ({
