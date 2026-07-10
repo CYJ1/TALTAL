@@ -4720,6 +4720,47 @@
       "tags": [
         "첩보"
       ]
+    },
+    {
+      "name": "어느 구두쇠의 전시회장",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.6,
+      "tags": [
+        "영어버전지원"
+      ]
+    },
+    {
+      "name": "트레져 쉽: 신화 속의 존재",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.6,
+      "tags": [
+        "신화",
+        "모험"
+      ]
+    },
+    {
+      "name": "대마법사의 시험",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.6,
+      "tags": [
+        "마법",
+        "판타지"
+      ]
     }
   ],
   "kakao-280887856": [
@@ -4736,6 +4777,20 @@
         "산악",
         "생존"
       ]
+    },
+    {
+      "name": "미션(이지모드)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 1,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 2.4,
+      "tags": [
+        "이지모드",
+        "강탈"
+      ]
     }
   ],
   "kakao-1516889516": [
@@ -4751,6 +4806,20 @@
       "tags": [
         "실종",
         "추적"
+      ]
+    },
+    {
+      "name": "침묵의 목격자",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 7,
+      "rating": 3.6,
+      "tags": [
+        "화재사건",
+        "추리"
       ]
     }
   ],
@@ -4812,6 +4881,20 @@
       "tags": [
         "추리",
         "입문용"
+      ]
+    },
+    {
+      "name": "H.B.D : 해피버스데이",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.6,
+      "tags": [
+        "생일파티",
+        "공포"
       ]
     }
   ],
