@@ -117,17 +117,20 @@ services:
     environment:
       # 설정 시 Next.js 서버가 목업 대신 실제 NestJS API를 호출한다 (lib/config.ts 참고)
       API_BASE_URL: http://api:4000
-      APP_BASE_URL: http://localhost:3000
+      # 로컬 데모용 기본값이다. 서버에 배포할 때는 docker-compose.yml을 직접 고치지
+      # 말고, 이 파일과 같은 위치에 .env를 만들어 아래 변수들을 덮어써라 (docker
+      # compose가 자동으로 읽는다) — 예: APP_BASE_URL=http://<외부IP>.nip.io:3000
+      APP_BASE_URL: ${APP_BASE_URL:-http://localhost:3000}
       # api 서비스와 동일한 값이어야 한다 (POST /auth/social 호출 인증용).
       INTERNAL_API_SECRET: dev-only-internal-secret-change-in-production
       # 소셜 로그인은 카카오/네이버/구글 개발자 콘솔에서 앱을 등록해 발급받은 값을
       # 채워야 동작한다 (비워두면 로그인 화면에서 해당 버튼이 "준비중" 오류로 안내됨).
-      KAKAO_CLIENT_ID: ""
-      KAKAO_CLIENT_SECRET: ""
-      NAVER_CLIENT_ID: ""
-      NAVER_CLIENT_SECRET: ""
-      GOOGLE_CLIENT_ID: ""
-      GOOGLE_CLIENT_SECRET: ""
+      KAKAO_CLIENT_ID: ${KAKAO_CLIENT_ID:-}
+      KAKAO_CLIENT_SECRET: ${KAKAO_CLIENT_SECRET:-}
+      NAVER_CLIENT_ID: ${NAVER_CLIENT_ID:-}
+      NAVER_CLIENT_SECRET: ${NAVER_CLIENT_SECRET:-}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
     ports:
       - "3000:3000"
 

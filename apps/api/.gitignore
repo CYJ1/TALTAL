@@ -5,6 +5,9 @@ node_modules
 
 /generated/prisma
 
+# build:seed이 prisma/seed.ts를 컴파일해 만드는 산출물 (Docker 프로덕션 시딩용)
+/prisma/seed.js
+
 # 카카오 로컬 API 조회 결과 원본 덤프 — seed.ts 갱신 후에는 재현 가능한 산출물이라
 # 버전관리 대상에서 제외한다 (scripts/fetch-kakao-stores.ts 참고)
 /scripts/output

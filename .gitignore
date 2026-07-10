@@ -6,3 +6,6 @@ __pycache__/
 
 # OS
 .DS_Store
+
+# docker compose가 자동으로 읽는 배포 환경변수 (APP_BASE_URL, 소셜로그인 키 등)
+/.env
