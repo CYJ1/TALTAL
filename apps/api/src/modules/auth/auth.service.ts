@@ -46,6 +46,13 @@ export class AuthService {
       throw new ConflictException('이미 가입된 이메일입니다.');
     }
 
+    const nicknameTaken = await this.prisma.user.findUnique({
+      where: { nickname: dto.nickname },
+    });
+    if (nicknameTaken) {
+      throw new ConflictException('이미 사용 중인 닉네임입니다.');
+    }
+
     const passwordHash = await bcrypt.hash(dto.password, BCRYPT_ROUNDS);
     const user = await this.prisma.user.create({
       data: {
@@ -126,10 +133,13 @@ export class AuthService {
       return { ...this.issueToken(linked), isNewUser: false };
     }
 
+    // 소셜 프로필의 닉네임은 사용자가 고른 게 아니라 겹칠 수 있다 — 실패시키는
+    // 대신 짧은 무작위 접미사를 붙여 자동으로 겹치지 않게 만든다.
+    const nickname = await this.ensureUniqueNickname(dto.nickname);
     const created = await this.prisma.user.create({
       data: {
         email: dto.email,
-        nickname: dto.nickname,
+        nickname,
         provider,
         providerId: dto.providerId,
         stat: { create: {} },
@@ -161,12 +171,34 @@ export class AuthService {
     return toSafeUser(user);
   }
 
+  /** 닉네임 변경 화면의 "중복확인" 버튼용 — 본인의 현재 닉네임은 사용 가능 처리한다. */
+  async isNicknameAvailable(userId: string, nickname: string): Promise<boolean> {
+    const existing = await this.prisma.user.findUnique({ where: { nickname } });
+    return !existing || existing.id === userId;
+  }
+
   async updateNickname(userId: string, dto: UpdateNicknameDto): Promise<SafeUser> {
+    const available = await this.isNicknameAvailable(userId, dto.nickname);
+    if (!available) {
+      throw new ConflictException('이미 사용 중인 닉네임입니다.');
+    }
     const user = await this.prisma.user.update({
       where: { id: userId },
       data: { nickname: dto.nickname },
     });
     return toSafeUser(user);
+  }
+
+  private async ensureUniqueNickname(nickname: string): Promise<string> {
+    const existing = await this.prisma.user.findUnique({ where: { nickname } });
+    if (!existing) return nickname;
+    // 짧은 무작위 접미사로 겹치지 않을 때까지 재시도 (사실상 첫 시도에 끝남).
+    for (let i = 0; i < 5; i++) {
+      const candidate = `${nickname}${Math.floor(1000 + Math.random() * 9000)}`;
+      const taken = await this.prisma.user.findUnique({ where: { nickname: candidate } });
+      if (!taken) return candidate;
+    }
+    return `${nickname}${Date.now()}`;
   }
 
   async me(userId: string): Promise<SafeUser> {

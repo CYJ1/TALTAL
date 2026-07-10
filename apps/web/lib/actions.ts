@@ -110,6 +110,19 @@ export async function searchThemesForLogAction(q: string) {
   return results.slice(0, 10);
 }
 
+export async function checkNicknameAvailableAction(nickname: string): Promise<boolean> {
+  if (!IS_REMOTE_MODE) return true;
+
+  const token = await getSessionToken();
+  const res = await fetch(
+    `${API_BASE_URL}/auth/me/nickname-available?nickname=${encodeURIComponent(nickname)}`,
+    { headers: { ...(token ? { Authorization: `Bearer ${token}` } : {}) }, cache: 'no-store' },
+  );
+  if (!res.ok) return false;
+  const body = await res.json();
+  return Boolean(body.available);
+}
+
 export async function updateNicknameAction(nickname: string) {
   if (!IS_REMOTE_MODE) return;
 

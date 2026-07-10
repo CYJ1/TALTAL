@@ -109,7 +109,7 @@ model User {
   passwordHash         String? // 소셜 로그인 전용 계정은 비밀번호가 없다
   provider             SocialProvider?
   providerId           String?
-  nickname             String
+  nickname             String                @unique
   mannerTemp           Float                 @default(36.5)
   level                Int                   @default(1)
   totalClears          Int                   @default(0)

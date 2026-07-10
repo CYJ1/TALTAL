@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Patch,
   Post,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -65,5 +66,18 @@ export class AuthController {
     @Body() dto: UpdateNicknameDto,
   ) {
     return this.authService.updateNickname(req.user.userId, dto);
+  }
+
+  @Get('me/nickname-available')
+  @UseGuards(JwtAuthGuard)
+  async checkNicknameAvailable(
+    @Req() req: AuthenticatedRequest,
+    @Query('nickname') nickname: string,
+  ) {
+    const available = await this.authService.isNicknameAvailable(
+      req.user.userId,
+      nickname,
+    );
+    return { available };
   }
 }

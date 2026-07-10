@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
 import LogoutButton from '@/components/LogoutButton';
-import NicknameEditor from '@/components/NicknameEditor';
 import { getProfile, getUserReviews } from '@/lib/data';
 import { getPreferenceBadge } from '@/lib/preferences';
 import { getSessionUser } from '@/lib/session';
@@ -121,7 +120,13 @@ export default async function ProfilePage() {
       <section className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
         <h2 className="mb-2 text-sm font-semibold text-zinc-900">계정</h2>
         <div className="divide-y divide-zinc-100 text-sm">
-          <NicknameEditor currentNickname={profile.nickname} />
+          <Link href="/profile/nickname" className="flex items-center justify-between py-2.5 text-zinc-600">
+            <span>닉네임 변경</span>
+            <span className="flex items-center gap-1 text-zinc-400">
+              {profile.nickname}
+              <span className="text-zinc-300">›</span>
+            </span>
+          </Link>
           <div className="flex items-center justify-between py-2.5 text-zinc-600">
             <span>알림 설정</span>
             <span className="text-zinc-300">›</span>
