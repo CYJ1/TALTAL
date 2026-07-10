@@ -2,28 +2,62 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import HexagonRadarChart from '@/components/HexagonRadarChart';
 import { getCalendar, getProfile } from '@/lib/data';
-import { getPreferenceBadge } from '@/lib/preferences';
+import { getLevelTitle, getPreferenceBadge } from '@/lib/preferences';
 import { getSessionUser } from '@/lib/session';
 
-const DEMO_MONTH = '2026-07';
-const DAYS_IN_MONTH = 31;
-const FIRST_WEEKDAY = 3; // 2026-07-01 is a Wednesday (0=Sun)
+const DEMO_MONTH = '2026-07'; // 데모 앱의 "오늘" 기준 월
+const CALENDAR_YEAR = Number(DEMO_MONTH.split('-')[0]);
 const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
-export default async function CalendarPage() {
+function daysInMonth(month: string) {
+  const [y, m] = month.split('-').map(Number);
+  return new Date(Date.UTC(y, m, 0)).getUTCDate();
+}
+
+function firstWeekday(month: string) {
+  const [y, m] = month.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, 1)).getUTCDay();
+}
+
+function shiftMonth(month: string, delta: number) {
+  const [y, m] = month.split('-').map(Number);
+  const d = new Date(Date.UTC(y, m - 1 + delta, 1));
+  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+}
+
+function monthLabel(month: string) {
+  const [y, m] = month.split('-').map(Number);
+  return `${y}년 ${m}월`;
+}
+
+export default async function CalendarPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ month?: string }>;
+}) {
   const sessionUser = await getSessionUser();
   if (!sessionUser) redirect('/login');
+
+  const { month: monthParam } = await searchParams;
+  // 최소한 올해(연초~연말) 안에서만 이동 가능하도록 제한한다.
+  const month = monthParam?.startsWith(`${CALENDAR_YEAR}-`) ? monthParam : DEMO_MONTH;
+
   const [profile, entries] = await Promise.all([
     getProfile(sessionUser.id),
-    getCalendar(sessionUser.id, DEMO_MONTH),
+    getCalendar(sessionUser.id, month),
   ]);
 
   const entriesByDay = new Map(entries.map((e) => [Number(e.date.split('-')[2]), e]));
 
   const cells: (number | null)[] = [
-    ...Array(FIRST_WEEKDAY).fill(null),
-    ...Array.from({ length: DAYS_IN_MONTH }, (_, i) => i + 1),
+    ...Array(firstWeekday(month)).fill(null),
+    ...Array.from({ length: daysInMonth(month) }, (_, i) => i + 1),
   ];
+
+  const prevMonth = shiftMonth(month, -1);
+  const nextMonth = shiftMonth(month, 1);
+  const canGoPrev = prevMonth.startsWith(`${CALENDAR_YEAR}-`);
+  const canGoNext = nextMonth.startsWith(`${CALENDAR_YEAR}-`);
 
   return (
     <div className="space-y-5 px-4 py-4 pb-8">
@@ -31,7 +65,10 @@ export default async function CalendarPage() {
         <div className="flex items-center justify-between">
           <div>
             <p className="font-semibold text-zinc-900">
-              {profile.nickname} <span className="ml-1 rounded-full bg-indigo-600 px-2 py-0.5 text-xs text-white">Lv.{profile.level} 헤비 에스케이퍼</span>
+              {profile.nickname}{' '}
+              <span className="ml-1 rounded-full bg-indigo-600 px-2 py-0.5 text-xs text-white">
+                Lv.{profile.level} {getLevelTitle(profile.level)}
+              </span>
             </p>
             <p className="mt-1 text-xs text-zinc-500">
               매너온도 {profile.mannerTemp.toFixed(1)}°C · 성향{' '}
@@ -60,7 +97,23 @@ export default async function CalendarPage() {
 
       <section className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
         <div className="mb-3 flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-zinc-900">&lt; 2026년 7월 &gt; 스마트 기록 캘린더</h2>
+          <div className="flex items-center gap-2">
+            <Link
+              href={canGoPrev ? `/calendar?month=${prevMonth}` : '#'}
+              className={`px-1 text-sm ${canGoPrev ? 'text-zinc-500' : 'pointer-events-none text-zinc-200'}`}
+            >
+              ‹
+            </Link>
+            <h2 className="text-sm font-semibold text-zinc-900">
+              &lt; {monthLabel(month)} &gt; 스마트 기록 캘린더
+            </h2>
+            <Link
+              href={canGoNext ? `/calendar?month=${nextMonth}` : '#'}
+              className={`px-1 text-sm ${canGoNext ? 'text-zinc-500' : 'pointer-events-none text-zinc-200'}`}
+            >
+              ›
+            </Link>
+          </div>
           <Link href="/calendar/log" className="shrink-0 text-xs font-medium text-indigo-600 underline">
             + 직접 기록 추가
           </Link>

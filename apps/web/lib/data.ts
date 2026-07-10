@@ -153,6 +153,11 @@ export async function getUserReviews(userId: string): Promise<UserReview[]> {
   }));
 }
 
+export async function getUserReview(userId: string, reviewId: string): Promise<UserReview | null> {
+  const reviews = await getUserReviews(userId);
+  return reviews.find((r) => r.id === reviewId) ?? null;
+}
+
 export async function getCalendar(userId: string, month: string): Promise<CalendarEntry[]> {
   if (!IS_REMOTE_MODE) return mock.getUserCalendar(userId, month);
   const raw = await remoteJson<Json[]>(`/users/${userId}/calendar?month=${month}`);
