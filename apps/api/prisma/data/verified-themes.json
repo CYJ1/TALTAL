@@ -5864,5 +5864,376 @@
         "술래잡기"
       ]
     }
+  ],
+  "kakao-514900740": [
+    {
+      "name": "피안화",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "일본풍",
+        "괴담"
+      ]
+    }
+  ],
+  "kakao-340303350": [
+    {
+      "name": "미드나이트",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": []
+    },
+    {
+      "name": "임파서블",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": []
+    },
+    {
+      "name": "사라진 목소리",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "추리"
+      ]
+    },
+    {
+      "name": "3인의 저주",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": []
+    },
+    {
+      "name": "살인호텔",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "호텔"
+      ]
+    },
+    {
+      "name": "시그너스 X-1",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "SF"
+      ]
+    },
+    {
+      "name": "피의장막",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": []
+    }
+  ],
+  "kakao-1825220691": [
+    {
+      "name": "꽃길",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "방린이추천",
+        "장치多"
+      ]
+    },
+    {
+      "name": "올림픽시즌2 1988",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "1988서울올림픽",
+        "장치多"
+      ]
+    }
+  ],
+  "kakao-27369058": [
+    {
+      "name": "셜록: 교수의 비밀",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.6,
+      "tags": [
+        "연구실"
+      ]
+    },
+    {
+      "name": "아르바이트: 과학자의 속임수",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.6,
+      "tags": [
+        "실험실"
+      ]
+    },
+    {
+      "name": "큐피드: 러브 첼린지",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.6,
+      "tags": [
+        "커플",
+        "연애"
+      ]
+    },
+    {
+      "name": "구미호: 호령마을 미스테리",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.6,
+      "tags": [
+        "구미호",
+        "전래설화"
+      ]
+    },
+    {
+      "name": "로스트: 그 남자의 경고",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.6,
+      "tags": []
+    }
+  ],
+  "kakao-1969052262": [
+    {
+      "name": "호그와트: 후플푸프",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "해리포터",
+        "호그와트"
+      ]
+    },
+    {
+      "name": "호그와트: 슬리데린",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "해리포터",
+        "호그와트"
+      ]
+    },
+    {
+      "name": "호그와트: 래번클로",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.7,
+      "tags": [
+        "해리포터",
+        "호그와트"
+      ]
+    }
+  ],
+  "kakao-97734177": [
+    {
+      "name": "그도... 그럴 것이다",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.0,
+      "tags": [
+        "스릴러",
+        "장치"
+      ]
+    },
+    {
+      "name": "인투더와일드 (Into the Wild)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "모험",
+        "장치"
+      ]
+    },
+    {
+      "name": "SCENE : 404 NOT FOUND",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN3",
+      "difficulty": 4,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 3.6,
+      "tags": [
+        "공포",
+        "연출"
+      ]
+    }
+  ],
+  "kakao-273855007": [
+    {
+      "name": "쏘우 (Saw)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.6,
+      "tags": [
+        "스릴러"
+      ]
+    },
+    {
+      "name": "올드 보이 (Old Boy)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN1",
+      "difficulty": 2,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.2,
+      "tags": [
+        "감금",
+        "복수"
+      ]
+    },
+    {
+      "name": "해리포터 (Harry Potter)",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.6,
+      "tags": [
+        "판타지"
+      ]
+    },
+    {
+      "name": "쇼생크 탈출 (Shawshank Escape)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 3.6,
+      "tags": [
+        "감옥",
+        "탈출"
+      ]
+    },
+    {
+      "name": "미션 임파서블 (Mission Impossible)",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "첩보",
+        "액션"
+      ]
+    }
+  ],
+  "kakao-2000674643": [
+    {
+      "name": "스쿨오브락 (School of Rock)",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN1",
+      "difficulty": 2,
+      "pricePerPersonWon": 20000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.6,
+      "tags": [
+        "코미디"
+      ]
+    }
   ]
 }
