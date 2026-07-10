@@ -4140,6 +4140,36 @@
       "tags": [
         "로맨스"
       ]
+    },
+    {
+      "name": "마션",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 5,
+      "pricePerPersonWon": 22500,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 2.8,
+      "tags": [
+        "SF",
+        "생존",
+        "미션형"
+      ]
+    },
+    {
+      "name": "신데렐라",
+      "genre": "SCIFI_FANTASY",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 22500,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.0,
+      "tags": [
+        "동화",
+        "판타지",
+        "입문자용"
+      ]
     }
   ],
   "kakao-1429324904": [
@@ -5136,6 +5166,21 @@
       "rating": 4.2,
       "tags": [
         "공포"
+      ]
+    },
+    {
+      "name": "파라오의 비밀",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 4,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 2.5,
+      "tags": [
+        "시간여행",
+        "이집트",
+        "보물찾기"
       ]
     }
   ],
