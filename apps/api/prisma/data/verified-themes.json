@@ -2210,6 +2210,20 @@
       "tags": [
         "추리"
       ]
+    },
+    {
+      "name": "네모네모 마믈메는 무슨밀미 밌멌믈까?",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 23000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.4,
+      "tags": [
+        "언어유희",
+        "자물쇠"
+      ]
     }
   ],
   "kakao-1732671994": [
@@ -2225,6 +2239,59 @@
       "tags": [
         "코믹",
         "쉬운난이도"
+      ]
+    },
+    {
+      "name": "층간소음",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 1,
+      "capacityMax": 3,
+      "rating": 4.7,
+      "tags": [
+        "공포"
+      ]
+    },
+    {
+      "name": "NOX(녹스)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 6,
+      "rating": 4.0,
+      "tags": [
+        "침투",
+        "층간소음과세계관연결"
+      ]
+    },
+    {
+      "name": "얼라이브 ALIVE",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 26000,
+      "capacityMin": 4,
+      "capacityMax": 4,
+      "rating": 4.5,
+      "tags": [
+        "장치多"
+      ]
+    },
+    {
+      "name": "깜방탈출: WAY OUT",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 3,
+      "rating": 4.5,
+      "tags": [
+        "탈옥"
       ]
     }
   ],
@@ -2349,6 +2416,59 @@
       "tags": [
         "탐험"
       ]
+    },
+    {
+      "name": "지난날을 잊었다",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 23000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 4.1,
+      "tags": [
+        "감성"
+      ]
+    },
+    {
+      "name": "미스터리",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 4.3,
+      "tags": [
+        "추리"
+      ]
+    },
+    {
+      "name": "아몬: 새벽을 여는 소년",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.2,
+      "tags": [
+        "이집트신화"
+      ]
+    },
+    {
+      "name": "잔향",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.5,
+      "tags": [
+        "후각",
+        "기억"
+      ]
     }
   ],
   "kakao-1772415237": [
@@ -2417,6 +2537,20 @@
       "tags": [
         "코믹",
         "쉬운난이도"
+      ]
+    },
+    {
+      "name": "푸른수염 (Blue Beard)",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 25000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 3.4,
+      "tags": [
+        "동화재해석",
+        "스릴러"
       ]
     }
   ],
@@ -2850,6 +2984,61 @@
       "tags": [
         "장치多",
         "비추천초보"
+      ]
+    },
+    {
+      "name": "(수)산업스파이",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 3,
+      "pricePerPersonWon": 28000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 4.0,
+      "tags": [
+        "산업스파이"
+      ]
+    },
+    {
+      "name": "ㄱ찻집",
+      "genre": "MYSTERY_DETECTIVE",
+      "generation": "GEN2",
+      "difficulty": 2,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.2,
+      "tags": [
+        "찻집",
+        "추리"
+      ]
+    },
+    {
+      "name": "아는 사이 (The Couple)",
+      "genre": "EMOTIONAL_ROMANCE",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": [
+        "커플",
+        "로맨스"
+      ]
+    },
+    {
+      "name": "재즈 인 더 레인",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 4,
+      "pricePerPersonWon": 27000,
+      "capacityMin": 2,
+      "capacityMax": 5,
+      "rating": 4.0,
+      "tags": [
+        "재즈",
+        "스릴러"
       ]
     }
   ],
