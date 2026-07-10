@@ -3608,6 +3608,20 @@
         "공포",
         "고볼륨"
       ]
+    },
+    {
+      "name": "오버킬",
+      "genre": "ACTION_ADVENTURE",
+      "generation": "GEN1",
+      "difficulty": 4,
+      "pricePerPersonWon": 22000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 3.8,
+      "tags": [
+        "잠입",
+        "크라임씬카페"
+      ]
     }
   ],
   "kakao-1442041275": [
@@ -3727,6 +3741,19 @@
         "2025방탈출어워즈수상",
         "장치연출"
       ]
+    },
+    {
+      "name": "쿠키",
+      "genre": "COMEDY_ETC",
+      "generation": "GEN1",
+      "difficulty": 3,
+      "pricePerPersonWon": 33000,
+      "capacityMin": 2,
+      "capacityMax": 4,
+      "rating": 3.8,
+      "tags": [
+        "일상물"
+      ]
     }
   ],
   "kakao-366110448": [
@@ -3831,6 +3858,20 @@
       "tags": [
         "판타지",
         "고평점"
+      ]
+    },
+    {
+      "name": "즐거운 나의 집",
+      "genre": "HORROR_THRILLER",
+      "generation": "GEN2",
+      "difficulty": 5,
+      "pricePerPersonWon": 24000,
+      "capacityMin": 2,
+      "capacityMax": 2,
+      "rating": 4.1,
+      "tags": [
+        "스릴러",
+        "빈집"
       ]
     }
   ],
