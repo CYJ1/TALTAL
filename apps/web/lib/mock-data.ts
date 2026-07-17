@@ -1,7 +1,6 @@
 import type {
   CalendarEntry,
   CreateReviewInput,
-  DateSlots,
   DistrictFacet,
   ExperienceTier,
   GenerationPreference,
@@ -41,6 +40,7 @@ interface ThemeSeed {
   capacityMax: number;
   weight: HexagonStat;
   votes: Record<number, number>; // 실체감 인원수 투표 스냅샷
+  bookingUrl: string | null; // apps/api/prisma/seed.ts의 Store.naverBookingUrl/homepageUrl 미러링
 }
 
 // apps/api/prisma/seed.ts와 동일한 매장/테마 데이터셋을 그대로 미러링해, 목업 모드와
@@ -63,6 +63,7 @@ const THEMES: ThemeSeed[] = [
     capacityMax: 5,
     weight: { logic: 2, observe: 3, speed: 1, story: 8, solving: 4, tank: 1 },
     votes: { 2: 4, 3: 21, 4: 6 },
+    bookingUrl: 'https://www.keyescape.co.kr/reservation.php',
   },
   {
     themeId: 'ring',
@@ -81,6 +82,7 @@ const THEMES: ThemeSeed[] = [
     capacityMax: 6,
     weight: { logic: 3, observe: 4, speed: 3, story: 2, solving: 3, tank: 9 },
     votes: { 3: 5, 4: 18, 5: 9 },
+    bookingUrl: 'https://zerogangnam.com/reservation',
   },
   {
     themeId: 'yesterday-today',
@@ -99,6 +101,9 @@ const THEMES: ThemeSeed[] = [
     capacityMax: 4,
     weight: { logic: 8, observe: 5, speed: 1, story: 3, solving: 6, tank: 1 },
     votes: { 2: 14, 3: 3 },
+    // "머더파커 강남점"은 실제 체인 지점 목록(전주/홍대/건대/양산)에서 확인되지
+    // 않아 실존 여부가 불확실하다 — 예약 URL은 비워둔다.
+    bookingUrl: null,
   },
   {
     themeId: 'key-double-life',
@@ -117,6 +122,7 @@ const THEMES: ThemeSeed[] = [
     capacityMax: 5,
     weight: { logic: 4, observe: 7, speed: 2, story: 5, solving: 5, tank: 2 },
     votes: { 2: 3, 3: 17, 4: 4 },
+    bookingUrl: 'https://www.point-nine.com/',
   },
 ];
 
@@ -156,27 +162,6 @@ function generateSlots(themeId: string): TimeSlot[] {
     const roll = rng();
     const status: TimeSlot['status'] = roll > 0.55 ? 'AVAILABLE' : roll > 0.4 ? 'FEW_LEFT' : 'CLOSED';
     return { time, status };
-  });
-}
-
-/** "오늘" 이후 날짜는 스크래퍼가 아직 실제 매장 어댑터를 갖추지 못해, 테마+날짜
- * 시드로 재현 가능한 목업 시간대를 생성한다 (apps/api의 future-slot-mock.ts와 동일 발상). */
-function generateSlotsForDate(themeId: string, date: string): TimeSlot[] {
-  const rng = mulberry32(hashSeed(`${themeId}:${date}`));
-  return SLOT_TIMES.map((time) => {
-    const roll = rng();
-    const status: TimeSlot['status'] = roll > 0.55 ? 'AVAILABLE' : roll > 0.4 ? 'FEW_LEFT' : 'CLOSED';
-    return { time, status };
-  });
-}
-
-export function getSlotsForDates(themeId: string, dates: string[]): DateSlots[] {
-  const theme = getThemeById(themeId);
-  const today = new Date().toISOString().slice(0, 10);
-  return dates.map((date) => {
-    if (!theme) return { date, slots: [], cacheStatus: 'REFRESHING' as const };
-    if (date === today) return { date, slots: generateSlots(themeId), cacheStatus: 'HIT' as const };
-    return { date, slots: generateSlotsForDate(themeId, date), cacheStatus: 'MOCK_ESTIMATE' as const };
   });
 }
 
@@ -283,6 +268,7 @@ function mapThemeToSearchResult(theme: ThemeSeed): ThemeSearchResult {
     slots,
     recommendedHeadcount: { recommended: rh.recommended, reason: rh.reason, sampleSize: rh.sampleSize },
     cacheStatus: 'HIT' as const,
+    bookingUrl: theme.bookingUrl,
   };
 }
 

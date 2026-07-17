@@ -75,12 +75,20 @@ export default async function ThemeDetailPage({
           >
             🤝 동행 구하기
           </Link>
-          <Link
-            href={`/themes/${theme.themeId}/book`}
-            className="rounded-xl bg-indigo-600 py-3 text-center text-sm font-semibold text-white transition hover:bg-indigo-700"
-          >
-            📅 예약하기
-          </Link>
+          {theme.bookingUrl ? (
+            <a
+              href={theme.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl bg-indigo-600 py-3 text-center text-sm font-semibold text-white transition hover:bg-indigo-700"
+            >
+              📅 예약하러 가기 ↗
+            </a>
+          ) : (
+            <span className="rounded-xl bg-zinc-100 py-3 text-center text-sm font-semibold text-zinc-400">
+              예약 링크 준비중
+            </span>
+          )}
         </div>
 
         <Link

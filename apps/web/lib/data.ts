@@ -4,7 +4,6 @@ import { getSessionToken } from './session';
 import type {
   CalendarEntry,
   CreateReviewInput,
-  DateSlots,
   DistrictFacet,
   GenerationPreference,
   GenreTag,
@@ -102,6 +101,7 @@ export async function searchThemes(query: {
       : null,
     cacheStatus: r.cacheStatus,
     distanceKm: r.distanceKm ?? null,
+    bookingUrl: r.bookingUrl ?? null,
   }));
 }
 
@@ -114,12 +114,6 @@ export async function getThemeDetail(themeId: string): Promise<ThemeSearchResult
   if (!IS_REMOTE_MODE) return mock.getThemeDetail(themeId);
   const all = await searchThemes({});
   return all.find((t) => t.themeId === themeId) ?? null;
-}
-
-export async function getThemeSlotsForDates(themeId: string, dates: string[]): Promise<DateSlots[]> {
-  if (!IS_REMOTE_MODE) return mock.getSlotsForDates(themeId, dates);
-  const raw = await remoteJson<Json[]>(`/search/themes/${themeId}/slots?dates=${dates.join(',')}`);
-  return raw.map((r) => ({ date: r.date, slots: r.slots, cacheStatus: r.cacheStatus }));
 }
 
 export async function getThemeMeta(

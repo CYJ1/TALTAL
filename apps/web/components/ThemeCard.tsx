@@ -56,12 +56,20 @@ export default function ThemeCard({ theme }: { theme: ThemeSearchResult }) {
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2">
-        <Link
-          href={`/themes/${theme.themeId}/book`}
-          className="rounded-xl border border-zinc-200 py-2 text-center text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
-        >
-          매장 공홈 예약
-        </Link>
+        {theme.bookingUrl ? (
+          <a
+            href={theme.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-xl border border-zinc-200 py-2 text-center text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
+          >
+            매장 공홈 예약 ↗
+          </a>
+        ) : (
+          <span className="rounded-xl border border-zinc-100 py-2 text-center text-sm font-medium text-zinc-300">
+            예약 링크 준비중
+          </span>
+        )}
         <Link
           href={`/party/new?themeId=${theme.themeId}`}
           className="rounded-xl bg-indigo-600 py-2 text-center text-sm font-medium text-white transition hover:bg-indigo-700"
