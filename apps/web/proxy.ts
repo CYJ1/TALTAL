@@ -10,7 +10,7 @@ const PROTECTED_PREFIXES = [
   '/party',
   '/onboarding',
 ];
-const PROTECTED_SEGMENTS = ['/book', '/review']; // /themes/[themeId]/book, /themes/[themeId]/review
+const PROTECTED_SEGMENTS = ['/review']; // /themes/[themeId]/review
 const AUTH_PAGES = ['/login', '/signup'];
 
 // 이 Proxy는 UX용 게이트일 뿐이다. 실제 인가는 각 API 호출 시점에

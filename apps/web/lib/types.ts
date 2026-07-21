@@ -8,12 +8,6 @@ export interface DistrictFacet {
   neighborhoods: string[];
 }
 
-export interface DateSlots {
-  date: string;
-  slots: TimeSlot[];
-  cacheStatus: 'HIT' | 'REFRESHING' | 'MOCK_ESTIMATE';
-}
-
 export interface RecommendedHeadcount {
   recommended: number;
   reason: string;
@@ -41,6 +35,9 @@ export interface ThemeSearchResult {
   recommendedHeadcount: RecommendedHeadcount | null;
   cacheStatus: 'HIT' | 'REFRESHING';
   distanceKm?: number | null;
+  // 네이버 예약/매장 홈페이지 링크. 아직 조사되지 않은 매장은 null — 예약 버튼을
+  // "예약 링크 준비중"으로 비활성 표시한다.
+  bookingUrl: string | null;
 }
 
 export interface HexagonStat {

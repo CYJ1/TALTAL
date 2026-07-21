@@ -28,6 +28,8 @@ const STORES = [
     address: '서울 강남구 강남대로96길 17',
     latitude: 37.5001035869388,
     longitude: 127.028430769789,
+    naverBookingUrl: null,
+    homepageUrl: 'https://www.keyescape.co.kr/reservation.php',
   },
   {
     id: 'zerooworld-gangnam',
@@ -37,10 +39,14 @@ const STORES = [
     address: '서울 서초구 서초대로73길 40',
     latitude: 37.5009333761724,
     longitude: 127.024581465886,
+    naverBookingUrl: null,
+    homepageUrl: 'https://zerogangnam.com/reservation',
   },
   {
     // 카카오 로컬 API 검색 결과에서 매칭되는 매장을 찾지 못했다 — 폐업했거나
     // 카카오맵 미등록 매장일 수 있다. 위치 정보는 비워두고 이후 확인이 필요하다.
+    // 웹 검색으로도 "머더파커" 체인의 실제 지점 목록(전주/홍대/건대/양산)에서
+    // 강남점을 찾지 못해, 실존 여부가 불확실하다 — 예약 URL은 비워둔다.
     id: 'murderparker-gangnam',
     name: '머더파커 강남점',
     district: '서울 강남구',
@@ -48,6 +54,8 @@ const STORES = [
     address: null,
     latitude: null,
     longitude: null,
+    naverBookingUrl: null,
+    homepageUrl: null,
   },
   {
     id: 'point9-gangnam',
@@ -57,6 +65,8 @@ const STORES = [
     address: '서울 강남구 강남대로102길 40',
     latitude: 37.5034283090159,
     longitude: 127.028386792542,
+    naverBookingUrl: null,
+    homepageUrl: 'https://www.point-nine.com/',
   },
 ];
 
