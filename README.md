@@ -415,7 +415,7 @@ API_BASE_URL=http://localhost:4000
 
 ## Project Status
 
-TALTAL은 현재 **개인 프로토타입 프로젝트**임.
+TALTAL은 **개인 프로토타입 프로젝트**
 
 실제 상용 방탈출 플랫폼을 그대로 재현하는 것보다는 하나의 제품 아이디어를 직접 설계하고 다음 요소를 end-to-end로 구현해보는 것을 목표로 했음
 
@@ -428,4 +428,3 @@ TALTAL은 현재 **개인 프로토타입 프로젝트**임.
 - Multi-service architecture
 
 아이디어 단계에서 끝내지 않고 실제로 동작하는 서비스 형태까지 구현하면서 **제품 설계부터 frontend, backend, infrastructure, recommendation까지 전체 개발 과정을 경험하는 것**에 중점을 둔 프로젝트
-````
